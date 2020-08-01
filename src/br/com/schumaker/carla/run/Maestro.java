@@ -1,7 +1,6 @@
 package br.com.schumaker.carla.run;
 
 import br.com.schumaker.carla.files.O3FileBuilder;
-import br.com.schumaker.carla.io.O3FileReader;
 import br.com.schumaker.carla.lexer.PreChecker;
 import java.util.Arrays;
 import java.util.List;
