@@ -30,14 +30,7 @@ public class PreChecker {
        file.setLines(newLines);
     }
     
-    public boolean checkFunctionMain(O3File file) {
-        for (O3FileLine line : file.getLines()) {
-            if (line.getData().contains("f: main()")) {
-                return true;
-            }
-        }
-        return false;
-    }
+    
     
     private boolean isBlankString(String string) {
         return string == null || string.trim().isEmpty();

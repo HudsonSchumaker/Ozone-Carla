@@ -21,6 +21,10 @@ public class O3FileBuilder implements FileBuilder<O3File> {
                 FileUtils.getClearPath(path), 
                 this.createLines(lines));
         
+        if (!Lexer.containFunctionMain(file)) {
+            throw new RuntimeException("no function main");
+        }
+        
         this.setFunctionHeaders(file);
         return file;
     }

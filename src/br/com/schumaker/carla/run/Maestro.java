@@ -29,7 +29,6 @@ public class Maestro {
         
         System.out.println(file.getLines());
         
-        System.out.println(preChecker.checkFunctionMain(file));
       
      
     }
