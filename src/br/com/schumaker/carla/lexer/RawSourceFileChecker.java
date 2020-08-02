@@ -8,7 +8,19 @@ import java.util.ArrayList;
  *
  * @author schumaker
  */
-public class PreChecker {
+public class RawSourceFileChecker {
+    
+    public void startCheck(O3File file) {
+        this.removeComments(file);
+        this.removeBlankLines(file);
+        this.setInternalLineNumbers(file);
+    }
+    
+    public void setInternalLineNumbers(O3File file) {
+        for (int l = 0; l < file.getLines().size(); l++) {
+            file.getLines().get(l).setInternalNumber(l);
+        }
+    }
     
     public void removeComments(O3File file) {
        var newLines = new ArrayList<O3FileLine>();
@@ -29,8 +41,6 @@ public class PreChecker {
        }
        file.setLines(newLines);
     }
-    
-    
     
     private boolean isBlankString(String string) {
         return string == null || string.trim().isEmpty();

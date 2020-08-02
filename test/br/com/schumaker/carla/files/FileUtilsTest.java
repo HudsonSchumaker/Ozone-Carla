@@ -21,18 +21,28 @@ public class FileUtilsTest {
     
     @Test
     public void testGetClearNameString() {
+         // Preparation
         String clearName = "photo";
         String fullFilePath = "/Library/hs/core/" + clearName + ".png";
+        
+        // Test
         String result = FileUtils.getClearName(fullFilePath);
+        
+        // Assertion
         assertEquals(clearName, result);
     }
     
     @Test
     public void testGetClearNameFile() {
+        // Preparation
         String clearName = "photo";
         String fullFilePath = "/Library/hs/core/" + clearName + ".png";
         File f = new File(fullFilePath);
+        
+        // Test
         String result = FileUtils.getClearName(f);
+        
+        // Assertion
         assertEquals(clearName, result);
     }
     
@@ -46,10 +56,14 @@ public class FileUtilsTest {
     
     @Test
     public void testGetClearPath() {
+        // Preparation
         String clearPath = "/Library/hs/core/";
         String fullFilePath = clearPath + "photo.png";
-        File f = new File(fullFilePath);
+        
+        // Test
         String result = FileUtils.getClearPath(fullFilePath);
+        
+        // Assertion
         assertEquals(clearPath, result);
     }
 }

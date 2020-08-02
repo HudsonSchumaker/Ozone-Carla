@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.run;
 
 import br.com.schumaker.carla.files.O3FileBuilder;
-import br.com.schumaker.carla.lexer.PreChecker;
+import br.com.schumaker.carla.lexer.RawSourceFileChecker;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,14 +18,13 @@ public class Maestro {
     }
     
     public void start() throws Exception {
-        System.out.println(args.get(0));
-        
         var fileBuilder = new O3FileBuilder();
         var file = fileBuilder.build(args.get(0));
         
-        var preChecker = new PreChecker();
-        preChecker.removeBlankLines(file);
-        preChecker.removeComments(file);
+        var preChecker = new RawSourceFileChecker();
+        preChecker.startCheck(file);
+       
+        
         
         System.out.println(file.getLines());
         

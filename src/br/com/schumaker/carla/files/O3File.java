@@ -3,9 +3,9 @@ package br.com.schumaker.carla.files;
 import java.util.List;
 import lombok.Data;
 
-/**
- *
- * @author schumaker
+/** 
+ *  This class holds the O3 file source.
+ *  @author schumaker
  */
 
 @Data
