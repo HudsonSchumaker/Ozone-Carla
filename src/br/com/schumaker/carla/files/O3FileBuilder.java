@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * This class builds O3Files 
+ * @see O3File
+ * 
  * @author schumaker
  */
 public class O3FileBuilder implements FileBuilder<O3File> {
@@ -21,11 +23,13 @@ public class O3FileBuilder implements FileBuilder<O3File> {
                 FileUtils.getClearPath(path), 
                 this.createLines(lines));
         
-        if (!LexerHelper.containFunctionMain(file)) {
+        if (!LexerHelper.containsFunctionMain(file)) {
             throw new RuntimeException("no function main");
         }
         
         this.setFunctionHeaders(file);
+        this.setConditionalStatements(file);
+        this.setLoopStatements(file);
         return file;
     }
     
@@ -43,5 +47,25 @@ public class O3FileBuilder implements FileBuilder<O3File> {
                 line.setFunctionHeader(true);
             }
         }
+    }
+    
+    private void setConditionalStatements(O3File file) {
+        for (O3FileLine line : file.getLines()) {
+            if (LexerHelper.isConditionalStatement(line.getData())) {
+                line.setConditionalStatement(true);
+            }
+        }
+    }
+    
+    private void setLoopStatements(O3File file) {
+        for (O3FileLine line : file.getLines()) {
+            if (LexerHelper.isLoopStatement(line.getData())) {
+                line.setLoopStatement(true);
+            }
+        }
+    }
+    
+    private void setReturnStatements(O3File file) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

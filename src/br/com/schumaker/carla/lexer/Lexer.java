@@ -1,8 +1,7 @@
 package br.com.schumaker.carla.lexer;
 
-import br.com.schumaker.carla.files.O3File;
-import br.com.schumaker.carla.files.O3FileLine;
-import br.com.schumaker.carla.o3.O3Keyword;
+import br.com.schumaker.carla.o3.O3Function;
+import java.util.List;
 
 /**
  *
@@ -14,5 +13,10 @@ public class Lexer {
         return "";
     }
     
-    
+    public List<O3Function> getFunctions() {
+       
+        
+        
+        return null;
+    }
 }

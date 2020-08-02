@@ -48,9 +48,14 @@ public class FileUtilsTest {
     
     @Test 
     public void testGetName() {
+        // Preparation
         String name = "photo.png";
         String fullFilePath = "/Library/hs/core/" + name;
+        
+        // Test
         String result = FileUtils.getName(fullFilePath);
+        
+        // Assertion
         assertEquals(name, result);
     }
     
