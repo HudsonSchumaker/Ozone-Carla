@@ -9,7 +9,7 @@ public final class O3Keyword {
     
     public static final String COMMENT = ";";
     public static final String FUNCTION = "f:";
-    public static final String VARIABLE = "@";
+    public static final String VARIABLE = "v:";
     
     public static final String IF = "if";
     public static final String ELSE = "else";

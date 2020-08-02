@@ -30,6 +30,7 @@ public class O3FileBuilder implements FileBuilder<O3File> {
         this.setFunctionHeaders(file);
         this.setConditionalStatements(file);
         this.setLoopStatements(file);
+        this.setVariableDeclarations(file);
         return file;
     }
     
@@ -60,6 +61,14 @@ public class O3FileBuilder implements FileBuilder<O3File> {
     private void setLoopStatements(O3File file) {
         for (O3FileLine line : file.getLines()) {
             if (LexerHelper.isLoopStatement(line.getData())) {
+                line.setLoopStatement(true);
+            }
+        }
+    }
+    
+    private void setVariableDeclarations(O3File file) {
+        for (O3FileLine line : file.getLines()) {
+            if (LexerHelper.isVariableDeclaration(line.getData())) {
                 line.setLoopStatement(true);
             }
         }

@@ -24,6 +24,10 @@ public final class LexerHelper {
         return data.startsWith(O3Keyword.WHILE) 
                 || data.startsWith(O3Keyword.FOR);
     }
+    
+    public static boolean isVariableDeclaration(String data) {
+        return data.startsWith(O3Keyword.VARIABLE);
+    }
 
     public static boolean isReturStatement(String data) {
         throw new UnsupportedOperationException("Not supported yet.");

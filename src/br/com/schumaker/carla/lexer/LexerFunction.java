@@ -4,6 +4,7 @@ import br.com.schumaker.carla.files.O3File;
 import br.com.schumaker.carla.files.O3FileLine;
 import br.com.schumaker.carla.o3.O3Function;
 import br.com.schumaker.carla.o3.O3Keyword;
+import br.com.schumaker.carla.o3.O3Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +18,18 @@ public class LexerFunction {
         var headerLines = this.getHeaderLines(file);
         var functions = new ArrayList<O3Function>();
         for (O3FileLine line : headerLines) {
-            
+            functions.add(this.setFunctionStatement(line, file));
         }
         
         this.setFunctionMain(functions);
+        
+        
+        
+        
         return functions;
     }
     
-    public O3Function getFunction(O3FileLine headerLine, O3File file) {
+    public O3Function setFunctionStatement(O3FileLine headerLine, O3File file) {
         var endBlock = "";
         var k = headerLine.getInternalNumber();
         var functionLines = new ArrayList<O3FileLine>();
@@ -34,11 +39,10 @@ public class LexerFunction {
             k++;
         }
        
-        
         return new O3Function (
                 this.getFunctionName(headerLine.getData()), 
                 false,
-                functionLines);
+                new O3Statement(functionLines));
     }
     
     public List<O3FileLine> getHeaderLines(O3File file) {

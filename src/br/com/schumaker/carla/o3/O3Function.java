@@ -20,6 +20,8 @@ public class O3Function {
     
     private String name;
     private boolean isMain;
-    private O3Statement statement;
+    //TODO
+    //private List<O3Variable> params; 
+    private IO3Statement statement;
 
 }

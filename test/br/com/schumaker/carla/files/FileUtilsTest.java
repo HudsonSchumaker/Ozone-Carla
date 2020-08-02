@@ -12,10 +12,15 @@ public class FileUtilsTest {
     
     @Test
     public void testGetFileExtension() {
+         // Preparation
         String ext = "png";
         String fullFilePath = "/Library/hs/core/photo." + ext;
         File f = new File(fullFilePath);
+        
+        // Test
         String result = FileUtils.getFileExtension(f);
+        
+        // Assertion
         assertEquals(ext, result);
     }
     
