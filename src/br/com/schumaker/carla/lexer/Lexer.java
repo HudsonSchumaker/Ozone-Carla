@@ -14,16 +14,5 @@ public class Lexer {
         return "";
     }
     
-    public static boolean isFunctionHeader(String data) {
-        return data.startsWith(O3Keyword.FUNCTION);
-    }
     
-    public static boolean containFunctionMain(O3File file) {
-        for (O3FileLine line : file.getLines()) {
-            if (line.getData().contains("f: main()")) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.files;
 
 import br.com.schumaker.carla.io.O3FileReader;
-import br.com.schumaker.carla.lexer.Lexer;
+import br.com.schumaker.carla.lexer.LexerHelper;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class O3FileBuilder implements FileBuilder<O3File> {
                 FileUtils.getClearPath(path), 
                 this.createLines(lines));
         
-        if (!Lexer.containFunctionMain(file)) {
+        if (!LexerHelper.containFunctionMain(file)) {
             throw new RuntimeException("no function main");
         }
         
@@ -39,7 +39,7 @@ public class O3FileBuilder implements FileBuilder<O3File> {
     
     private void setFunctionHeaders(O3File file) {
         for (O3FileLine line : file.getLines()) {
-            if (Lexer.isFunctionHeader(line.getData())) {
+            if (LexerHelper.isFunctionHeader(line.getData())) {
                 line.setFunctionHeader(true);
             }
         }

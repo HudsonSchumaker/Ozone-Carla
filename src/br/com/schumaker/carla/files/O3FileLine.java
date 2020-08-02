@@ -12,6 +12,9 @@ public class O3FileLine {
     
     private String data;
     private boolean functionHeader;
+    private boolean conditionalStatement;
+    private boolean loopStatement;
+    private boolean returnStatement;
     private Integer originalNumber;
     private Integer internalNumber;
     
