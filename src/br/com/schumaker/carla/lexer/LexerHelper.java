@@ -29,7 +29,7 @@ public final class LexerHelper {
         return data.startsWith(O3Keyword.VARIABLE);
     }
 
-    public static boolean isReturStatement(String data) {
+    public static boolean isReturnStatement(String data) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
