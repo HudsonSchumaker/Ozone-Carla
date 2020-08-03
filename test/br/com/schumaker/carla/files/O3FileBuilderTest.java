@@ -1,6 +1,6 @@
 package br.com.schumaker.carla.files;
 
-import br.com.schumaker.carla.test.TestHelper;
+import br.com.schumaker.carla.test.O3TestHelper;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -14,7 +14,7 @@ public class O3FileBuilderTest {
     @Test
     public void testBuild() throws Exception {
         // Preparation
-        var tmpFile = TestHelper.createTempFile();
+        var tmpFile = O3TestHelper.createTempFile();
         
         // Test
         var tested = new O3FileBuilder();
@@ -29,7 +29,7 @@ public class O3FileBuilderTest {
     @Test(expected = RuntimeException.class)
     public void testBuildException() throws Exception {
         // Preparation
-        var tmpFile = TestHelper.createTempFile(this.mockO3FileWithoutMainFunction());
+        var tmpFile = O3TestHelper.createTempFile(this.mockO3FileWithoutMainFunction());
         
         var tested = new O3FileBuilder();
         // Will fail 

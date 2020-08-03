@@ -2,7 +2,7 @@ package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.files.O3FileBuilder;
 import br.com.schumaker.carla.files.O3FileLine;
-import br.com.schumaker.carla.test.TestHelper;
+import br.com.schumaker.carla.test.O3TestHelper;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -16,7 +16,7 @@ public class LexerFunctionTest {
     @Test
     public void testGetFunctions() throws Exception {
         // Preparation
-        var file = TestHelper.createO3File();
+        var file = O3TestHelper.createO3File();
         
         // Test
         var tested = new LexerFunction();
@@ -30,7 +30,7 @@ public class LexerFunctionTest {
     @Test
     public void testSetStatement() throws Exception {
         // Preparation
-        var file = TestHelper.createO3File();
+        var file = O3TestHelper.createO3File();
 
         var tested = new LexerFunction();
         var headerLines = tested.getHeaderLines(file);
@@ -46,7 +46,7 @@ public class LexerFunctionTest {
     @Test
     public void testGetHeaderLines() throws Exception {
         // Preparation
-        var tmpFile = TestHelper.createTempFile();
+        var tmpFile = O3TestHelper.createTempFile();
         var builder = new O3FileBuilder();
         var file = builder.build(tmpFile.getAbsolutePath());
         

@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.files;
 
 import br.com.schumaker.carla.io.O3FileReader;
-import br.com.schumaker.carla.test.TestHelper;
+import br.com.schumaker.carla.test.O3TestHelper;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -15,7 +15,7 @@ public class O3FileReaderTest {
     public void testRead() throws Exception {
         
         // Preparation    
-        var tmpFile = TestHelper.createTempFile();
+        var tmpFile = O3TestHelper.createTempFile();
  
         // Test
         var tested = new O3FileReader();

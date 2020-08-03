@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.files.O3FileBuilder;
-import br.com.schumaker.carla.test.TestHelper;
+import br.com.schumaker.carla.test.O3TestHelper;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -14,7 +14,7 @@ public class RawSourceFileCheckerTest {
     @Test
     public void testRemoveBlankLines() throws Exception {
         // Preparation
-        var tmpFile = TestHelper.createTempFile();
+        var tmpFile = O3TestHelper.createTempFile();
 
         // Test
         var builder = new O3FileBuilder();
@@ -29,7 +29,7 @@ public class RawSourceFileCheckerTest {
     @Test
     public void testRemoveComments() throws Exception {
         // Preparation
-        var tmpFile = TestHelper.createTempFile();
+        var tmpFile = O3TestHelper.createTempFile();
 
         // Test
         var builder = new O3FileBuilder();
@@ -44,7 +44,7 @@ public class RawSourceFileCheckerTest {
     @Test
     public void testSetInternalLineNumbers() throws Exception {
         // Preparation
-        var file =TestHelper.createO3File();
+        var file =O3TestHelper.createO3File();
         
         // Test
         var tested = new RawSourceFileChecker();
