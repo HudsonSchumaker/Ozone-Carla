@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * This class is the concrete reader of O³ source files. 
+ * Ex: main.o3
  * @author schumaker
  */
 public class O3FileReader implements Reader<List<String>> {
@@ -22,7 +23,7 @@ public class O3FileReader implements Reader<List<String>> {
 
     @Override
     public boolean validExtension(String path) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

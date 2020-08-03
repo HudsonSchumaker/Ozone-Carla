@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * This class create the O³ functions representations.
  * @author schumaker
  */
 public class LexerFunction {

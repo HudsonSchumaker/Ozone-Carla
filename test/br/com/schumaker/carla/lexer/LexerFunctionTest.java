@@ -72,9 +72,22 @@ public class LexerFunctionTest {
     }
             
     @Test
-    public void testGetFunctionName() {
+    public void testGetFunctionNameConventionalWay() {
         // Preparation
         var line = "f: main() {";
+        
+        // Test
+        var tested = new LexerFunction();
+        var result = tested.getFunctionName(line);
+        
+        // Assertion
+        assertEquals("main", result); 
+    }
+    
+    @Test
+    public void testGetFunctionNameNotConventionalWay() {
+        // Preparation
+        var line = "f:main(){";
         
         // Test
         var tested = new LexerFunction();

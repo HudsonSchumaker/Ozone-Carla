@@ -4,9 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * This class represents the functions of O3 pl.
+ * This class represents the functions of O³ pl.
  * Ex:
- * 
  * f: main() {
  *      ; some code here...
  * }
@@ -20,8 +19,6 @@ public class O3Function {
     
     private String name;
     private boolean isMain;
-    //TODO
     //private List<O3Variable> params; 
     private IO3Statement statement;
-
 }

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
+ * This class orchestrates all the compilation process. 
  * @author schumaker
  */
 public class Maestro {

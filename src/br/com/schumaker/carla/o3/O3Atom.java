@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * This class represents the O3 program.
+ * This class represents the O³ program.
  * @author schumaker
  */
 

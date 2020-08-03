@@ -5,7 +5,7 @@ import br.com.schumaker.carla.files.O3FileLine;
 import br.com.schumaker.carla.o3.O3Keyword;
 
 /**
- *
+ * Helper class
  * @author schumaker
  */
 public final class LexerHelper {

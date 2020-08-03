@@ -1,12 +1,21 @@
 package br.com.schumaker.carla.o3;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 /**
- * This class represents the variables of O3 pl.
+ * This class represents the variables of O³ pl.
  * Ex:
- * @pi = 3.14
+ * v: pi = 3.14
  * 
  * @author schumaker
  */
+
+@Data
+@AllArgsConstructor
 public class O3Variable {
     
+    private String name;
+    private String internalName;
+    private O3VariableTypeValue<O3VariableType, ?> typeValue;        
 }

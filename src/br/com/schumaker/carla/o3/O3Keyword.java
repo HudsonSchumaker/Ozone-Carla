@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.o3;
 
 /**
- *
+ * This class defines the keywords of O³ pl.
  * @author schumaker
  */
 public final class O3Keyword {
