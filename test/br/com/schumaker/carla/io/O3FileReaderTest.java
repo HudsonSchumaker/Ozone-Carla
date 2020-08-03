@@ -26,8 +26,15 @@ public class O3FileReaderTest {
     
     @Test
     public void testFileExistsNotExists() {
+        // Preparation
+        File tmpFile = new File("/Users/hh.h");
         
+        // Test
+        var tested = new O3FileReader();
+        var result = tested.fileExists(tmpFile.getAbsolutePath());
         
+        // Assertion
+        Assert.assertFalse(result);
     }
     
     private File createTempFile(String content) throws Exception {
