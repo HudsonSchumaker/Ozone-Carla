@@ -44,16 +44,12 @@ public class LexerFunctionTest {
         var headerLines = tested.getHeaderLines(file);
         
         // Test
+        var result = tested.setStatement(headerLines.get(0), file);
         
-        var result = tested.getFunctions(file);
-        
-         // Assertions
-        assertEquals("main", result.get(0).getName());
-        assertTrue(result.get(0).isMain());        
+        // Assertions
+        assertEquals("main", result.getName());
+        assertTrue(result.isMain());        
     }
-    
-    
-
     
     @Test
     public void testGetHeaderLines() throws Exception {
