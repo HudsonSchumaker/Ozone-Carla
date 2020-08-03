@@ -2,8 +2,7 @@ package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.files.O3FileBuilder;
 import br.com.schumaker.carla.files.O3FileLine;
-import java.io.File;
-import java.io.FileWriter;
+import br.com.schumaker.carla.test.TestHelper;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -17,11 +16,7 @@ public class LexerFunctionTest {
     @Test
     public void testGetFunctions() throws Exception {
         // Preparation
-        File tmpFile = this.createTempFile(this.mockO3File());
-        var builder = new O3FileBuilder();
-        var file = builder.build(tmpFile.getAbsolutePath());
-        var preChecker = new RawSourceFileChecker();
-        preChecker.startCheck(file);
+        var file = TestHelper.createO3File();
         
         // Test
         var tested = new LexerFunction();
@@ -35,11 +30,8 @@ public class LexerFunctionTest {
     @Test
     public void testSetStatement() throws Exception {
         // Preparation
-        File tmpFile = this.createTempFile(this.mockO3File());
-        var builder = new O3FileBuilder();
-        var file = builder.build(tmpFile.getAbsolutePath());
-        var preChecker = new RawSourceFileChecker();
-        preChecker.startCheck(file);
+        var file = TestHelper.createO3File();
+
         var tested = new LexerFunction();
         var headerLines = tested.getHeaderLines(file);
         
@@ -54,7 +46,7 @@ public class LexerFunctionTest {
     @Test
     public void testGetHeaderLines() throws Exception {
         // Preparation
-        File tmpFile = this.createTempFile(this.mockO3File());
+        var tmpFile = TestHelper.createTempFile();
         var builder = new O3FileBuilder();
         var file = builder.build(tmpFile.getAbsolutePath());
         
@@ -90,26 +82,5 @@ public class LexerFunctionTest {
         
         // Assertion
         assertEquals("main", result); 
-    }
-    
-    private File createTempFile(String content) throws Exception {
-        File tmpFile = File.createTempFile("test", ".tmp");
-        FileWriter writer = new FileWriter(tmpFile);
-        writer.write(content);
-        writer.close();
-        tmpFile.deleteOnExit();
-        
-        return tmpFile;
-    }
-
-    private String mockO3File() {
-        return "; primeiro programa\n"
-                + "; autor: Hudson Schumaker\n"
-                + "; data : 2020-07-31\n"
-                + "\n"
-                + "f: main() {\n"
-                + "  @text = \"Hello World\"\n"
-                + "  print(text)\n"
-                + "}";
     }
 }
