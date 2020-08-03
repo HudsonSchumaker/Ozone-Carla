@@ -33,6 +33,29 @@ public class LexerFunctionTest {
     }
     
     @Test
+    public void testSetStatement() throws Exception {
+        // Preparation
+        File tmpFile = this.createTempFile(this.mockO3File());
+        var builder = new O3FileBuilder();
+        var file = builder.build(tmpFile.getAbsolutePath());
+        var preChecker = new RawSourceFileChecker();
+        preChecker.startCheck(file);
+        var tested = new LexerFunction();
+        var headerLines = tested.getHeaderLines(file);
+        
+        // Test
+        
+        var result = tested.getFunctions(file);
+        
+         // Assertions
+        assertEquals("main", result.get(0).getName());
+        assertTrue(result.get(0).isMain());        
+    }
+    
+    
+
+    
+    @Test
     public void testGetHeaderLines() throws Exception {
         // Preparation
         File tmpFile = this.createTempFile(this.mockO3File());
@@ -47,11 +70,6 @@ public class LexerFunctionTest {
         assertEquals("f: main() {",result.get(0).getData()); 
     }
      
-    
-    public boolean isMainFunction(O3FileLine headerLine) {
-        return headerLine.getData().contains("f: main()");
-    }
-    
     @Test
     public void testIsMainFunction() {
          // Preparation
