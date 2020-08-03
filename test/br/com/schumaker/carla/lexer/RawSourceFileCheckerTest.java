@@ -59,17 +59,17 @@ public class RawSourceFileCheckerTest {
         assertEquals(4, file.getLines().size());
         assertEquals(0, file.getLines().get(0).getInternalNumber().intValue());
     }
-    
-
+   
     private File createTempFile(String content) throws Exception {
         File tmpFile = File.createTempFile("test", ".tmp");
         FileWriter writer = new FileWriter(tmpFile);
         writer.write(content);
         writer.close();
+        tmpFile.deleteOnExit();
         
         return tmpFile;
     }
-    
+
     private String mockO3File() {
         return "; primeiro programa\n"
                 + "; autor: Hudson Schumaker\n"
