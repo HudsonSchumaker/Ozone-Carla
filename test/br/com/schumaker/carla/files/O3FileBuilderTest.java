@@ -1,7 +1,6 @@
 package br.com.schumaker.carla.files;
 
-import java.io.File;
-import java.io.FileWriter;
+import br.com.schumaker.carla.test.TestHelper;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -15,7 +14,7 @@ public class O3FileBuilderTest {
     @Test
     public void testBuild() throws Exception {
         // Preparation
-        File tmpFile = this.createTempFile(this.mockO3File());
+        var tmpFile = TestHelper.createTempFile();
         
         // Test
         var tested = new O3FileBuilder();
@@ -30,7 +29,7 @@ public class O3FileBuilderTest {
     @Test(expected = RuntimeException.class)
     public void testBuildException() throws Exception {
         // Preparation
-        File tmpFile = this.createTempFile(this.mockO3FileWithoutMainFunction());
+        var tmpFile = TestHelper.createTempFile(this.mockO3FileWithoutMainFunction());
         
         var tested = new O3FileBuilder();
         // Will fail 
@@ -40,32 +39,12 @@ public class O3FileBuilderTest {
         assertTrue(result.getLines().get(4).isFunctionHeader());
     }
     
-    private File createTempFile(String content) throws Exception {
-        File tmpFile = File.createTempFile("test", ".tmp");
-        FileWriter writer = new FileWriter(tmpFile);
-        writer.write(content);
-        writer.close();
-        
-        return tmpFile;
-    }
-
-    private String mockO3File() {
-        return "; primeiro programa\n"
-                + "; autor: Hudson Schumaker\n"
-                + "; data : 2020-07-31\n"
-                + "\n"
-                + "f: main() {\n"
-                + "  @text = \"Hello World\"\n"
-                + "  print(text)\n"
-                + "}";
-    }
-    
     private String mockO3FileWithoutMainFunction() {
         return "; primeiro programa\n"
                 + "; autor: Hudson Schumaker\n"
                 + "; data : 2020-07-31\n"
                 + "\n"
-                + "  @text = \"Hello World\"\n"
+                + "  v: text = \"Hello World\"\n"
                 + "  print(text)\n"
                 + "}";
     }
