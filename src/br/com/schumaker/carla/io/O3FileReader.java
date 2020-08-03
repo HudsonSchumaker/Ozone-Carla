@@ -27,7 +27,6 @@ public class O3FileReader implements Reader<List<String>> {
 
     @Override
     public List<String> read(String path) throws Exception {
-        
         if (!this.fileExists(path)) {
             throw new FileNotFoundException();
         }

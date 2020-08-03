@@ -17,8 +17,5 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class O3Statement implements IO3Statement {
-    
-    // private String functionSignature;
-    // private List<O3Variable> variables;
     private List<O3FileLine> lines;
 }

@@ -21,12 +21,12 @@ public final class LexerHelper {
     }
 
     public static boolean isLoopStatement(String data) {
-        return data.startsWith(O3Keyword.WHILE) 
-                || data.startsWith(O3Keyword.FOR);
+        return data.contains(O3Keyword.WHILE) 
+                || data.contains(O3Keyword.FOR);
     }
     
     public static boolean isVariableDeclaration(String data) {
-        return data.startsWith(O3Keyword.VARIABLE);
+        return data.contains(O3Keyword.VARIABLE);
     }
 
     public static boolean isReturnStatement(String data) {
