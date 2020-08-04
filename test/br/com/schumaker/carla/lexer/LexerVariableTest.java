@@ -27,12 +27,12 @@ public class LexerVariableTest {
         
         // Assertions
         assertEquals("text", result.get(0).getName());
-        assertEquals("main_text", result.get(0).getInternalName());
+        assertEquals("main_text:", result.get(0).getInternalName());
         assertEquals(O3VariableType.STRING, result.get(0).getTypeValue().getType());
         assertEquals("\"Hello World!\"", result.get(0).getTypeValue().getValue());
         
         assertEquals("number", result.get(1).getName());
-        assertEquals("main_number", result.get(1).getInternalName());
+        assertEquals("main_number:", result.get(1).getInternalName());
         assertEquals(O3VariableType.INT, result.get(1).getTypeValue().getType());
         assertEquals(5, result.get(1).getTypeValue().getValue());
     }
@@ -49,7 +49,7 @@ public class LexerVariableTest {
         
         // Assertions
         assertEquals("text", result.getName());
-        assertEquals("main_text", result.getInternalName());
+        assertEquals("main_text:", result.getInternalName());
         assertEquals(O3VariableType.STRING, result.getTypeValue().getType());
         assertEquals("\"Hello World!\"", result.getTypeValue().getValue());
     }
@@ -66,7 +66,7 @@ public class LexerVariableTest {
         
         // Assertions
         assertEquals("number", result.getName());
-        assertEquals("main_number", result.getInternalName());
+        assertEquals("main_number:", result.getInternalName());
         assertEquals(O3VariableType.INT, result.getTypeValue().getType());
         assertEquals(5, result.getTypeValue().getValue());
     }
@@ -83,7 +83,7 @@ public class LexerVariableTest {
         
         // Assertions
         assertEquals("isX86", result.getName());
-        assertEquals("main_isX86", result.getInternalName());
+        assertEquals("main_isX86:", result.getInternalName());
         assertEquals(O3VariableType.BOOL, result.getTypeValue().getType());
         assertEquals(Boolean.TRUE, result.getTypeValue().getValue());
     }
@@ -100,7 +100,7 @@ public class LexerVariableTest {
         
         // Assertions
         assertEquals("pi", result.getName());
-        assertEquals("main_pi", result.getInternalName());
+        assertEquals("main_pi:", result.getInternalName());
         assertEquals(O3VariableType.FLOAT, result.getTypeValue().getType());
         assertEquals(3.14f, result.getTypeValue().getValue());
     }

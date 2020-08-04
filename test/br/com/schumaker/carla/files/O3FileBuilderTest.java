@@ -1,5 +1,6 @@
 package br.com.schumaker.carla.files;
 
+import br.com.schumaker.carla.exception.FunctionMainNotFoundException;
 import br.com.schumaker.carla.test.O3TestHelper;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -26,7 +27,7 @@ public class O3FileBuilderTest {
         assertTrue(result.getLines().get(4).isFunctionHeader());
     }
     
-    @Test(expected = RuntimeException.class)
+    @Test(expected = FunctionMainNotFoundException.class)
     public void testBuildException() throws Exception {
         // Preparation
         var tmpFile = O3TestHelper.createTempFileO3(this.mockO3FileWithoutMainFunction());
