@@ -1,5 +1,6 @@
 package br.com.schumaker.carla.files;
 
+import br.com.schumaker.carla.exception.FunctionMainNotFoundException;
 import br.com.schumaker.carla.io.O3FileReader;
 import br.com.schumaker.carla.lexer.LexerHelper;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class O3FileBuilder implements FileBuilder<O3File> {
                 this.createLines(lines));
         
         if (!LexerHelper.containsFunctionMain(file)) {
-            throw new RuntimeException("no function main");
+            throw new FunctionMainNotFoundException();
         }
         
         this.setFunctionHeaders(file);
@@ -34,6 +35,11 @@ public class O3FileBuilder implements FileBuilder<O3File> {
         return file;
     }
     
+    /**
+     * Creates the O3FileLine from the rawLines read form a .o3 source file.
+     * @param rawLines
+     * @return A list of O3FileLine
+     */
     private List<O3FileLine> createLines(List<String> rawLines) {
         var lines = new ArrayList<O3FileLine>();
         for (int l = 0, n = 1; l < rawLines.size(); l++, n++) {
@@ -42,6 +48,10 @@ public class O3FileBuilder implements FileBuilder<O3File> {
         return lines;
     }
     
+    /**
+     * Sets the O3FileLines that have a function header.
+     * @param file 
+     */
     private void setFunctionHeaders(O3File file) {
         for (O3FileLine line : file.getLines()) {
             if (LexerHelper.isFunctionHeader(line.getData())) {
