@@ -28,7 +28,14 @@ public class O3FileReader implements Reader<List<String>> {
     public boolean validExtension(String path) {
         return O3File.EXT.equals(FileUtils.getFileExtension(path));
     }
-
+    
+    /**
+     * Reads the lines from a .o3 source file. Reads line by line and return in
+     * raw.
+     * @param path
+     * @return
+     * @throws Exception 
+     */
     @Override
     public List<String> read(String path) throws Exception {
         if (!this.fileExists(path)) {
