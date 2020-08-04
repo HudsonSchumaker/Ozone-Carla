@@ -16,8 +16,8 @@ public class LexerVariableTest {
     @Test
     public void testGetVariables() {
         // Preparation
-        var fileLineString = new O3FileLine("v: text = \"Hello World!\"", 4);
-        var fileLineInteger = new O3FileLine("v: number = 5", 5);
+        var fileLineString = new O3FileLine(" v: text = \"Hello World!\"", 4);
+        var fileLineInteger = new O3FileLine(" v: number = 5", 5);
         var fileLines = Arrays.asList(fileLineString, fileLineInteger);
         var funcName = "main";
         

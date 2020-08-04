@@ -22,6 +22,9 @@ public class LexerFunction {
             functions.add(this.setStatement(line, file));
         }
         
+        var lexerStatement = new LexerStatement();
+        lexerStatement.getFunctionStatements(functions);
+        
         return functions;
     }
     

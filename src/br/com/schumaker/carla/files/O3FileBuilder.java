@@ -69,7 +69,7 @@ public class O3FileBuilder implements FileBuilder<O3File> {
     private void setVariableDeclarations(O3File file) {
         for (O3FileLine line : file.getLines()) {
             if (LexerHelper.isVariableDeclaration(line.getData())) {
-                line.setLoopStatement(true);
+                line.setVariableDeclaration(true);
             }
         }
     }

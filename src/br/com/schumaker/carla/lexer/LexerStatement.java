@@ -9,26 +9,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * This class create the O³ functions statements representations.
  * @author schumaker
  */
 public class LexerStatement {
     
-    public List<O3Function>getStatement(List<O3Function> function) {
-        return null; // TODO
+    public void getFunctionStatements(List<O3Function> functions) {
+        for (O3Function func : functions) {
+            this.getFunctionStatement(func);
+        }
+        //return functions;
     }
 
-    public O3Function getStatement(O3Function function) {
+    public void getFunctionStatement(O3Function function) {
         var statement = function.getStatement();
         var linesVarDeclare = this.getLinesWithVariableDeclaration(statement);
         
-        var lexerVariable = this.getVariables(function.getName(), linesVarDeclare);
+        var o3Varibales = this.getVariables(function.getName(), linesVarDeclare);
         
-
         // conditional statements
         // loops statments
         
-        return function;
+        var functionalStatement = new O3FunctionStatement(o3Varibales, linesVarDeclare);
+        function.setStatement(functionalStatement);       
     }
     
     public List<O3FileLine> getLinesWithVariableDeclaration(IO3Statement statement) {

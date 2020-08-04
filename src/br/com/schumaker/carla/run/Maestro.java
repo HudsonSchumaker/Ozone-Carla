@@ -30,6 +30,9 @@ public class Maestro {
         var functions = lexerFunc.getFunctions(file);
 
         System.out.println(functions);
+        
+        
+        
 
     }
 
