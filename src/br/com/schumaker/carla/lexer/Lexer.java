@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.lexer;
 
-import br.com.schumaker.carla.o3.O3Function;
-import java.util.List;
+import br.com.schumaker.carla.files.O3File;
+import br.com.schumaker.carla.o3.O3Atom;
 
 /**
  *
@@ -9,14 +9,9 @@ import java.util.List;
  */
 public class Lexer {
     
-    public String getFunctionMain() {   
-        return "";
-    }
-    
-    public List<O3Function> getFunctions() {
-       
-        
-        
-        return null;
-    }
+    public O3Atom createProgram(O3File o3File) {
+        var lexerFunction = new LexerFunction();
+        var functions = lexerFunction.getFunctions(o3File);
+        return new O3Atom(functions);
+    } 
 }
