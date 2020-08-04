@@ -44,7 +44,7 @@ public class RawSourceFileCheckerTest {
     @Test
     public void testSetInternalLineNumbers() throws Exception {
         // Preparation
-        var file =O3TestHelper.createO3File();
+        var file = O3TestHelper.createO3File();
         
         // Test
         var tested = new RawSourceFileChecker();
