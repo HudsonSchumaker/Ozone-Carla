@@ -61,26 +61,31 @@ public class LexerVariable {
     }
 
     public String getValueString(String data) {
-        return data.substring(data.indexOf(O3Keyword.ASSINGN) + 1, data.length()).trim();
+        var clean = data.trim();
+        return clean.substring(clean.indexOf(O3Keyword.ASSINGN) + 1, clean.length()).trim();
     }
     
     public Boolean getValueBoolean(String data) {
-        var value = data.substring(data.indexOf(O3Keyword.ASSINGN) + 1, data.length()).trim();
+        var clean = data.trim();
+        var value = clean.substring(clean.indexOf(O3Keyword.ASSINGN) + 1, clean.length()).trim();
         return Boolean.valueOf(value);
     }
     
     public Integer getValueInteger(String data) {
-        var value = data.substring(data.indexOf(O3Keyword.ASSINGN) + 1, data.length()).trim();
+        var clean = data.trim();
+        var value = clean.substring(clean.indexOf(O3Keyword.ASSINGN) + 1, clean.length()).trim();
         return Integer.valueOf(value);
     }
     
     public Float getValueFloat(String data) {
-        var value = data.substring(data.indexOf(O3Keyword.ASSINGN) + 1, data.length() - 1).trim();
+        var clean = data.trim();
+        var value = clean.substring(clean.indexOf(O3Keyword.ASSINGN) + 1, clean.length() - 1).trim();
         return Float.valueOf(value);
     }
     
     public String getVariableName(String data) {
-        var name = data.substring(O3Keyword.VARIABLE.length(), data.length()).trim();
+        var clean = data.trim();
+        var name = clean.substring(O3Keyword.VARIABLE.length(), clean.length()).trim();
         name = name.substring(0, name.indexOf(O3Keyword.ASSINGN)).trim();
         return name;
     }
