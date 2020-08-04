@@ -38,12 +38,13 @@ public class LexerFunction {
             k++;
         }
        
-        return new O3Function (this.getFunctionName(headerLine.getData()),
+        return new O3Function (
+                this.getFunctionName(headerLine.getData()),
+                this.getFunctionInternalName(headerLine.getData()),
                 this.isMainFunction(headerLine), 
                 new O3Statement(functionLines));
     }
     
-
     public List<O3FileLine> getHeaderLines(O3File file) {
         var headerLines = new ArrayList<O3FileLine>();
         for (O3FileLine line : file.getLines()) {
@@ -58,6 +59,10 @@ public class LexerFunction {
         var name = data.substring(O3Keyword.FUNCTION.length(), data.length()).trim();
         name = name.substring(0, name.indexOf(O3Keyword.OPEN_EXPRESSION));
         return name;
+    }
+    
+    public String getFunctionInternalName(String data) {
+        return "_" + this.getFunctionName(data) + ":";
     }
     
     public boolean isMainFunction(O3FileLine headerLine) {
