@@ -16,23 +16,32 @@ public class LexerVariable {
 
     public List<O3Variable> getVariables(String functionName, List<O3FileLine> lines) {
         var variables = new ArrayList<O3Variable>();
-        for (O3FileLine line : lines) {
+        lines.forEach(line -> {
             variables.add(this.getVariable(functionName, line));
-        }
+        });
         return variables;
     }
 
     public O3Variable getVariable(String functionName, O3FileLine line) {
         var type = this.getType(line.getData());
-        if (type.equals(O3VariableType.STRING)) {
-            return new O3Variable(this.getVariableName(line.getData()),
-                functionName + "_" + this.getVariableName(line.getData()),
-                O3VariableTypeValue.of(type, this.getValueString(line.getData())));
-        } else {
-            return new O3Variable(this.getVariableName(line.getData()),
-                functionName + "_" + this.getVariableName(line.getData()),
-                O3VariableTypeValue.of(type, this.getValueInteger(line.getData())));
-        }  
+        switch (type) {
+            case STRING:
+                return new O3Variable(this.getVariableName(line.getData()),
+                        functionName + "_" + this.getVariableName(line.getData()),
+                        O3VariableTypeValue.of(type, this.getValueString(line.getData())));
+            case BOOL:
+                return new O3Variable(this.getVariableName(line.getData()),
+                        functionName + "_" + this.getVariableName(line.getData()),
+                        O3VariableTypeValue.of(type, this.getValueBoolean(line.getData())));
+            case FLOAT:
+                return new O3Variable(this.getVariableName(line.getData()),
+                        functionName + "_" + this.getVariableName(line.getData()),
+                        O3VariableTypeValue.of(type, this.getValueFloat(line.getData())));
+            default:
+                return new O3Variable(this.getVariableName(line.getData()),
+                        functionName + "_" + this.getVariableName(line.getData()),
+                        O3VariableTypeValue.of(type, this.getValueInteger(line.getData())));  
+        }
     }
 
     public O3VariableType getType(String data) {
@@ -41,18 +50,33 @@ public class LexerVariable {
         if (value.contains("\"")){
             return O3VariableType.STRING;
         } else {
-            // TODO check others types
+           if (value.contains(O3Keyword.TRUE) || value.contains(O3Keyword.FALSE)) {
+               return O3VariableType.BOOL;
+           } 
+           if (value.contains(O3Keyword.FLOATING_POINT_SIGN)) {
+               return O3VariableType.FLOAT;
+           }
            return O3VariableType.INT; 
         }
     }
 
     public String getValueString(String data) {
-        return data.substring(data.indexOf(O3Keyword.ASSINGN), data.length()).trim();
+        return data.substring(data.indexOf(O3Keyword.ASSINGN) + 1, data.length()).trim();
+    }
+    
+    public Boolean getValueBoolean(String data) {
+        var value = data.substring(data.indexOf(O3Keyword.ASSINGN) + 1, data.length()).trim();
+        return Boolean.valueOf(value);
     }
     
     public Integer getValueInteger(String data) {
-        var value = data.substring(data.indexOf(O3Keyword.ASSINGN), data.length()).trim();
+        var value = data.substring(data.indexOf(O3Keyword.ASSINGN) + 1, data.length()).trim();
         return Integer.valueOf(value);
+    }
+    
+    public Float getValueFloat(String data) {
+        var value = data.substring(data.indexOf(O3Keyword.ASSINGN) + 1, data.length() - 1).trim();
+        return Float.valueOf(value);
     }
     
     public String getVariableName(String data) {

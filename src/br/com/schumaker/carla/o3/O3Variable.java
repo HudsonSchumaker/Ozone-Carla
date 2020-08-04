@@ -6,7 +6,7 @@ import lombok.Data;
 /**
  * This class represents the variables of O³ pl.
  * Ex:
- * v: pi = 3.14
+ * v: pi = 3.14f
  * 
  * @author schumaker
  */
