@@ -11,6 +11,8 @@ import lombok.Data;
 @Data
 public class O3File {
     
+    public static final String EXT = "o3";
+    
     private String name;
     private String path;
     private List<O3FileLine> lines;
