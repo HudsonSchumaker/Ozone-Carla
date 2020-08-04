@@ -17,5 +17,15 @@ public class O3Variable {
     
     private String name;
     private String internalName;
-    private O3VariableTypeValue<O3VariableType, ?> typeValue;        
+    private O3VariableTypeValue<O3VariableType, ?> typeValue;       
+    
+   @Override
+   public String toString() {
+       return "{\n"
+               + "\tName : " + name + ",\n"
+               + "\tInternal Name : " + internalName + ",\n"
+               + "\tType : " + typeValue.getType().getName() + ",\n"
+               + "\tValue: " + typeValue.getValue()
+               + "\n}";
+   }
 }
