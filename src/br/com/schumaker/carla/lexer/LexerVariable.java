@@ -27,19 +27,19 @@ public class LexerVariable {
         switch (type) {
             case STRING:
                 return new O3Variable(this.getVariableName(line.getData()),
-                        functionName + "_" + this.getVariableName(line.getData()),
+                        this.getVariableInternalName(functionName,line.getData()),
                         O3VariableTypeValue.of(type, this.getValueString(line.getData())));
             case BOOL:
                 return new O3Variable(this.getVariableName(line.getData()),
-                        functionName + "_" + this.getVariableName(line.getData()),
+                        this.getVariableInternalName(functionName,line.getData()),
                         O3VariableTypeValue.of(type, this.getValueBoolean(line.getData())));
             case FLOAT:
                 return new O3Variable(this.getVariableName(line.getData()),
-                        functionName + "_" + this.getVariableName(line.getData()),
+                        this.getVariableInternalName(functionName,line.getData()),
                         O3VariableTypeValue.of(type, this.getValueFloat(line.getData())));
             default:
                 return new O3Variable(this.getVariableName(line.getData()),
-                        functionName + "_" + this.getVariableName(line.getData()),
+                        this.getVariableInternalName(functionName,line.getData()),
                         O3VariableTypeValue.of(type, this.getValueInteger(line.getData())));  
         }
     }
@@ -88,5 +88,9 @@ public class LexerVariable {
         var name = clean.substring(O3Keyword.VARIABLE.length(), clean.length()).trim();
         name = name.substring(0, name.indexOf(O3Keyword.ASSINGN)).trim();
         return name;
+    }
+    
+    public String getVariableInternalName(String functionName, String data) {
+        return functionName + "_" + this.getVariableName(data) + ":";
     }
 }
