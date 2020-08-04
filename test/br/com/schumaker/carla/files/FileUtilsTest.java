@@ -13,8 +13,8 @@ public class FileUtilsTest {
     @Test
     public void testGetFileExtension() {
          // Preparation
-        String ext = "png";
-        String fullFilePath = "/Library/hs/core/photo." + ext;
+        String ext = "o3";
+        String fullFilePath = "/Library/hs/core/src." + ext;
         File f = new File(fullFilePath);
         
         // Test
@@ -27,8 +27,8 @@ public class FileUtilsTest {
     @Test
     public void testGetClearNameString() {
          // Preparation
-        String clearName = "photo";
-        String fullFilePath = "/Library/hs/core/" + clearName + ".png";
+        String clearName = "main";
+        String fullFilePath = "/Library/hs/core/" + clearName + ".o3";
         
         // Test
         String result = FileUtils.getClearName(fullFilePath);
@@ -40,8 +40,8 @@ public class FileUtilsTest {
     @Test
     public void testGetClearNameFile() {
         // Preparation
-        String clearName = "photo";
-        String fullFilePath = "/Library/hs/core/" + clearName + ".png";
+        String clearName = "main";
+        String fullFilePath = "/Library/hs/core/" + clearName + ".o3";
         File f = new File(fullFilePath);
         
         // Test
@@ -54,7 +54,7 @@ public class FileUtilsTest {
     @Test 
     public void testGetName() {
         // Preparation
-        String name = "photo.png";
+        String name = "main.03";
         String fullFilePath = "/Library/hs/core/" + name;
         
         // Test
@@ -68,7 +68,7 @@ public class FileUtilsTest {
     public void testGetClearPath() {
         // Preparation
         String clearPath = "/Library/hs/core/";
-        String fullFilePath = clearPath + "photo.png";
+        String fullFilePath = clearPath + "main.o3";
         
         // Test
         String result = FileUtils.getClearPath(fullFilePath);

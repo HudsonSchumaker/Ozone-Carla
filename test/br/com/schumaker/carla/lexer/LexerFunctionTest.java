@@ -46,7 +46,7 @@ public class LexerFunctionTest {
     @Test
     public void testGetHeaderLines() throws Exception {
         // Preparation
-        var tmpFile = O3TestHelper.createTempFile();
+        var tmpFile = O3TestHelper.createTempFileO3();
         var builder = new O3FileBuilder();
         var file = builder.build(tmpFile.getAbsolutePath());
         

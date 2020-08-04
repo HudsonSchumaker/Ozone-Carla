@@ -14,7 +14,7 @@ public final class O3TestHelper {
     private O3TestHelper() {}
     
     public static O3File createO3File() throws Exception {
-        File tmpFile = createTempFile(mockO3File());
+        File tmpFile = createTempFileO3(mockO3File());
         var builder = new O3FileBuilder();
         var file = builder.build(tmpFile.getAbsolutePath());
         var preChecker = new RawSourceFileChecker();
@@ -23,15 +23,26 @@ public final class O3TestHelper {
         return file;
     }
     
-    public static File createTempFile() throws Exception {
-        return createTempFile(mockO3File());
+    public static File createTempFileO3() throws Exception {
+        return createTempFileO3(mockO3File());
     }
     
-    public static File createTempFile(String content) throws Exception {
-        File tmpFile = File.createTempFile("test", ".tmp");
+    public static File createTempFileO3(String content) throws Exception {
+        File tmpFile = File.createTempFile("test", ".o3");
         FileWriter writer = new FileWriter(tmpFile);
         writer.write(content);
         writer.close();
+        tmpFile.deleteOnExit();
+        
+        return tmpFile;
+    }
+    
+    public static File createTempFile() throws Exception {
+        File tmpFile = File.createTempFile("test", ".ooo");
+        FileWriter writer = new FileWriter(tmpFile);
+        writer.write(mockO3File());
+        writer.close();
+        tmpFile.deleteOnExit();
         
         return tmpFile;
     }
@@ -46,5 +57,4 @@ public final class O3TestHelper {
                 + "  print(text)\n"
                 + "}";
     }
-    
 }

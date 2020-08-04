@@ -14,7 +14,7 @@ public class RawSourceFileCheckerTest {
     @Test
     public void testRemoveBlankLines() throws Exception {
         // Preparation
-        var tmpFile = O3TestHelper.createTempFile();
+        var tmpFile = O3TestHelper.createTempFileO3();
 
         // Test
         var builder = new O3FileBuilder();
@@ -29,7 +29,7 @@ public class RawSourceFileCheckerTest {
     @Test
     public void testRemoveComments() throws Exception {
         // Preparation
-        var tmpFile = O3TestHelper.createTempFile();
+        var tmpFile = O3TestHelper.createTempFileO3();
 
         // Test
         var builder = new O3FileBuilder();

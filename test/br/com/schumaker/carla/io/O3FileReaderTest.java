@@ -14,7 +14,7 @@ public class O3FileReaderTest {
     @Test
     public void testFileExists() throws Exception {
         // Preparation
-        var tmpFile = O3TestHelper.createTempFile();
+        var tmpFile = O3TestHelper.createTempFileO3();
         
         // Test
         var tested = new O3FileReader();

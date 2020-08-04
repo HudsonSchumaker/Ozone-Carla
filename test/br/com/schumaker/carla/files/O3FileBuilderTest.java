@@ -14,7 +14,7 @@ public class O3FileBuilderTest {
     @Test
     public void testBuild() throws Exception {
         // Preparation
-        var tmpFile = O3TestHelper.createTempFile();
+        var tmpFile = O3TestHelper.createTempFileO3();
         
         // Test
         var tested = new O3FileBuilder();
@@ -29,7 +29,7 @@ public class O3FileBuilderTest {
     @Test(expected = RuntimeException.class)
     public void testBuildException() throws Exception {
         // Preparation
-        var tmpFile = O3TestHelper.createTempFile(this.mockO3FileWithoutMainFunction());
+        var tmpFile = O3TestHelper.createTempFileO3(this.mockO3FileWithoutMainFunction());
         
         var tested = new O3FileBuilder();
         // Will fail 
