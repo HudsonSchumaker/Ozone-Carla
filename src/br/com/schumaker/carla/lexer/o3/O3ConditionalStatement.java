@@ -1,4 +1,4 @@
-package br.com.schumaker.carla.o3;
+package br.com.schumaker.carla.lexer.o3;
 
 import lombok.Data;
 

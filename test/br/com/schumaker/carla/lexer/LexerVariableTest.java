@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.files.O3FileLine;
-import br.com.schumaker.carla.o3.O3VariableType;
+import br.com.schumaker.carla.lexer.o3.O3VariableType;
 import java.util.Arrays;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -54,6 +54,40 @@ public class LexerVariableTest {
         assertEquals("\"Hello World!\"", result.getTypeValue().getValue());
     }
     
+    @Test
+    public void testGetParameters() {
+        // Preparation
+        var data = new O3FileLine("f: print(v: text, v: text2)", 7);
+        var funcName = "print";
+        
+        // Test
+        var tested = new LexerVariable();
+        var result = tested.getParameters(funcName, data);
+        
+        // Assertions
+        assertEquals("p_print_text:", result.get(0).getInternalName());
+        assertEquals("text", result.get(0).getName());
+        assertEquals(O3VariableType.PARAM, result.get(0).getTypeValue().getType());
+        
+        assertEquals("p_print_text2:", result.get(1).getInternalName());
+        assertEquals("text2", result.get(1).getName());
+        assertEquals(O3VariableType.PARAM, result.get(1).getTypeValue().getType());
+    }
+    
+    @Test
+    public void testValidParamsArray() {
+        // Preparation
+        var raw = "v: text, v: text2";
+        var rawParams = raw.split(",");
+        
+        // Test
+        var tested = new LexerVariable();
+        var result = tested.validParamsArray(rawParams);
+        
+        // Assertions
+        assertTrue(result);
+    }
+        
     @Test
     public void testGetVariableInteger() {
         // Preparation

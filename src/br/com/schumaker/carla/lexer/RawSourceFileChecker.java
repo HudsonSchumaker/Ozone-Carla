@@ -2,6 +2,7 @@ package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.files.O3File;
 import br.com.schumaker.carla.files.O3FileLine;
+import br.com.schumaker.carla.lexer.utils.StringUtils;
 import java.util.ArrayList;
 
 /**
@@ -35,14 +36,10 @@ public class RawSourceFileChecker {
     public void removeBlankLines(O3File file) {
         var newLines = new ArrayList<O3FileLine>();
         for (O3FileLine line : file.getLines()) {
-           if (!isBlankString(line.getData())) {
+           if (!StringUtils.isBlankString(line.getData())) {
                newLines.add(line);
            }
        }
        file.setLines(newLines);
-    }
-    
-    private boolean isBlankString(String string) {
-        return string == null || string.trim().isEmpty();
     }
 }

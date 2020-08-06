@@ -1,4 +1,4 @@
-package br.com.schumaker.carla.o3;
+package br.com.schumaker.carla.lexer.o3;
 
 /**
  * This enumerator defines the variables types of O³ pl.
@@ -13,7 +13,8 @@ public enum O3VariableType {
     INT("int", "0", 4),
     LONG("long", "0L", 8),
     FLOAT("float", "0.0f", 4),
-    DOUBLE("double", "0.0d", 8);
+    DOUBLE("double", "0.0d", 8),
+    PARAM("param", "?", 8);
 
     private final String name;
     private final String defaultValue;

@@ -1,5 +1,6 @@
-package br.com.schumaker.carla.o3;
+package br.com.schumaker.carla.lexer.o3;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -16,7 +17,7 @@ public class O3Function {
     private String name;
     private String internalName;
     private boolean isMain;
-    //private List<O3Variable> params; 
+    private List<O3Variable> params; 
     private IO3Statement statement;
 
     @Override
@@ -25,6 +26,7 @@ public class O3Function {
                 + "Name : " + name + ",\n"
                 + "Internal Name : " + internalName + ",\n"
                 + "Is Main : " + isMain + ",\n"
+                + "Params  : " + params + ",\n"
                 + "Variables : " + ((O3FunctionStatement)statement).getVariables()
                 + "\n}";
     }

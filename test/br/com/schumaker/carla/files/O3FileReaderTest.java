@@ -31,13 +31,13 @@ public class O3FileReaderTest {
     @Test(expected = FileNotFoundException.class)
     public void testReadFail() throws Exception {
         // Preparation    
-        var tmpFile = new File("/hh/hhh");
+        var fakeFile = new File("/hh/hhh");
  
         // Test
         var tested = new O3FileReader();
         
         // Will Fail
-        var result = tested.read(tmpFile.getAbsolutePath());
+        var result = tested.read(fakeFile.getAbsolutePath());
     }
     
     @Test(expected = FileNotSupportedException.class)

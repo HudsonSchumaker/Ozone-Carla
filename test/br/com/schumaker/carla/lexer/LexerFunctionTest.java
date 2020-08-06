@@ -55,7 +55,7 @@ public class LexerFunctionTest {
         var result = tested.getHeaderLines(file);
         
         // Assertion
-        assertEquals("f: main() {",result.get(0).getData()); 
+        assertEquals("f: main() {", result.get(0).getData()); 
     }
      
     @Test

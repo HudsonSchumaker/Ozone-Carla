@@ -1,4 +1,4 @@
-package br.com.schumaker.carla.o3;
+package br.com.schumaker.carla.lexer.o3;
 
 import br.com.schumaker.carla.files.O3FileLine;
 import java.util.List;
@@ -6,16 +6,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * This class represents the statement of O³ pl.
- * Ex: 
- * {
- *    print("some text...")
- * }
+ *
  * @author schumaker
  */
-
 @Data
 @AllArgsConstructor
-public class O3Statement implements IO3Statement {
+public class O3FunctionStatement implements IO3Statement {
+
+    private List<O3Variable> variables;
     private List<O3FileLine> lines;
+    // function calls
+    // conditional statements
+    // loops statments
 }

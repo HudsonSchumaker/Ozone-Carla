@@ -69,4 +69,16 @@ public class LexerHelperTest {
         // Assertion
         assertTrue(result);
     }
+    
+    @Test
+    public void testIsAnExpression() {
+        // Preparation
+        var data = "f: text(:v t)";
+       
+        // Test
+        var result = LexerHelper.isAnExpression(data);
+        
+        // Assertion
+        assertTrue(result);
+    }
 }

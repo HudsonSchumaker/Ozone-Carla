@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.files.O3File;
-import br.com.schumaker.carla.o3.O3Atom;
+import br.com.schumaker.carla.lexer.o3.O3Atom;
 
 /**
  *
