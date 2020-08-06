@@ -1,15 +1,16 @@
-package br.com.schumaker.carla.lexer;
+ package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.files.O3FileLine;
 import br.com.schumaker.carla.o3.O3Keyword;
-import br.com.schumaker.carla.o3.O3Variable;
-import br.com.schumaker.carla.o3.O3VariableType;
-import br.com.schumaker.carla.o3.O3VariableTypeValue;
+import br.com.schumaker.carla.lexer.o3.O3Variable;
+import br.com.schumaker.carla.lexer.o3.O3VariableType;
+import br.com.schumaker.carla.lexer.o3.O3VariableTypeValue;
+import br.com.schumaker.carla.lexer.utils.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * This class create the O³ variables representations.
  * @author schumaker
  */
 public class LexerVariable {
@@ -42,6 +43,55 @@ public class LexerVariable {
                         this.getVariableInternalName(functionName,line.getData()),
                         O3VariableTypeValue.of(type, this.getValueInteger(line.getData())));  
         }
+    }
+    
+    /**
+     * Creates the the parameters list of a function, based on the name of the 
+     * function and the declared parameters.
+     * Formula: p_ + functionName +_ + nameOfVarible + :
+     * Ex:
+     * f: print(v: text) {
+     *   ;some code...
+     * }
+     * The internal name of the "v: text" variable will be "p_main_text:" 
+     * 
+     * @param functionName name of the function that the parameter is declared
+     * @param headerLine O3Line that holds the function signature
+     * @return the parameters list of the function
+     */
+    public List<O3Variable> getParameters(String functionName, O3FileLine headerLine) {
+        var raw = headerLine.getData().trim().substring(
+                headerLine.getData().trim().indexOf(O3Keyword.OPEN_EXPRESSION) + 1,
+                headerLine.getData().trim().indexOf(O3Keyword.CLOSE_EXPRESSION));
+        
+        var rawParams = raw.split(",");
+        if (!this.validParamsArray(rawParams)) {
+            return new ArrayList<>();
+        }
+        
+        var params = new ArrayList<O3Variable>();
+        for (String p : rawParams) {
+            var clean = p.trim();
+            var param = clean.substring(O3Keyword.VARIABLE.length(), clean.length()).trim();
+            var internalName = "p_" + functionName + "_" + param + ":";
+            params.add(new O3Variable(param, internalName, 
+                    O3VariableTypeValue.of(O3VariableType.PARAM, 
+                            O3VariableType.PARAM.getDefaultValue())));
+        }        
+        return params;
+    }
+    
+    public boolean validParamsArray(String[] rawParams) {
+        if (rawParams.length == 0) {
+            return false;
+        } else {
+            if (rawParams.length == 1) {
+                if (StringUtils.isBlankString(rawParams[0])) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public O3VariableType getType(String data) {
@@ -90,6 +140,20 @@ public class LexerVariable {
         return name;
     }
     
+    /**
+     * Creates the the internal name of a variable, based on the name of the 
+     * function and the declared name of the variable.
+     * Formula: functionName + _ + nameOfVarible + :
+     * Ex:
+     * f: main() {
+     *   v: text = "Hello World!!!"
+     * }
+     * The internal name of the "v: text" variable will be "main_text:" 
+     * 
+     * @param functionName name of the function that the variable is inside
+     * @param data content from a O3FileLine.getData()
+     * @return variable internal name
+     */
     public String getVariableInternalName(String functionName, String data) {
         return functionName + "_" + this.getVariableName(data) + ":";
     }
