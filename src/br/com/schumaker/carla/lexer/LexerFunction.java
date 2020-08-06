@@ -2,9 +2,10 @@ package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.files.O3File;
 import br.com.schumaker.carla.files.O3FileLine;
-import br.com.schumaker.carla.o3.O3Function;
+import br.com.schumaker.carla.lexer.o3.O3Function;
 import br.com.schumaker.carla.o3.O3Keyword;
-import br.com.schumaker.carla.o3.O3Statement;
+import br.com.schumaker.carla.lexer.o3.O3Statement;
+import br.com.schumaker.carla.lexer.o3.O3Variable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,7 @@ public class LexerFunction {
                 this.getFunctionName(headerLine.getData()),
                 this.getFunctionInternalName(headerLine.getData()),
                 this.isMainFunction(headerLine), 
+                this.getParams(this.getFunctionName(headerLine.getData()), headerLine),
                 new O3Statement(functionLines));
     }
     
@@ -67,5 +69,9 @@ public class LexerFunction {
     
     public boolean isMainFunction(O3FileLine headerLine) {
         return headerLine.getData().contains("f: main()");
+    }
+    
+    public List<O3Variable> getParams(String functionName, O3FileLine line) {
+        return new LexerVariable().getParameters(functionName, line);
     }
 }
