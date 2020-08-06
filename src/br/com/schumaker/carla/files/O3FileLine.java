@@ -16,6 +16,7 @@ public class O3FileLine {
     private boolean loopStatement;
     private boolean variableDeclaration;
     private boolean returnStatement;
+    private boolean functionCall;
     private Integer originalNumber;
     private Integer internalNumber;
     
