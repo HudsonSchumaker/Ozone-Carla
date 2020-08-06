@@ -17,7 +17,7 @@ public final class LexerHelper {
     }
 
     public static boolean isConditionalStatement(String data) {
-        return data.startsWith(O3Keyword.IF);
+        return data.trim().startsWith(O3Keyword.IF);
     }
 
     public static boolean isLoopStatement(String data) {
@@ -27,6 +27,11 @@ public final class LexerHelper {
     
     public static boolean isVariableDeclaration(String data) {
         return data.contains(O3Keyword.VARIABLE);
+    }
+    
+    public static boolean isAnExpression(String data) {
+        return data.trim().contains(O3Keyword.OPEN_EXPRESSION)
+                && data.trim().contains(O3Keyword.CLOSE_EXPRESSION);
     }
 
     public static boolean isReturnStatement(String data) {
