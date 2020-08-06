@@ -1,10 +1,10 @@
 package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.files.O3FileLine;
-import br.com.schumaker.carla.o3.IO3Statement;
-import br.com.schumaker.carla.o3.O3Function;
-import br.com.schumaker.carla.o3.O3FunctionStatement;
-import br.com.schumaker.carla.o3.O3Variable;
+import br.com.schumaker.carla.lexer.o3.IO3Statement;
+import br.com.schumaker.carla.lexer.o3.O3Function;
+import br.com.schumaker.carla.lexer.o3.O3FunctionStatement;
+import br.com.schumaker.carla.lexer.o3.O3Variable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,14 +23,14 @@ public class LexerStatement {
 
     public void getFunctionStatement(O3Function function) {
         var statement = function.getStatement();
-        var linesVarDeclare = this.getLinesWithVariableDeclaration(statement);
+        var varsDeclaration = this.getLinesWithVariableDeclaration(statement);
+        var o3Varibales = this.getVariables(function.getName(), varsDeclaration);
         
-        var o3Varibales = this.getVariables(function.getName(), linesVarDeclare);
-        
+        // function calls
         // conditional statements
         // loops statments
         
-        var functionalStatement = new O3FunctionStatement(o3Varibales, linesVarDeclare);
+        var functionalStatement = new O3FunctionStatement(o3Varibales, varsDeclaration);
         function.setStatement(functionalStatement);       
     }
     
