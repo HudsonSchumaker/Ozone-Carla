@@ -12,6 +12,9 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class O3Atom {
-    
+    //private String name;
+    //private ? varibleTable
+    //private ? functionTable
     private List<O3Function> functions;
+    
 }

@@ -14,8 +14,8 @@ import lombok.Data;
 public class O3FunctionStatement implements IO3Statement {
 
     private List<O3Variable> variables;
-    private List<O3FileLine> lines;
     private List<O3FunctionCall> functionCalls;
+    private List<O3FileLine> lines;
     // conditional statements
     // loops statments
 }

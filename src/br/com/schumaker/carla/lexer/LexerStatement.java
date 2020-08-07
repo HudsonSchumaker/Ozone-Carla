@@ -3,6 +3,7 @@ package br.com.schumaker.carla.lexer;
 import br.com.schumaker.carla.files.O3FileLine;
 import br.com.schumaker.carla.lexer.o3.IO3Statement;
 import br.com.schumaker.carla.lexer.o3.O3Function;
+import br.com.schumaker.carla.lexer.o3.O3FunctionCall;
 import br.com.schumaker.carla.lexer.o3.O3FunctionStatement;
 import br.com.schumaker.carla.lexer.o3.O3Variable;
 import java.util.ArrayList;
@@ -24,13 +25,15 @@ public class LexerStatement {
     public void getFunctionStatement(O3Function function) {
         var statement = function.getStatement();
         var varsDeclaration = this.getLinesWithVariableDeclaration(statement);
-        var o3Varibales = this.getVariables(function.getName(), varsDeclaration);
-        
-        // function calls
+        var variables = this.getVariables(function.getName(), varsDeclaration);
+        var functionCalls = getFunctionCalls(statement);
         // conditional statements
         // loops statments
         
-        var functionalStatement = new O3FunctionStatement(o3Varibales, varsDeclaration);
+        var functionalStatement =
+                new O3FunctionStatement(variables, functionCalls, 
+                        function.getStatement().getLines());
+        
         function.setStatement(functionalStatement);       
     }
     
@@ -44,8 +47,13 @@ public class LexerStatement {
         return varLines;
     } 
     
-    List<O3Variable> getVariables(String functionName, List<O3FileLine> lines) {
+    public List<O3Variable> getVariables(String functionName, List<O3FileLine> lines) {
         var lexerVariable = new LexerVariable();
         return lexerVariable.getVariables(functionName, lines);
+    }
+    
+    public List<O3FunctionCall> getFunctionCalls(IO3Statement statement) {
+        var lexerFunctionCalls = new LexerFunctionCall();
+        return lexerFunctionCalls.getFunctionCalls(statement);
     }
 }
