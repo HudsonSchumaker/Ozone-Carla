@@ -15,7 +15,7 @@ public class O3FunctionStatement implements IO3Statement {
 
     private List<O3Variable> variables;
     private List<O3FileLine> lines;
-    // function calls
+    private List<O3FunctionCall> functionCalls;
     // conditional statements
     // loops statments
 }
