@@ -34,8 +34,7 @@ public class LexerFunctionCall {
     
     public String getFunctionName(String data) {
         var clean = data.trim();
-        var name = clean.substring(O3Keyword.VARIABLE.length(), clean.length()).trim();
-        name = name.substring(0, name.indexOf(O3Keyword.ASSINGN)).trim();
+        var name = clean.substring(0, clean.indexOf(O3Keyword.OPEN_EXPRESSION)).trim();
         return name;
     }
     
