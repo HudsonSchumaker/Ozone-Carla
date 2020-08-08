@@ -28,6 +28,7 @@ public class O3Function {
                 + "Is Main : " + isMain + ",\n"
                 + "Params  : " + params + ",\n"
                 + "Variables : " + ((O3FunctionStatement)statement).getVariables()
+                + "FunctionCalls : " +((O3FunctionStatement)statement).getFunctionCalls()
                 + "\n}";
     }
 }
