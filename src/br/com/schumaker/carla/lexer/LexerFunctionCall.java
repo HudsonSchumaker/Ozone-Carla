@@ -4,6 +4,8 @@ import br.com.schumaker.carla.files.O3FileLine;
 import br.com.schumaker.carla.lexer.o3.IO3Statement;
 import br.com.schumaker.carla.lexer.o3.O3Argument;
 import br.com.schumaker.carla.lexer.o3.O3FunctionCall;
+import br.com.schumaker.carla.lexer.o3.O3TypeValue;
+import br.com.schumaker.carla.lexer.o3.O3VariableType;
 import br.com.schumaker.carla.lexer.utils.StringUtils;
 import br.com.schumaker.carla.o3.O3Keyword;
 import java.util.ArrayList;
@@ -55,7 +57,6 @@ public class LexerFunctionCall {
             this.resolveTypeAndValue(clean);
         }
         
-        
         return args;
     }
     
@@ -73,6 +74,14 @@ public class LexerFunctionCall {
     }
     
     public O3Argument resolveTypeAndValue(String data) {
+        if (data.contains("\"")){
+            return new O3Argument(O3TypeValue.of(O3VariableType.STRING, data));
+        } 
+        
+        if (data.contains(O3Keyword.TRUE) || data.contains(O3Keyword.FALSE)) {
+            return new O3Argument(O3TypeValue.of(O3VariableType.BOOL, data));
+        }
+        
         return null;
     }
 }
