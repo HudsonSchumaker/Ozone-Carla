@@ -52,7 +52,7 @@ public class LexerFunctionCall {
         var args = new ArrayList<O3Argument>();
         for (String a : rawArgs) {
             var clean = a.trim();
-            
+            this.resolveTypeAndValue(clean);
         }
         
         
