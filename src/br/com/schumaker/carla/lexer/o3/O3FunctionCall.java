@@ -8,10 +8,18 @@ import lombok.Data;
  *
  * @author schumaker
  */
-
 @Data
 @AllArgsConstructor
 public class O3FunctionCall {
+
     private String functionName;
-    private List<O3Argument> arguments; 
+    private List<O3Argument> arguments;
+
+    @Override
+    public String toString() {
+        return "{\n"
+                + "\tFunctionName  : " + functionName + ",\n"
+                + "\tArguments : " + arguments + "\n"
+                + "}";
+    }
 }
