@@ -31,7 +31,7 @@ public class LexerFunctionCall {
         var functionName = this.getFunctionName(line.getData());
         var arguments = getArguments(line);
         
-        return null;
+        return new O3FunctionCall(functionName, arguments);
     } 
     
     public String getFunctionName(String data) {
@@ -54,7 +54,7 @@ public class LexerFunctionCall {
         var args = new ArrayList<O3Argument>();
         for (String a : rawArgs) {
             var clean = a.trim();
-            this.resolveTypeAndValue(clean);
+            args.add(this.resolveTypeAndValue(clean));
         }
         
         return args;
