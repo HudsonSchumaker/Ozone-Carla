@@ -12,6 +12,6 @@ public class Lexer {
     public O3Atom createProgram(O3File o3File) {
         var lexerFunction = new LexerFunction();
         var functions = lexerFunction.getFunctions(o3File);
-        return new O3Atom(functions);
+        return new O3Atom(o3File.getName(), functions);
     } 
 }
