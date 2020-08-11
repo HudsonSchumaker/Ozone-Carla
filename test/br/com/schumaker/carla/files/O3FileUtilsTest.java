@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
  *
  * @author schumaker
  */
-public class FileUtilsTest {
+public class O3FileUtilsTest {
     
     @Test
     public void testGetFileExtension() {
@@ -18,7 +18,7 @@ public class FileUtilsTest {
         File f = new File(fullFilePath);
         
         // Test
-        String result = FileUtils.getFileExtension(f);
+        String result = O3FileUtils.getFileExtension(f);
         
         // Assertion
         assertEquals(ext, result);
@@ -31,7 +31,7 @@ public class FileUtilsTest {
         String fullFilePath = "/Library/hs/core/" + clearName + ".o3";
         
         // Test
-        String result = FileUtils.getClearName(fullFilePath);
+        String result = O3FileUtils.getClearName(fullFilePath);
         
         // Assertion
         assertEquals(clearName, result);
@@ -45,7 +45,7 @@ public class FileUtilsTest {
         File f = new File(fullFilePath);
         
         // Test
-        String result = FileUtils.getClearName(f);
+        String result = O3FileUtils.getClearName(f);
         
         // Assertion
         assertEquals(clearName, result);
@@ -58,7 +58,7 @@ public class FileUtilsTest {
         String fullFilePath = "/Library/hs/core/" + name;
         
         // Test
-        String result = FileUtils.getName(fullFilePath);
+        String result = O3FileUtils.getName(fullFilePath);
         
         // Assertion
         assertEquals(name, result);
@@ -71,7 +71,7 @@ public class FileUtilsTest {
         String fullFilePath = clearPath + "main.o3";
         
         // Test
-        String result = FileUtils.getClearPath(fullFilePath);
+        String result = O3FileUtils.getClearPath(fullFilePath);
         
         // Assertion
         assertEquals(clearPath, result);

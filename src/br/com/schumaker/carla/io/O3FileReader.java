@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.io;
 
 import br.com.schumaker.carla.exception.FileNotSupportedException;
-import br.com.schumaker.carla.files.FileUtils;
+import br.com.schumaker.carla.files.O3FileUtils;
 import br.com.schumaker.carla.files.O3File;
 import java.io.BufferedReader;
 import java.io.File;
@@ -26,7 +26,7 @@ public class O3FileReader implements Reader<List<String>> {
 
     @Override
     public boolean validExtension(String path) {
-        return O3File.EXT.equals(FileUtils.getFileExtension(path));
+        return O3File.EXT.equals(O3FileUtils.getFileExtension(path));
     }
     
     /**

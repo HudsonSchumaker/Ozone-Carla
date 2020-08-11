@@ -40,6 +40,4 @@ public class Maestro {
         preChecker.startCheck(file);
         return file;
     }
-
-    
 }
