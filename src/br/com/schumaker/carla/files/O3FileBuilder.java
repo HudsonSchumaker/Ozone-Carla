@@ -19,8 +19,8 @@ public class O3FileBuilder implements FileBuilder<O3File> {
         var lines = o3FileReader.read(path);
 
         var file = new O3File(
-                FileUtils.getName(path),
-                FileUtils.getClearPath(path),
+                O3FileUtils.getName(path),
+                O3FileUtils.getClearPath(path),
                 this.createLines(lines));
 
         if (!LexerHelper.containsFunctionMain(file)) {
