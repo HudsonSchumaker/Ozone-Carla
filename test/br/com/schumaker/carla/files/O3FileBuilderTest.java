@@ -2,6 +2,7 @@ package br.com.schumaker.carla.files;
 
 import br.com.schumaker.carla.exception.FunctionMainNotFoundException;
 import br.com.schumaker.carla.test.O3TestHelper;
+import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -32,12 +33,30 @@ public class O3FileBuilderTest {
         // Preparation
         var tmpFile = O3TestHelper.createTempFileO3(this.mockO3FileWithoutMainFunction());
         
+        // Test
         var tested = new O3FileBuilder();
+        
         // Will fail 
         var result = tested.build(tmpFile.getAbsolutePath());
         assertEquals("f: main() {", result.getLines().get(4).getData());
         assertEquals(5, result.getLines().get(4).getOriginalNumber().intValue());
         assertTrue(result.getLines().get(4).isFunctionHeader());
+    }
+    
+    @Test
+    public void testCreateLines() {
+        // Preparation
+        var rawLine = Arrays.asList(";Hello World", "f: main {", "}");
+        var tested = new O3FileBuilder();
+        
+        // Test
+        var result = tested.createLines(rawLine);
+        
+        // Assertions
+        assertEquals(1, result.get(0).getOriginalNumber().intValue());
+        //internal number is added later.
+        assertEquals(null, result.get(0).getInternalNumber());
+        assertEquals(";Hello World", result.get(0).getData());
     }
     
     private String mockO3FileWithoutMainFunction() {

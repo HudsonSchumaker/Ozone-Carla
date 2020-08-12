@@ -22,7 +22,5 @@ public class TerminalTest {
         // Assertion
         Thread.sleep(500); // wait for clean the buffer. 
         assertEquals(path, tested.getReturns().get(0));
-        
-        
     }
 }

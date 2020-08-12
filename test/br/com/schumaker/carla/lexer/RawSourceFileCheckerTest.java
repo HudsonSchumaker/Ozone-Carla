@@ -15,10 +15,10 @@ public class RawSourceFileCheckerTest {
     public void testRemoveBlankLines() throws Exception {
         // Preparation
         var tmpFile = O3TestHelper.createTempFileO3();
-
-        // Test
         var builder = new O3FileBuilder();
         var file = builder.build(tmpFile.getAbsolutePath());
+
+        // Test
         var tested = new RawSourceFileChecker();
         tested.removeBlankLines(file);
 
@@ -30,10 +30,10 @@ public class RawSourceFileCheckerTest {
     public void testRemoveComments() throws Exception {
         // Preparation
         var tmpFile = O3TestHelper.createTempFileO3();
-
-        // Test
         var builder = new O3FileBuilder();
         var file = builder.build(tmpFile.getAbsolutePath());
+
+        // Test
         var tested = new RawSourceFileChecker();
         tested.removeComments(file);
 
