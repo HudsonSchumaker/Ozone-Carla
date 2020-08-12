@@ -19,6 +19,7 @@ public class O3Function {
     private boolean isMain;
     private List<O3Variable> params; 
     private IO3Statement statement;
+    private IO3VariableTable variableTable;
 
     @Override
     public String toString() {
