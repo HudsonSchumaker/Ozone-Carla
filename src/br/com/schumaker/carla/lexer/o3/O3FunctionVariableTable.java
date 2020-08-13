@@ -1,6 +1,7 @@
 package br.com.schumaker.carla.lexer.o3;
 
 import br.com.schumaker.carla.files.O3FileLine;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,9 +32,18 @@ public class O3FunctionVariableTable implements IO3VariableTable {
                 .parallel()
                 .anyMatch(v -> v.getName().equals(name));
     }
+    
+    public O3Variable getVariableByName(String name) {        
+        return funcVars.stream()
+                .parallel()
+                .filter(v -> v.getName().equals(name))        
+                .findAny()
+                .orElse(null);
+    }
 
     @Override
     public List<O3FileLine> getLines() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Just for do the contract of the interface.
+        return new ArrayList<>();
     }
 }
