@@ -2,12 +2,16 @@ package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.files.O3FileLine;
 import br.com.schumaker.carla.lexer.o3.IO3Statement;
+import br.com.schumaker.carla.lexer.o3.IO3VariableTable;
 import br.com.schumaker.carla.lexer.o3.O3Function;
 import br.com.schumaker.carla.lexer.o3.O3FunctionCall;
 import br.com.schumaker.carla.lexer.o3.O3FunctionStatement;
+import br.com.schumaker.carla.lexer.o3.O3FunctionVariableTable;
 import br.com.schumaker.carla.lexer.o3.O3Variable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * This class create the O³ functions statements representations.
@@ -26,7 +30,10 @@ public class LexerStatement {
         var statement = function.getStatement();
         var varsDeclaration = this.getLinesWithVariableDeclaration(statement);
         var variables = this.getVariables(function.getName(), varsDeclaration);
-        var functionCalls = getFunctionCalls(statement);
+        
+        function.setVariableTable(this.createVariableTable(variables));
+        
+        var functionCalls = this.getFunctionCalls(statement, function.getVariableTable());
         // conditional statements
         // loops statments
         
@@ -49,11 +56,16 @@ public class LexerStatement {
     
     public List<O3Variable> getVariables(String functionName, List<O3FileLine> lines) {
         var lexerVariable = new LexerVariable();
-        return lexerVariable.getVariables(functionName, lines);
+        return lexerVariable.getVariables(functionName, lines); 
     }
     
-    public List<O3FunctionCall> getFunctionCalls(IO3Statement statement) {
+    public List<O3FunctionCall> getFunctionCalls(IO3Statement statement, IO3VariableTable variableTable) {
         var lexerFunctionCalls = new LexerFunctionCall();
-        return lexerFunctionCalls.getFunctionCalls(statement);
+        return lexerFunctionCalls.getFunctionCalls(statement, (O3FunctionVariableTable) variableTable);
+    }
+    
+    public O3FunctionVariableTable createVariableTable(List<O3Variable> variables) {
+        Set<O3Variable> funcVars = new HashSet<>(variables);
+        return new O3FunctionVariableTable(funcVars);
     }
 }
