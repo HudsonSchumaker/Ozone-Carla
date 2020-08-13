@@ -3,11 +3,15 @@ package br.com.schumaker.carla.lexer;
 import br.com.schumaker.carla.files.O3File;
 import br.com.schumaker.carla.files.O3FileLine;
 import br.com.schumaker.carla.lexer.o3.O3Function;
+import br.com.schumaker.carla.lexer.o3.O3FunctionVariableTable;
 import br.com.schumaker.carla.o3.O3Keyword;
 import br.com.schumaker.carla.lexer.o3.O3Statement;
 import br.com.schumaker.carla.lexer.o3.O3Variable;
+import br.com.schumaker.carla.lexer.o3.O3VariableTable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * This class create the O³ functions representations.
@@ -22,13 +26,24 @@ public class LexerFunction {
         for (O3FileLine line : headerLines) {
             functions.add(this.setStatement(line, file));
         }
-        
+           
         var lexerStatement = new LexerStatement();
         lexerStatement.getFunctionStatements(functions);
+        
+
         
         return functions;
     }
     
+    /**
+     * This method create O§Function object with a basic O3Statement and
+     * O3VariableTable, in the next step when is create the O3FunctionStament
+     * the O3FunctionVariableTable should be created.
+     * 
+     * @param headerLine 
+     * @param file O3File, source file .o3
+     * @return O3Function, representation of a function.
+     */
     public O3Function setStatement(O3FileLine headerLine, O3File file) {
         var endBlock = "";
         var k = headerLine.getInternalNumber();
@@ -44,7 +59,8 @@ public class LexerFunction {
                 this.getFunctionInternalName(headerLine.getData()),
                 this.isMainFunction(headerLine), 
                 this.getParams(this.getFunctionName(headerLine.getData()), headerLine),
-                new O3Statement(functionLines));
+                new O3Statement(functionLines),
+                new O3VariableTable(functionLines));
     }
     
     public List<O3FileLine> getHeaderLines(O3File file) {
@@ -73,5 +89,13 @@ public class LexerFunction {
     
     public List<O3Variable> getParams(String functionName, O3FileLine line) {
         return new LexerVariable().getParameters(functionName, line);
+    }
+    
+    public O3FunctionVariableTable createVariableTable(String functionName, List<O3FileLine> lines) {
+        var lexerVariable = new LexerVariable();
+        var variables = lexerVariable.getVariables(functionName, lines); 
+        
+        Set<O3Variable> funcVars = new HashSet<>(variables);
+        return new O3FunctionVariableTable(funcVars);
     }
 }
