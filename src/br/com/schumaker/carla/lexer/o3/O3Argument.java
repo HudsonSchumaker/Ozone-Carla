@@ -12,8 +12,13 @@ import lombok.Data;
 @AllArgsConstructor
 public class O3Argument {
 
+    public static final String NAME = "arg";
+    public static final String VALUE = "?";
+    
+    private String name;
+    private boolean isVariable;
     private O3TypeValue<?, ?> argument;
-
+                
     @Override
     public String toString() {
         return "{\n"
