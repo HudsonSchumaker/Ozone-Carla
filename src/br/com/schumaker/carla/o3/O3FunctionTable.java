@@ -9,6 +9,9 @@ public class O3FunctionTable {
     // Strings
     public static final String PRINT = "print";
     public static final String UPPER_CASE = "upperCase";
+    public static final String LOWER_CASE = "lowerCase";
+    public static final String CAMEL_CASE = "camelCase";
+    
     
     // Math
     public static final String POW   = "pow";
