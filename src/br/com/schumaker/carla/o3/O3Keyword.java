@@ -27,6 +27,8 @@ public final class O3Keyword {
     public static final String EQUAL = "==";
     public static final String NOT_EQUAL = "!=";
     public static final String ASSINGN = "=";
+    public static final String INC = "++";
+    public static final String DEC = "--";
     
     public static final String OPEN_EXPRESSION = "(";
     public static final String CLOSE_EXPRESSION = ")";
