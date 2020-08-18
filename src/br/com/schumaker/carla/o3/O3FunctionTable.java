@@ -24,12 +24,12 @@ public class O3FunctionTable {
     public static final String STR_SNAKE_CASE = "snakeCase";
     public static final String STR_KEBAB_CASE = "kebabCase";
         
-    // Math
-    public static final String POW   = "pow";
-    public static final String SQRT  = "sqrt";
-    public static final String ABS   = "abs";
-    public static final String MIN   = "min";
-    public static final String MAX   = "max";
+    // Math uses MATH as identifier
+    public static final String MATH_POW = "pow";
+    public static final String MATH_SQRT = "sqrt";
+    public static final String MATH_ABS = "abs";
+    public static final String MATH_MIN = "min";
+    public static final String MATH_MAX = "max";
     
     private List<String> allFunction = new ArrayList<>();
     private Map<String, String> strings = new HashMap<>();
@@ -49,10 +49,15 @@ public class O3FunctionTable {
         Class<?> thisClass = null;
         try {
             thisClass = Class.forName(this.getClass().getName());
-
             Field[] aClassFields = thisClass.getDeclaredFields();
             for (Field f : aClassFields) {
-                allFunction.add(f.getName());
+                if (f.getName().startsWith("STR_") 
+                        || f.getName().startsWith("PRT_")
+                        || f.getName().startsWith("MATH_")) {
+                    
+                    String aux = (String)f.get(this);
+                    allFunction.add(aux);
+                }
             }
         } catch (Exception e) {
             throw e;
@@ -63,7 +68,6 @@ public class O3FunctionTable {
         Class<?> thisClass = null;
         try {
             thisClass = Class.forName(this.getClass().getName());
-
             Field[] aClassFields = thisClass.getDeclaredFields();
             for (Field f : aClassFields) {
                 if (f.getName().startsWith("STR_")) {
@@ -79,7 +83,6 @@ public class O3FunctionTable {
         Class<?> thisClass = null;
         try {
             thisClass = Class.forName(this.getClass().getName());
-
             Field[] aClassFields = thisClass.getDeclaredFields();
             for (Field f : aClassFields) {
                 if (f.getName().startsWith("PRT_")) {
