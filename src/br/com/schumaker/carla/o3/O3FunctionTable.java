@@ -32,8 +32,7 @@ public class O3FunctionTable {
     public static final String MATH_MAX = "max";
     
     private List<String> allFunction = new ArrayList<>();
-    private Map<String, String> strings = new HashMap<>();
-    private Map<String, String> print = new HashMap<>();
+    private Map<String, String> allFunctionMap = new HashMap<>();
 
     public O3FunctionTable() throws Exception {
         this.loadValues();
@@ -43,6 +42,19 @@ public class O3FunctionTable {
             
     public boolean functionExists(String name) {
         return allFunction.contains(name);
+    }
+    
+    /**
+     * Returns the name of the object lib where the method is constructed.
+     * @param name Name of the function to get Lib name.
+     * @return returns Lib object name or empty if method was not found. 
+     */
+    public String getLibNameByFunctionName(String name) {
+        if (this.functionExists(name)) {
+            return allFunctionMap.get(name);
+        } else {
+            return "";
+        }
     }
     
     private void loadValues() throws Exception {
@@ -71,7 +83,7 @@ public class O3FunctionTable {
             Field[] aClassFields = thisClass.getDeclaredFields();
             for (Field f : aClassFields) {
                 if (f.getName().startsWith("STR_")) {
-                    strings.put((String)f.get(this), O3Library.STRINGS_O);
+                    allFunctionMap.put((String)f.get(this), O3Library.STRINGS_O);
                 }
             }
         } catch (Exception e) {
@@ -86,7 +98,7 @@ public class O3FunctionTable {
             Field[] aClassFields = thisClass.getDeclaredFields();
             for (Field f : aClassFields) {
                 if (f.getName().startsWith("PRT_")) {
-                    print.put((String)f.get(this), O3Library.PRINT_O);
+                    allFunctionMap.put((String)f.get(this), O3Library.PRINT_O);
                 }
             }
         } catch (Exception e) {
