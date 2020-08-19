@@ -1,4 +1,4 @@
-package br.com.schumaker.metalx64;
+package br.com.schumaker.halogenx64;
 
 import java.util.List;
 

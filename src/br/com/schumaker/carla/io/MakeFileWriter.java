@@ -16,7 +16,7 @@ public class MakeFileWriter implements Writer {
     
     private static final String ALL = "all:";
     private static final String CLEAR = "clear:";
-
+    
     @Override
     public void write(String fileName) {
         var file = new File(System.getProperty("user.dir") + "/Makefile");
