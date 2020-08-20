@@ -2,7 +2,7 @@ package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.files.O3File;
 import br.com.schumaker.carla.files.O3FileLine;
-import br.com.schumaker.carla.o3.O3Keyword;
+import br.com.schumaker.carla.o3.O3CoreKeyword;
 
 /**
  * Helper class
@@ -13,25 +13,25 @@ public final class LexerHelper {
     private LexerHelper() {}
 
     public static boolean isFunctionHeader(String data) {
-        return data.startsWith(O3Keyword.FUNCTION);
+        return data.startsWith(O3CoreKeyword.FUNCTION);
     }
 
     public static boolean isConditionalStatement(String data) {
-        return data.trim().startsWith(O3Keyword.IF);
+        return data.trim().startsWith(O3CoreKeyword.IF);
     }
 
     public static boolean isLoopStatement(String data) {
-        return data.contains(O3Keyword.WHILE) 
-                || data.contains(O3Keyword.FOR);
+        return data.contains(O3CoreKeyword.WHILE) 
+                || data.contains(O3CoreKeyword.FOR);
     }
     
     public static boolean isVariableDeclaration(String data) {
-        return data.contains(O3Keyword.VARIABLE);
+        return data.contains(O3CoreKeyword.VARIABLE);
     }
     
     public static boolean isAnExpression(String data) {
-        return data.trim().contains(O3Keyword.OPEN_EXPRESSION)
-                && data.trim().contains(O3Keyword.CLOSE_EXPRESSION);
+        return data.trim().contains(O3CoreKeyword.OPEN_EXPRESSION)
+                && data.trim().contains(O3CoreKeyword.CLOSE_EXPRESSION);
     }
 
     public static boolean isReturnStatement(String data) {

@@ -4,8 +4,8 @@ package br.com.schumaker.carla.o3;
  * This class defines the keywords of O³ pl.
  * @author schumaker
  */
-public final class O3Keyword {
-    private O3Keyword() {}
+public final class O3CoreKeyword {
+    private O3CoreKeyword() {}
     
     public static final String COMMENT = ";";
     public static final String FUNCTION = "f:";

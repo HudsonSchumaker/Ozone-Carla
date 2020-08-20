@@ -4,7 +4,7 @@ package br.com.schumaker.carla.o3;
  *
  * @author schumaker
  */
-public class O3Library {
+public class O3CoreLibrary {
     public static final String STRINGS_O = "O3String.o";
     public static final String STRINGS_C = "O3String.c";
     

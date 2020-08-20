@@ -14,7 +14,6 @@ import lombok.Data;
 public class O3Atom {
     private String name;
     //private ? varibleTable
-    //private ? functionTable
+    private O3FunctionTable functionTable;
     private List<O3Function> functions;
-    
 }

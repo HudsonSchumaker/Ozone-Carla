@@ -3,8 +3,9 @@ package br.com.schumaker.carla.lexer;
 import br.com.schumaker.carla.files.O3File;
 import br.com.schumaker.carla.files.O3FileLine;
 import br.com.schumaker.carla.lexer.o3.O3Function;
+import br.com.schumaker.carla.lexer.o3.O3FunctionTable;
 import br.com.schumaker.carla.lexer.o3.O3FunctionVariableTable;
-import br.com.schumaker.carla.o3.O3Keyword;
+import br.com.schumaker.carla.o3.O3CoreKeyword;
 import br.com.schumaker.carla.lexer.o3.O3Statement;
 import br.com.schumaker.carla.lexer.o3.O3Variable;
 import br.com.schumaker.carla.lexer.o3.O3VariableTable;
@@ -12,12 +13,19 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * This class create the O³ functions representations.
  * @author schumaker
  */
+
+@Data
+@NoArgsConstructor
 public class LexerFunction {
+    
+    private O3FunctionTable o3FunctionTable = new O3FunctionTable();
     
     public List<O3Function> getFunctions(O3File file) {
         var headerLines = this.getHeaderLines(file);
@@ -29,14 +37,12 @@ public class LexerFunction {
            
         var lexerStatement = new LexerStatement();
         lexerStatement.getFunctionStatements(functions);
-        
-
-        
+     
         return functions;
     }
     
     /**
-     * This method create O§Function object with a basic O3Statement and
+     * This method create O3Function object with a basic O3Statement and
      * O3VariableTable, in the next step when is create the O3FunctionStament
      * the O3FunctionVariableTable should be created.
      * 
@@ -48,19 +54,21 @@ public class LexerFunction {
         var endBlock = "";
         var k = headerLine.getInternalNumber();
         var functionLines = new ArrayList<O3FileLine>();
-        while(!endBlock.equals(O3Keyword.CLOSE_STATEMENT)) {
+        while(!endBlock.equals(O3CoreKeyword.CLOSE_STATEMENT)) {
             functionLines.add(file.getLines().get(k));
             endBlock = file.getLines().get(k).getData();
             k++;
         }
        
-        return new O3Function (
+        var function = new O3Function (
                 this.getFunctionName(headerLine.getData()),
                 this.getFunctionInternalName(headerLine.getData()),
                 this.isMainFunction(headerLine), 
                 this.getParams(this.getFunctionName(headerLine.getData()), headerLine),
                 new O3Statement(functionLines),
                 new O3VariableTable(functionLines));
+        this.o3FunctionTable.add(function); // see if the reference will be update.
+        return function; // debug purpose
     }
     
     public List<O3FileLine> getHeaderLines(O3File file) {
@@ -74,8 +82,8 @@ public class LexerFunction {
     }
     
     public String getFunctionName(String data) {
-        var name = data.substring(O3Keyword.FUNCTION.length(), data.length()).trim();
-        name = name.substring(0, name.indexOf(O3Keyword.OPEN_EXPRESSION));
+        var name = data.substring(O3CoreKeyword.FUNCTION.length(), data.length()).trim();
+        name = name.substring(0, name.indexOf(O3CoreKeyword.OPEN_EXPRESSION));
         return name;
     }
     

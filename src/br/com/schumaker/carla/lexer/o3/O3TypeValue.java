@@ -35,7 +35,7 @@ public class O3TypeValue<T, V> {
 
     @Override
     public String toString() {
-        return "{\n"
+        return "\t{\n"
                 + "\tType : " + type.toString() + ",\n"
                 + "\tValue : " + value.toString() + "\n"
                 + "\t}";

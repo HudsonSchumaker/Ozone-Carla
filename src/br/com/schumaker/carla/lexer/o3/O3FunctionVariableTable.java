@@ -26,7 +26,7 @@ public class O3FunctionVariableTable implements IO3VariableTable {
         return funcVars;
     }
     
-    public boolean varibleIsDeclared(String name) {
+    public boolean variableIsDeclared(String name) {
         //Predicate<O3Variable> pVar = v -> v.getName().equals(name);
         return funcVars.stream()
                 .parallel()

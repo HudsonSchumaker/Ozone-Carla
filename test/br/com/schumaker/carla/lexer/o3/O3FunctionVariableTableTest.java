@@ -26,7 +26,7 @@ public class O3FunctionVariableTableTest {
         var tested = new O3FunctionVariableTable(funcVars);
         
         // Assertion
-        assertTrue(tested.varibleIsDeclared("axisZ"));
-        assertFalse(tested.varibleIsDeclared("pi"));
+        assertTrue(tested.variableIsDeclared("axisZ"));
+        assertFalse(tested.variableIsDeclared("pi"));
     }
 }

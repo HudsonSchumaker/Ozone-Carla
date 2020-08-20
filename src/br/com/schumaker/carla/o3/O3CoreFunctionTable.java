@@ -10,7 +10,7 @@ import java.util.Map;
  *
  * @author schumaker
  */
-public class O3FunctionTable {
+public class O3CoreFunctionTable {
     
      // Print uses PRT as indentifier
     public static final String PRT_PRINT = "print";
@@ -34,7 +34,7 @@ public class O3FunctionTable {
     private List<String> allFunction = new ArrayList<>();
     private Map<String, String> allFunctionMap = new HashMap<>();
 
-    public O3FunctionTable() throws Exception {
+    public O3CoreFunctionTable() throws Exception {
         this.loadValues();
         this.loadStringLib();
         this.loadPrintLib();
@@ -83,7 +83,7 @@ public class O3FunctionTable {
             Field[] aClassFields = thisClass.getDeclaredFields();
             for (Field f : aClassFields) {
                 if (f.getName().startsWith("STR_")) {
-                    allFunctionMap.put((String)f.get(this), O3Library.STRINGS_O);
+                    allFunctionMap.put((String)f.get(this), O3CoreLibrary.STRINGS_O);
                 }
             }
         } catch (Exception e) {
@@ -98,7 +98,7 @@ public class O3FunctionTable {
             Field[] aClassFields = thisClass.getDeclaredFields();
             for (Field f : aClassFields) {
                 if (f.getName().startsWith("PRT_")) {
-                    allFunctionMap.put((String)f.get(this), O3Library.PRINT_O);
+                    allFunctionMap.put((String)f.get(this), O3CoreLibrary.PRINT_O);
                 }
             }
         } catch (Exception e) {

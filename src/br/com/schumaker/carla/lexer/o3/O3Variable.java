@@ -20,7 +20,7 @@ public class O3Variable implements IO3Variable {
     public O3VariableType getType() {
         return typeValue.getType();
     }
-
+   
     @Override
     public String toString() {
         return "{\n"

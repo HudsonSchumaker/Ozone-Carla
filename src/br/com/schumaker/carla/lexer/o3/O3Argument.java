@@ -22,7 +22,9 @@ public class O3Argument {
     @Override
     public String toString() {
         return "{\n"
-                + "\tArgument  : " + argument + "\n"
+                + "\tArgument : "
+                + "Name : " + name + "\n"
+                + argument + "\n"
                 + "}";
     }
 }
