@@ -1,20 +1,22 @@
 package br.com.schumaker.carla.lexer.o3;
 
+import br.com.schumaker.carla.o3.O3CoreType;
+
 /**
  * This enumerator defines the variables types of O³ pl.
  *
  * @author schumaker
  */
 public enum O3VariableType {
-    BYTE("byte", "0", 1),
-    BOOL("bool", "false", 1),
-    CHAR("char", "", 1),
-    STRING("string", "", 8),
-    INT("int", "0", 4),
-    LONG("long", "0L", 8),
-    FLOAT("float", "0.0f", 4),
-    DOUBLE("double", "0.0d", 8),
-    PARAM("param", "?", 8);
+    BYTE("byte", "0", O3CoreType.BYTE.getSize()),
+    BOOL("bool", "false", O3CoreType.BOOL.getSize()),
+    CHAR("char", "", O3CoreType.CHAR.getSize()),
+    STRING("string", "", O3CoreType.STRING.getSize()),
+    INT("int", "0", O3CoreType.INT.getSize()),
+    LONG("long", "0L", O3CoreType.LONG.getSize()),
+    FLOAT("float", "0.0f", O3CoreType.FLOAT.getSize()),
+    DOUBLE("double", "0.0d", O3CoreType.DOUBLE.getSize()),
+    PARAM("param", "?", O3CoreType.PARAM.getSize());
 
     private final String name;
     private final String defaultValue;
