@@ -13,6 +13,8 @@ public final class O3CoreKeyword {
     
     public static final String IF = "if";
     public static final String ELSE = "else";
+    public static final String BREAK = "break";
+    public static final String CONTINUE = "continue";
     
     public static final String WHILE = "while";
     public static final String FOR = "for";
@@ -41,4 +43,6 @@ public final class O3CoreKeyword {
     public static final String FLOATING_POINT_SIGN = ".";
     public static final String FLOAT_SIGN = "f";
     public static final String DOUBLE_SIGN = "d"; 
+    
+    public static final String RETURN = "return";
 }
