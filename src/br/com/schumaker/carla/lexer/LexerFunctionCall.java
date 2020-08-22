@@ -17,17 +17,17 @@ import java.util.List;
  * @author schumaker
  */
 public class LexerFunctionCall {
-    
+
     private LexerArgument lexerArgument;
-    
+
     public LexerFunctionCall() {
         this.lexerArgument = new LexerArgument();
     }
 
     /**
-     * Get a list of function call inside a function.
+     * Get a list of O³ function call inside a O³ function.
      *
-     * @param statement Statement (Body) of a function
+     * @param statement Statement (Body) of a O³ function
      * @param variableTable
      * @return
      */
@@ -42,7 +42,7 @@ public class LexerFunctionCall {
     }
 
     /**
-     * Create an O3FunctionCall element based in the args.
+     * Create an O³ FunctionCall element based in the args.
      *
      * @param line
      * @param variableTable
@@ -56,10 +56,10 @@ public class LexerFunctionCall {
     }
 
     /**
-     * Extract the name of the function.
+     * Extract the name of the O³ function.
      *
      * @param data
-     * @return the clean name of the function.
+     * @return the clean name of the O³ function.
      */
     public String getFunctionName(String data) {
         var clean = data.trim();
@@ -86,9 +86,16 @@ public class LexerFunctionCall {
         return args;
     }
 
+    /**
+     * Resolves argument values
+     *
+     * @param data
+     * @param variableTable
+     * @return
+     */
     public O3Argument resloveArgument(String data, O3FunctionVariableTable variableTable) {
         if (variableTable.variableIsDeclared(data)) {
-            //var o3Var = variableTable.getVariableByName(data); resolve value when exist
+            // var o3Var = variableTable.getVariableByName(data); resolve value when exist
             return new O3Argument(data, true,
                     O3TypeValue.of(O3VariableType.STRING, O3Argument.VALUE));
         } else {
