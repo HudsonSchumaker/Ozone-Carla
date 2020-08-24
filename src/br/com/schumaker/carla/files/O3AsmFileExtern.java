@@ -11,11 +11,15 @@ import lombok.Data;
  * @author Hudson Schumaker
  */
 @Data
-public class O3AsmFileExtern implements IO3AsmFileSection {
+public final class O3AsmFileExtern implements IO3AsmFileSection {
 
     public static final String EXTERN = "extern";
     private List<String> externLines = new ArrayList<>();
-
+    
+    public O3AsmFileExtern() throws Exception {
+        this.addAllO3Lib();
+    }
+           
     public void addLine(String line) {
         this.externLines.add(line);
     }
