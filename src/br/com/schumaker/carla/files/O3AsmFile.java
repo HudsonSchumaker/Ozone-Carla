@@ -1,5 +1,6 @@
 package br.com.schumaker.carla.files;
 
+import br.com.schumaker.carla.exception.AsmFilePreProcesserException;
 import lombok.Data;
 
 /**
@@ -16,9 +17,13 @@ public class O3AsmFile {
     private O3AsmSectionText sectionText;
 
     public O3AsmFile() {
-        this.header = new O3AsmFileHeader();
-        this.extern = new O3AsmFileExtern();
-        this.sectionData = new O3AsmSectionData();
-        this.sectionText = new O3AsmSectionText();
+        try {
+            this.header = new O3AsmFileHeader();
+            this.extern = new O3AsmFileExtern();
+            this.sectionData = new O3AsmSectionData();
+            this.sectionText = new O3AsmSectionText();
+        } catch (Exception e) {
+            throw new AsmFilePreProcesserException();
+        }
     }
 }
