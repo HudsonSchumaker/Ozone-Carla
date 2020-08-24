@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * This class builds O3Files
+ *
  * @see O3File
  * @author schumaker
  */
@@ -63,8 +64,8 @@ public class O3FileBuilder implements FileBuilder<O3File> {
     }
 
     /**
-     * 
-     * @param file 
+     *
+     * @param file
      */
     public void setConditionalStatements(O3File file) {
         for (O3FileLine line : file.getLines()) {
@@ -77,8 +78,8 @@ public class O3FileBuilder implements FileBuilder<O3File> {
     }
 
     /**
-     * 
-     * @param file 
+     *
+     * @param file
      */
     public void setLoopStatements(O3File file) {
         for (O3FileLine line : file.getLines()) {
@@ -91,8 +92,8 @@ public class O3FileBuilder implements FileBuilder<O3File> {
     }
 
     /**
-     * 
-     * @param file 
+     *
+     * @param file
      */
     public void setVariableDeclarations(O3File file) {
         for (O3FileLine line : file.getLines()) {
@@ -105,8 +106,8 @@ public class O3FileBuilder implements FileBuilder<O3File> {
     }
 
     /**
-     * 
-     * @param file 
+     *
+     * @param file
      */
     public void setFunctionCalls(O3File file) {
         for (O3FileLine line : file.getLines()) {
