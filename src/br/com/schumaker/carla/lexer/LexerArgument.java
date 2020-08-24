@@ -3,11 +3,11 @@ package br.com.schumaker.carla.lexer;
 import br.com.schumaker.carla.lexer.o3.O3Argument;
 import br.com.schumaker.carla.lexer.o3.O3TypeValue;
 import br.com.schumaker.carla.lexer.o3.O3VariableType;
-import br.com.schumaker.carla.o3.O3CoreKeyword;
+import br.com.schumaker.carla.o3.O3SyntaxKeyword;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public class LexerArgument {
     
@@ -17,17 +17,17 @@ public class LexerArgument {
                     false, O3TypeValue.of(O3VariableType.STRING, data));
         }
 
-        if (data.contains(O3CoreKeyword.TRUE) || data.contains(O3CoreKeyword.FALSE)) {
+        if (data.contains(O3SyntaxKeyword.TRUE) || data.contains(O3SyntaxKeyword.FALSE)) {
             return new O3Argument(O3Argument.NAME,
                     false, O3TypeValue.of(O3VariableType.BOOL, data));
         }
 
-        if (data.contains(O3CoreKeyword.FLOATING_POINT_SIGN)) {
-            if (data.contains(O3CoreKeyword.FLOAT_SIGN)) {
+        if (data.contains(O3SyntaxKeyword.FLOATING_POINT_SIGN)) {
+            if (data.contains(O3SyntaxKeyword.FLOAT_SIGN)) {
                 return new O3Argument(O3Argument.NAME,
                         false, O3TypeValue.of(O3VariableType.FLOAT, data));
             }
-            if (data.contains(O3CoreKeyword.DOUBLE_SIGN)) {
+            if (data.contains(O3SyntaxKeyword.DOUBLE_SIGN)) {
                 return new O3Argument(O3Argument.NAME,
                         false, O3TypeValue.of(O3VariableType.DOUBLE, data));
             }
