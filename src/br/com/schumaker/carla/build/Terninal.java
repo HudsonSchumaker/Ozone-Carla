@@ -10,12 +10,11 @@ import lombok.Getter;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
-
 @Getter
 public class Terninal implements Zsh {
-    
+
     private List<String> returns = new ArrayList();
 
     @Override
@@ -26,7 +25,7 @@ public class Terninal implements Zsh {
                 process = Runtime.getRuntime().exec(command);
                 InputStream is = process.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                
+
                 String line;
                 while ((line = br.readLine()) != null) {
                     returns.add(line);
