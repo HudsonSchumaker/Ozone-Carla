@@ -2,7 +2,7 @@
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  * @param <A>
  */
 public class X64O3VariableMap<N, A> {
