@@ -4,7 +4,7 @@ package br.com.schumaker.halogenx64;
  * This class holds the name map between O3 syntax names to library function
  * names.
  *
- * @author schumaker
+ * @author Hudson Schumaker
  * @param <T> Name of the O3 function
  * @param <V> Name of the function in the library.
  */
