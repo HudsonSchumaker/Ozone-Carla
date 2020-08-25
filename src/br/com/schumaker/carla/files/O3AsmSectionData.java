@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class O3AsmSectionData implements IO3AsmFileSection {
 
-    public static final String SECTION_DATA = "section .data";
+    public static final String SECTION_DATA = "\nsection .data\n";
     private List<String> sectionDataLines = new ArrayList<>();
                 
     public O3AsmSectionData() {
