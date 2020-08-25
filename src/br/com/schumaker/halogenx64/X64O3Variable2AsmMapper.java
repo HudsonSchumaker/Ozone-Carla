@@ -21,11 +21,21 @@ public class X64O3Variable2AsmMapper {
                 o3Var2AsmVarTypeMap.get(o3type))
                 .orElseThrow(() -> new ArgumentTypeNotSupportedException());
     }
-    
+    /**
+     * BYTE     byte,  1byte (db), 8 bits.
+     * BOOL     byte,  1byte (db), 8 bits.
+     * CHAR     byte,  1byte (db), 8 bits.
+     * STRING   ??
+     * INT      doubleword, 4bytes (dd), 32bits.
+     * LONG     quadword,   8bytes (dq), 64bits.
+     * FLOAT    doubleword, 4bytes (dd), 32bits.
+     * DOUBLE   quadword,   8bytes (dq), 64bits.
+     */
     public X64O3Variable2AsmMapper() {
         // TODO do the others types.
         this.o3Var2AsmVarTypeMap.put(O3VariableType.STRING.getName(), X64AsmVariableType.DB.getAsmName());
         this.o3Var2AsmVarTypeMap.put(O3VariableType.INT.getName(), X64AsmVariableType.DD.getAsmName());
         this.o3Var2AsmVarTypeMap.put(O3VariableType.FLOAT.getName(), X64AsmVariableType.DD.getAsmName());
+        this.o3Var2AsmVarTypeMap.put(O3VariableType.DOUBLE.getName(), X64AsmVariableType.DQ.getAsmName());
     }
 }
