@@ -11,12 +11,14 @@ import lombok.Data;
 public class O3AsmFile {
 
     public static final String EXT = "asm";
+    private String name;
     private O3AsmFileHeader header;
     private O3AsmFileExtern extern;
     private O3AsmSectionData sectionData;
     private O3AsmSectionText sectionText;
 
-    public O3AsmFile() {
+    public O3AsmFile(String name) {
+        this.name = name;
         try {
             this.header = new O3AsmFileHeader();
             this.extern = new O3AsmFileExtern();
