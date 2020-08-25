@@ -26,7 +26,7 @@ public final class O3AsmFileExtern implements IO3AsmFileSection {
 
     public void addExternalMethod(String name) {
         var line = EXTERN + " _" + name;
-        this.externLines.add(line);
+        this.externLines.add(line + "\n");
     }
 
     /**
