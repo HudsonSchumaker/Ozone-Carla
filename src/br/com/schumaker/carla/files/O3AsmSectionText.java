@@ -10,7 +10,7 @@ import lombok.Data;
  */
 @Data
 public class O3AsmSectionText {
-    public static final String SECTION_TEXT = "section .data";
+    public static final String SECTION_TEXT = "\nsection .data";
     private List<String> sectionTextLines = new ArrayList<>();
     
     public O3AsmSectionText() {
@@ -25,8 +25,9 @@ public class O3AsmSectionText {
     }
     
     public void addMainFunction() {
-        this.sectionTextLines.add("\n");
+        this.sectionTextLines.add("\n\n");
         this.sectionTextLines.add("_main:");
+        this.sectionTextLines.add("\n");
     }
     
     public void setUpStack() {
