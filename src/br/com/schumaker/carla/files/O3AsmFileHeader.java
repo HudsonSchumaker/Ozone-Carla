@@ -29,6 +29,6 @@ public final class O3AsmFileHeader implements IO3AsmFileSection {
      */
     public void generateHeader() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        amsHeader = HEADER + "; " + LocalDateTime.now().format(formatter) + "\n" + BITS;
+        amsHeader = HEADER + "; " + LocalDateTime.now().format(formatter) + "\n" + BITS + "\n\n";
     }
 }
