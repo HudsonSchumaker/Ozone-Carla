@@ -7,7 +7,7 @@ import lombok.Data;
 /**
  * This class holds the name, value and type map between O3 variable.
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 @Data
 public class X64Variable {
@@ -26,5 +26,9 @@ public class X64Variable {
     
     public static X64Variable of(String name, String funcName, O3VariableTypeValue<O3VariableType, ?> typeValue, X64O3VariableMap varTypeMap) {
         return new X64Variable(name, funcName, typeValue, varTypeMap);
+    }
+    
+    public String getAsmLine() {
+        return null;
     }
 }
