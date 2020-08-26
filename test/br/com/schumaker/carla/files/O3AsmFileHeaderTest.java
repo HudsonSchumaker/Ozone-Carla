@@ -14,7 +14,7 @@ public class O3AsmFileHeaderTest {
         // Preparation
         var tested = new O3AsmFileHeader();
         // Test
-        var result = tested.generateHeader();
+        var result = tested.getAmsHeader();
         
         // Assertion(s)
         Assert.assertTrue(result.contains(O3AsmFileHeader.HEADER));
