@@ -1,7 +1,7 @@
 //
 //  O3String.c - methods for string manipulation.
 //
-//  Created by Hudson Luiz Sales Schumaker on 14.08.20.
+//  Created by Hudson Schumaker on 14.08.20.
 //  Copyright © 2020 SchumakerTeam. All rights reserved.
 //
 
@@ -144,4 +144,20 @@ char* o3kebabCase(char *str) {
     }
     printf("%s", ""); // does not work without this line.
     return strKebab;
+}
+
+// reverse
+char* o3reverseCase(char *str) {
+    long len = strlen(str);
+    char reverse[len];
+    int strIndex = 0;
+    int revIndex = len - 1;
+    while(strIndex >= 0) {
+        reverse[revIndex] = str[strIndex];
+        strIndex--;
+        revIndex++;
+    }
+    reverse[revIndex] = '\0';
+    printf("%s", ""); // does not work without this line.
+    return reverse;
 }
