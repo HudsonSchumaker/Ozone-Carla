@@ -6,23 +6,27 @@ import org.junit.Test;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public class MakeFileWriterTest {
 
     @Test
     public void testWrite() {
         // Preparation
+        var atomName = "hello";
+        Workspace.createWorkspace(atomName);
         var tested = new MakeFileWriter();
 
         // Test
-        tested.write("hello");
+        tested.write(atomName);
 
-        // Assertion
-        var file = new File(System.getProperty("user.dir") + "/Makefile");
+        // Assertion(s)
+        var file = new File(System.getProperty("user.dir") + "/" + atomName + "/Makefile");
         Assert.assertTrue(file.exists());
 
         // Teardown
         file.delete();
+        var dir = new File(System.getProperty("user.dir") + "/" + atomName);
+        dir.delete();
     }
 }
