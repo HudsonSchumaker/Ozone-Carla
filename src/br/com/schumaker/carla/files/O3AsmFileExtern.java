@@ -15,11 +15,11 @@ public final class O3AsmFileExtern implements IO3AsmFileSection {
 
     public static final String EXTERN = "extern";
     private List<String> externLines = new ArrayList<>();
-    
-    public O3AsmFileExtern() throws Exception {
+
+    public O3AsmFileExtern() {
         this.addAllO3Lib();
     }
-           
+
     public void addLine(String line) {
         this.externLines.add(line);
     }
@@ -31,10 +31,8 @@ public final class O3AsmFileExtern implements IO3AsmFileSection {
 
     /**
      * Used for now to make the process simple.
-     *
-     * @throws java.lang.Exception
      */
-    public void addAllO3Lib() throws Exception {
+    public void addAllO3Lib() {
         O3CoreLibrary coreLibrary = new O3CoreLibrary();
         List<IO3CoreFunction> functions = coreLibrary.getCoreLibs();
         for (var func : functions) {
