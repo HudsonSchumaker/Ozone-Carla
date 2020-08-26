@@ -7,14 +7,14 @@ import org.junit.Test;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public class O3FunctionTableTest {
     
     @Test
     public void testFunctionExists() throws Exception {
         // Preparation
-        var tested = new O3CoreFunctionTable();
+        var tested = new O3SyntaxFunctionTable();
         var print = "print";
         var camelCase = "camelCase";
         var draw = "draw";
@@ -28,11 +28,11 @@ public class O3FunctionTableTest {
     @Test
     public void testGetLibNameByFunctionName() throws Exception {
         // Preparation
-        var tested = new O3CoreFunctionTable();
+        var tested = new O3SyntaxFunctionTable();
         
         // Test - Assertions
-        Assert.assertEquals(O3CoreLibrary.PRINT_O, tested.getLibNameByFunctionName(O3CoreFunctionTable.PRT_PRINT));
-        Assert.assertEquals(O3CoreLibrary.STRINGS_O, tested.getLibNameByFunctionName(O3CoreFunctionTable.STR_CAMEL_CASE));
+        Assert.assertEquals(O3SyntaxLibrary.PRINT_O, tested.getLibNameByFunctionName(O3SyntaxFunctionTable.PRT_PRINT));
+        Assert.assertEquals(O3SyntaxLibrary.STRINGS_O, tested.getLibNameByFunctionName(O3SyntaxFunctionTable.STR_CAMEL_CASE));
         Assert.assertEquals("", tested.getLibNameByFunctionName("draw"));
     }
 }
