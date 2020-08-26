@@ -10,7 +10,7 @@ import org.junit.Test;
 public class O3AsmFileExternTest {
     
     @Test
-    public void testAllO3Lib() throws Exception {
+    public void testAllO3Lib() {
         // Preparation
         var printStr = "extern _o3prtStr";
         var upperCase = "extern _o3upperCase";
