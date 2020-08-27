@@ -14,17 +14,21 @@ public class O3Argument {
 
     public static final String NAME = "arg";
     public static final String VALUE = "?";
-    
+
     private String name;
     private boolean isVariable;
-    private O3TypeValue<?, ?> argument;
-                
+    private O3TypeValue<?, ?> typeAndValue;
+
+    public O3VariableType getType() {
+        return (O3VariableType) this.typeAndValue.getType();
+    }
+
     @Override
     public String toString() {
         return "{\n"
                 + "\tArgument : "
                 + "Name : " + name + "\n"
-                + argument + "\n"
+                + typeAndValue + "\n"
                 + "}";
     }
 }
