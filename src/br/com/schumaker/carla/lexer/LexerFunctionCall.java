@@ -6,15 +6,14 @@ import br.com.schumaker.carla.lexer.o3.O3Argument;
 import br.com.schumaker.carla.lexer.o3.O3FunctionCall;
 import br.com.schumaker.carla.lexer.o3.O3FunctionVariableTable;
 import br.com.schumaker.carla.lexer.o3.O3TypeValue;
-import br.com.schumaker.carla.lexer.o3.O3VariableType;
 import br.com.schumaker.carla.lexer.utils.StringUtils;
-import br.com.schumaker.carla.o3.O3CoreKeyword;
+import br.com.schumaker.carla.o3.O3SyntaxKeyword;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public class LexerFunctionCall {
 
@@ -63,14 +62,14 @@ public class LexerFunctionCall {
      */
     public String getFunctionName(String data) {
         var clean = data.trim();
-        var name = clean.substring(0, clean.indexOf(O3CoreKeyword.OPEN_EXPRESSION)).trim();
+        var name = clean.substring(0, clean.indexOf(O3SyntaxKeyword.OPEN_EXPRESSION)).trim();
         return name;
     }
 
     public List<O3Argument> getArguments(O3FileLine line, O3FunctionVariableTable variableTable) {
         var raw = line.getData().trim().substring(line.getData()
-                .trim().indexOf(O3CoreKeyword.OPEN_EXPRESSION) + 1,
-                line.getData().trim().indexOf(O3CoreKeyword.CLOSE_EXPRESSION));
+                .trim().indexOf(O3SyntaxKeyword.OPEN_EXPRESSION) + 1,
+                line.getData().trim().indexOf(O3SyntaxKeyword.CLOSE_EXPRESSION));
 
         var rawArgs = raw.split(",");
         if (!this.validArgsArray(rawArgs)) {
@@ -95,9 +94,9 @@ public class LexerFunctionCall {
      */
     public O3Argument resloveArgument(String data, O3FunctionVariableTable variableTable) {
         if (variableTable.variableIsDeclared(data)) {
-            // var o3Var = variableTable.getVariableByName(data); resolve value when exist
+            var o3Var = variableTable.getVariableByName(data); //resolve value when exist
             return new O3Argument(data, true,
-                    O3TypeValue.of(O3VariableType.STRING, O3Argument.VALUE));
+                    O3TypeValue.of(o3Var.getType(), O3Argument.VALUE));
         } else {
             return this.resolveTypeAndValue(data);
         }
