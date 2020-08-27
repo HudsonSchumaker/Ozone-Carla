@@ -9,6 +9,10 @@ import java.util.List;
  */
 public interface IO3CoreFunction {
     String getO3Name();
+    String getLibrary();
+    String getCoreNameByType(String type);
     String getCoreNameByType(O3VariableType type);
+    Integer getArgumentSizeByO3Name(String name);
     List<String> getOverloadMethods();
+    List<String> getRegistersByCoreName(String name);
 }
