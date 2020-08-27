@@ -9,18 +9,17 @@ import lombok.Getter;
  */
 @Getter
 public enum O3SyntaxType {
-    BYTE(1),
-    BOOL(1),
-    CHAR(1),
-    STRING(8),
-    INT(4),
-    LONG(8),
-    FLOAT(4),
-    DOUBLE(8),
+    BYTE(1),    // byte,  1byte (db), 8 bits
+    BOOL(1),    // byte,  1byte (db), 8 bits
+    CHAR(1),    // byte,  1byte (db), 8 bits
+    STRING(8), 
+    INT(4),     // doubleword, 4bytes (dd), 32bits
+    LONG(8),    // quadword,   8bytes (dq), 64bits
+    FLOAT(4),   // doubleword, 4bytes (dd), 32bits
+    DOUBLE(8),  // quadword,   8bytes (dq), 64bits
     PARAM(8);
 
     private final int size; // size in bytes
-
     private O3SyntaxType(int size) {
         this.size = size;
     }
