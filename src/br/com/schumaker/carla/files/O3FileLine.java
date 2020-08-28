@@ -4,12 +4,12 @@ import lombok.Data;
 
 /**
  * This class holds O3 line from source file.
- * @author schumaker
+ *
+ * @author Hudson Schumaker
  */
-
 @Data
 public class O3FileLine {
-    
+
     private String data;
     private boolean functionHeader;
     private boolean conditionalStatement;
@@ -19,7 +19,7 @@ public class O3FileLine {
     private boolean functionCall;
     private Integer originalNumber;
     private Integer internalNumber;
-    
+
     public O3FileLine(String data, Integer originalNumber) {
         this.data = data;
         this.originalNumber = originalNumber;
