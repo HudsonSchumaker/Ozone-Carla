@@ -4,7 +4,7 @@ import java.io.File;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public final class O3FileUtils {
     
