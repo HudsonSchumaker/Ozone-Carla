@@ -47,7 +47,9 @@ public class O3AsmSectionText {
     public void setUpExitCall() {
         this.exitCallLines.add("\n");
         this.exitCallLines.add("\tmov     rax, 0x02000001");
+        this.exitCallLines.add("\n");
         this.exitCallLines.add("\txor     rdi, rdi");
+        this.exitCallLines.add("\n");
         this.exitCallLines.add("\tsyscall");
         this.exitCallLines.add("\n");
     }
