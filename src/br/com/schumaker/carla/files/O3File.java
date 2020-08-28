@@ -6,7 +6,7 @@ import lombok.Data;
 
 /** 
  *  This class holds the O3 file source.
- *  @author schumaker
+ *  @author Hudson Schumaker
  */
 
 @Data
