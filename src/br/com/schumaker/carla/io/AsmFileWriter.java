@@ -49,7 +49,12 @@ public class AsmFileWriter {
             for (String line : o3asmfile.getSectionText().getSectionTextLines()) {
                 bw.write(line);
             }
-
+            
+            // Exit 
+            for (var line : o3asmfile.getSectionText().getExitCallLines()) {
+                bw.write(line);
+            }
+            
         } catch (Exception e) {
             throw new WriteMakefileException();
         } finally {
