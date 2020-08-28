@@ -10,7 +10,7 @@ import java.util.List;
  * This class builds O3Files
  *
  * @see O3File
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public class O3FileBuilder implements FileBuilder<O3File> {
 
