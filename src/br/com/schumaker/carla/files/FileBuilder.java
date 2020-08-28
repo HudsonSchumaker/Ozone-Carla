@@ -2,7 +2,7 @@ package br.com.schumaker.carla.files;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  * @param <T>
  */
 public interface FileBuilder<T> {
