@@ -21,7 +21,7 @@ import lombok.Data;
 @Data
 public class O3PascalCase implements IO3CoreFunction {
 
-    public static final String O3STR_PASCAL_CASE = "o3lowerCase";
+    public static final String O3STR_PASCAL_CASE = "o3pascalCase";
 
     private String o3Name;
     private String library;
