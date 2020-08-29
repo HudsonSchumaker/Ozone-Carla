@@ -1,9 +1,12 @@
 package br.com.schumaker.carla.o3.core;
 
 import br.com.schumaker.carla.exception.ArgumentTypeNotSupportedException;
+import br.com.schumaker.carla.exception.FunctionNotFoundException;
 import br.com.schumaker.carla.lexer.o3.O3VariableType;
 import br.com.schumaker.carla.o3.O3SyntaxFunctionTable;
+import br.com.schumaker.halogenx64.X64RegisterArgumentTable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +19,7 @@ import lombok.Data;
  * @author Hudson Schumaker
  */
 @Data
-public class O3KebabCase {
+public class O3KebabCase implements IO3CoreFunction {
 
     public static final String O3STR_KEBAB_CASE = "o3kebabCase";
 
@@ -24,26 +27,60 @@ public class O3KebabCase {
     private String library;
     private List<String> coreNames = new ArrayList<>();
     private Map<String, String> argTypeCoreNameMap = new HashMap<>();
+    private Map<String, Integer> signatureArgumentMap = new HashMap<>();
+    private Map<String, List<String>> signatureRegisterMap = new HashMap<>();
 
     public O3KebabCase() throws Exception {
-        var functionTable = new O3SyntaxFunctionTable();
-        this.o3Name = O3SyntaxFunctionTable.STR_KEBAB_CASE;
-        this.library = functionTable.getLibNameByFunctionName(o3Name);
-        this.loadCoreNames();
-        this.loadTypeMap();
+        this(new O3SyntaxFunctionTable());
     }
 
-    public String getCoreNameByType(O3VariableType type) {
+    public O3KebabCase(O3SyntaxFunctionTable functionTable) {
+        this.o3Name = O3SyntaxFunctionTable.STR_KEBAB_CASE;
+        this.library = functionTable.getLibNameByFunctionName(o3Name);
+        this.loadMethod();
+    }
+
+    @Override
+    public String getCoreNameByType(String type) {
         return Optional.ofNullable(
-                argTypeCoreNameMap.get(type.getName()))
+                argTypeCoreNameMap.get(type))
                 .orElseThrow(() -> new ArgumentTypeNotSupportedException());
     }
 
-    public void loadCoreNames() {
-        this.coreNames.add(O3STR_KEBAB_CASE);
+    @Override
+    public String getCoreNameByType(O3VariableType type) {
+        return this.getCoreNameByType(type.getName());
     }
 
-    public void loadTypeMap() {
+    @Override
+    public List<String> getOverloadMethods() {
+        List list = new ArrayList(argTypeCoreNameMap.values());
+        return list;
+    }
+
+    @Override
+    public Integer getArgumentSizeByO3Name(String name) {
+        return Optional.ofNullable(
+                signatureArgumentMap.get(name))
+                .orElseThrow(() -> new FunctionNotFoundException());
+    }
+
+    @Override
+    public List<String> getRegistersByCoreName(String name) {
+        return Optional.ofNullable(
+                signatureRegisterMap.get(name))
+                .orElseThrow(() -> new FunctionNotFoundException());
+    }
+
+    public void loadMethod() {
+        this.coreNames.add(O3STR_KEBAB_CASE);
         this.argTypeCoreNameMap.put(O3VariableType.STRING.getName(), O3STR_KEBAB_CASE);
+
+        for (var name : coreNames) {
+            this.signatureArgumentMap.put(name, 1);
+        }
+
+        this.signatureRegisterMap.put("_" + O3STR_KEBAB_CASE,
+                Arrays.asList(X64RegisterArgumentTable.getParamRegisterNameByIndex(0)));
     }
 }

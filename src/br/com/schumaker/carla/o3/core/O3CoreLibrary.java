@@ -1,5 +1,8 @@
 package br.com.schumaker.carla.o3.core;
 
+import br.com.schumaker.carla.exception.LoadingCoreLibraryException;
+import br.com.schumaker.carla.exception.X128RegisterNotFound;
+import br.com.schumaker.carla.exception.X64RegisterNotFound;
 import br.com.schumaker.carla.o3.O3SyntaxFunctionTable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +16,18 @@ public class O3CoreLibrary implements IO3CoreLibrary {
     private O3SyntaxFunctionTable syntaxFunctionTable;
     private List<IO3CoreFunction> coreLibrary = new ArrayList<>();
     
-    public O3CoreLibrary() throws Exception {
-        this.syntaxFunctionTable = new O3SyntaxFunctionTable();
-        this.loadCoreFunctions();
+    public O3CoreLibrary() {
+        try {
+            this.syntaxFunctionTable = new O3SyntaxFunctionTable();
+            this.loadCoreFunctions();
+        } 
+        catch(X64RegisterNotFound e) {
+            throw e;
+        } catch(X128RegisterNotFound e) {
+            throw e;
+        } catch(Exception e) {
+            throw new LoadingCoreLibraryException();
+        }
     }
     
     @Override
@@ -49,5 +61,6 @@ public class O3CoreLibrary implements IO3CoreLibrary {
         this.coreLibrary.add(new O3PascalCase(syntaxFunctionTable));
         this.coreLibrary.add(new O3SnakeCase(syntaxFunctionTable));
         this.coreLibrary.add(new O3KebabCase(syntaxFunctionTable));
+        this.coreLibrary.add(new O3ReverseCase(syntaxFunctionTable));
     }
 }

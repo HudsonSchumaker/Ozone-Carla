@@ -45,10 +45,15 @@ public class O3CamelCase implements IO3CoreFunction {
     }
 
     @Override
-    public String getCoreNameByType(O3VariableType type) {
+    public String getCoreNameByType(String type) {
         return Optional.ofNullable(
-                argTypeCoreNameMap.get(type.getName()))
+                argTypeCoreNameMap.get(type))
                 .orElseThrow(() -> new ArgumentTypeNotSupportedException());
+    }
+
+    @Override
+    public String getCoreNameByType(O3VariableType type) {
+        return this.getCoreNameByType(type.getName());
     }
 
     @Override
@@ -63,5 +68,15 @@ public class O3CamelCase implements IO3CoreFunction {
 
     public void loadTypeMap() {
         this.argTypeCoreNameMap.put(O3VariableType.STRING.getName(), O3STR_CAMEL_CASE);
+    }
+
+    @Override
+    public Integer getArgumentSizeByO3Name(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<String> getRegistersByCoreName(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
