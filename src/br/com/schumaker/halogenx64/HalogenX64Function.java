@@ -4,6 +4,7 @@ import br.com.schumaker.carla.exception.UnsupportedNumberOfArgumentsException;
 import br.com.schumaker.carla.lexer.o3.O3Function;
 import br.com.schumaker.carla.lexer.o3.O3FunctionCall;
 import br.com.schumaker.carla.lexer.o3.O3FunctionStatement;
+import br.com.schumaker.carla.lexer.o3.O3VariableType;
 import br.com.schumaker.carla.o3.core.O3CoreLibrary;
 
 /**
@@ -34,20 +35,28 @@ public class HalogenX64Function {
         var coreFunctionName = call.getFunctionName();
         var coreFunction = coreLibrary.getByName(coreFunctionName);
         var arguments = call.getArguments();
-        
+
         StringBuffer buffer = new StringBuffer();
         if (arguments.size() == 1) {
-            var argument = arguments.get(0);
-            var argName = argument.getName();
-            var type = argument.getType();
-            var amsFuncName = coreFunction.getCoreNameByType(type.getName());
-            var registerName = coreFunction.getRegistersByCoreName(amsFuncName).get(0);
-   
-            if (coreFunction.getArgumentSizeByO3Name(amsFuncName) == arguments.size()) {
+            var argument = new X64FirstArgument(coreFunctionName, arguments.get(0));
+
+            if (coreFunction.getArgumentSizeByO3Name(argument.getAmsFunctionName()) == arguments.size()) {
                 buffer.append("\n\n");
-                buffer.append("\t" + registerName  + ", " + argName);
+                if (argument.getType().getName().equalsIgnoreCase(O3VariableType.STRING.getName())) {
+                    buffer.append("\t")
+                            .append(argument.getRegisterName())
+                            .append(", ")
+                            .append(argument.getName());
+                } else {
+                    buffer.append("\t")
+                            .append(argument.getRegisterName())
+                            .append(", ").append("[rel ")
+                            .append(argument.getName())
+                            .append("]");
+                }
+
                 buffer.append("\n");
-                buffer.append("\tcall " + amsFuncName);
+                buffer.append("\tcall ").append(argument.getAmsFunctionName());
                 buffer.append("\n");
             } else {
                 throw new UnsupportedNumberOfArgumentsException();
