@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class O3AsmSectionText {
 
-    public static final String SECTION_TEXT = "\nsection .data";
+    public static final String SECTION_TEXT = "\nsection .text";
     private List<String> sectionTextLines = new ArrayList<>();
     private List<String> exitCallLines = new ArrayList<>();
 
