@@ -71,6 +71,11 @@ public class O3ReverseCase implements IO3CoreFunction {
                 signatureRegisterMap.get(name))
                 .orElseThrow(() -> new FunctionNotFoundException());
     }
+    
+    @Override
+    public O3VariableType getReturnType() {
+        return O3VariableType.STRING;
+    }
 
     private void loadMethod() {
         this.coreNames.add(O3STR_REVERSE_CASE);

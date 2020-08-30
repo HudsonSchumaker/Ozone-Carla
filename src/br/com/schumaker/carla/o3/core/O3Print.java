@@ -78,6 +78,11 @@ public class O3Print implements IO3CoreFunction {
                 signatureRegisterMap.get(name))
                 .orElseThrow(() -> new FunctionNotFoundException());
     }
+   
+    @Override
+    public O3VariableType getReturnType() {
+        return O3VariableType.VOID;
+    }
 
     private void loadCoreNames() {
         this.coreNames.add("_" + O3PRTSTR);

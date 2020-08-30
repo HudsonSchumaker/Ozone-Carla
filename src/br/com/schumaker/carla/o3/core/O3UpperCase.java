@@ -42,7 +42,7 @@ public class O3UpperCase implements IO3CoreFunction {
 
     @Override
     public String getCoreNameByType(String type) {
-        return Optional.ofNullable(
+        return "_" + Optional.ofNullable(
                 argTypeCoreNameMap.get(type))
                 .orElseThrow(() -> new ArgumentTypeNotSupportedException());
     }
@@ -71,9 +71,14 @@ public class O3UpperCase implements IO3CoreFunction {
                 signatureRegisterMap.get(name))
                 .orElseThrow(() -> new FunctionNotFoundException());
     }
+    
+    @Override
+    public O3VariableType getReturnType() {
+        return O3VariableType.STRING;
+    }
 
     public void loadMethod() {
-        this.coreNames.add(O3STR_UPPER_CASE);
+        this.coreNames.add("_" + O3STR_UPPER_CASE);
         this.argTypeCoreNameMap.put(O3VariableType.STRING.getName(), O3STR_UPPER_CASE);
         
         for (var name : coreNames) {

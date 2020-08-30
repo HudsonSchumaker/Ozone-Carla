@@ -71,6 +71,11 @@ public class O3KebabCase implements IO3CoreFunction {
                 signatureRegisterMap.get(name))
                 .orElseThrow(() -> new FunctionNotFoundException());
     }
+    
+    @Override
+    public O3VariableType getReturnType() {
+        return O3VariableType.STRING;
+    }
 
     public void loadMethod() {
         this.coreNames.add(O3STR_KEBAB_CASE);

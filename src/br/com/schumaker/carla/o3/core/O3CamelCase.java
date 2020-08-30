@@ -1,9 +1,12 @@
 package br.com.schumaker.carla.o3.core;
 
 import br.com.schumaker.carla.exception.ArgumentTypeNotSupportedException;
+import br.com.schumaker.carla.exception.FunctionNotFoundException;
 import br.com.schumaker.carla.lexer.o3.O3VariableType;
 import br.com.schumaker.carla.o3.O3SyntaxFunctionTable;
+import br.com.schumaker.halogenx64.X64RegisterArgumentTable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +27,8 @@ public class O3CamelCase implements IO3CoreFunction {
     private String library;
     private List<String> coreNames = new ArrayList<>();
     private Map<String, String> argTypeCoreNameMap = new HashMap<>();
+    private Map<String, Integer> signatureArgumentMap = new HashMap<>();
+    private Map<String, List<String>> signatureRegisterMap = new HashMap<>();
 
     public O3CamelCase() throws Exception {
         this(new O3SyntaxFunctionTable());
@@ -40,8 +45,7 @@ public class O3CamelCase implements IO3CoreFunction {
     public O3CamelCase(O3SyntaxFunctionTable functionTable) throws Exception {
         this.o3Name = O3SyntaxFunctionTable.STR_CAMEL_CASE;
         this.library = functionTable.getLibNameByFunctionName(o3Name);
-        this.loadCoreNames();
-        this.loadTypeMap();
+        this.loadMethod();
     }
 
     @Override
@@ -62,21 +66,34 @@ public class O3CamelCase implements IO3CoreFunction {
         return list;
     }
 
-    public void loadCoreNames() {
-        this.coreNames.add(O3STR_CAMEL_CASE);
-    }
-
-    public void loadTypeMap() {
-        this.argTypeCoreNameMap.put(O3VariableType.STRING.getName(), O3STR_CAMEL_CASE);
-    }
-
     @Override
     public Integer getArgumentSizeByO3Name(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Optional.ofNullable(
+                signatureArgumentMap.get(name))
+                .orElseThrow(() -> new FunctionNotFoundException());
     }
 
     @Override
     public List<String> getRegistersByCoreName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Optional.ofNullable(
+                signatureRegisterMap.get(name))
+                .orElseThrow(() -> new FunctionNotFoundException());
+    }
+
+    @Override
+    public O3VariableType getReturnType() {
+        return O3VariableType.STRING;
+    }
+
+    public void loadMethod() {
+        this.coreNames.add(O3STR_CAMEL_CASE);
+        this.argTypeCoreNameMap.put(O3VariableType.STRING.getName(), O3STR_CAMEL_CASE);
+
+        for (var name : coreNames) {
+            this.signatureArgumentMap.put(name, 1);
+        }
+
+        this.signatureRegisterMap.put("_" + O3STR_CAMEL_CASE,
+                Arrays.asList(X64RegisterArgumentTable.getParamRegisterNameByIndex(0)));
     }
 }
