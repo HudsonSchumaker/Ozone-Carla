@@ -7,5 +7,5 @@ package br.com.schumaker.carla.build;
  */
 public interface Zsh {
 
-    void executeCommnad(String command);
+    void executeCommand(String command);
 }
