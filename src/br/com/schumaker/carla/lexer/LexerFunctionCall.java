@@ -95,7 +95,9 @@ public class LexerFunctionCall {
     public O3Argument resloveArgument(String data, O3FunctionVariableTable variableTable) {
         if (variableTable.variableIsDeclared(data)) {
             var o3Var = variableTable.getVariableByName(data); //resolve value when exist
-            return new O3Argument(data, true,
+            return new O3Argument(o3Var.getInternalName()
+                    .replaceAll(":", ""),
+                    true,
                     O3TypeValue.of(o3Var.getType(), O3Argument.VALUE));
         } else {
             return this.resolveTypeAndValue(data);
