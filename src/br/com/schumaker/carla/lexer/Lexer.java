@@ -13,12 +13,11 @@ import java.util.List;
  * @author schumaker
  */
 public class Lexer implements ILexer {
-
+    
     @Override
     public O3Atom createProgram(O3File o3File) {
         var lexerFunction = new LexerFunction();
         var functions = lexerFunction.getFunctions(o3File);
-
         return new O3Atom(o3File.getName(), 
                 this.fillAtomVariableTable(functions),
                 lexerFunction.getO3FunctionTable(), 
