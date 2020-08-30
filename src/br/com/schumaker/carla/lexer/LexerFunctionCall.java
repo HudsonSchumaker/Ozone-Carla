@@ -5,6 +5,7 @@ import br.com.schumaker.carla.lexer.o3.IO3Statement;
 import br.com.schumaker.carla.lexer.o3.O3Argument;
 import br.com.schumaker.carla.lexer.o3.O3FunctionCall;
 import br.com.schumaker.carla.lexer.o3.O3FunctionVariableTable;
+import br.com.schumaker.carla.lexer.o3.O3Return;
 import br.com.schumaker.carla.lexer.o3.O3TypeValue;
 import br.com.schumaker.carla.lexer.utils.StringUtils;
 import br.com.schumaker.carla.o3.O3SyntaxKeyword;
@@ -18,6 +19,7 @@ import java.util.List;
 public class LexerFunctionCall {
 
     private LexerArgument lexerArgument;
+    private LexerReturn lexerReturn; 
 
     public LexerFunctionCall() {
         this.lexerArgument = new LexerArgument();
@@ -50,8 +52,12 @@ public class LexerFunctionCall {
     public O3FunctionCall getFunctionCall(O3FileLine line, O3FunctionVariableTable variableTable) {
         var functionName = this.getFunctionName(line.getData());
         var arguments = this.getArguments(line, variableTable);
+        var o3return = this.getReturn(functionName, line, variableTable);
 
-        return new O3FunctionCall(functionName, arguments);
+        return new O3FunctionCall(functionName, 
+                arguments,
+                (o3return.isReturnToFunction() || o3return.isReturnToVariable()),
+                o3return);
     }
 
     /**
@@ -63,9 +69,18 @@ public class LexerFunctionCall {
     public String getFunctionName(String data) {
         var clean = data.trim();
         var name = clean.substring(0, clean.indexOf(O3SyntaxKeyword.OPEN_EXPRESSION)).trim();
+        if (name.contains(O3SyntaxKeyword.ASSINGN)) {
+            name = name.substring(name.indexOf(O3SyntaxKeyword.ASSINGN) + 1, name.length()).trim(); 
+        }
         return name;
     }
 
+    /**
+     * Get all the argument for the function call.
+     * @param line
+     * @param variableTable
+     * @return list of the arguments resolved
+     */
     public List<O3Argument> getArguments(O3FileLine line, O3FunctionVariableTable variableTable) {
         var raw = line.getData().trim().substring(line.getData()
                 .trim().indexOf(O3SyntaxKeyword.OPEN_EXPRESSION) + 1,
@@ -96,7 +111,7 @@ public class LexerFunctionCall {
         if (variableTable.variableIsDeclared(data)) {
             var o3Var = variableTable.getVariableByName(data); //resolve value when exist
             return new O3Argument(o3Var.getInternalName()
-                    .replaceAll(":", ""),
+                    .replaceAll(":", ""), //remove because ams file
                     true,
                     O3TypeValue.of(o3Var.getType(), O3Argument.VALUE));
         } else {
@@ -106,6 +121,11 @@ public class LexerFunctionCall {
 
     public O3Argument resolveTypeAndValue(String data) {
         return lexerArgument.getTypeAndValue(data);
+    }
+    
+    public O3Return getReturn(String functioName, O3FileLine line, O3FunctionVariableTable variableTable) {
+        this.lexerReturn = new LexerReturn(variableTable);
+        return lexerReturn.resolveReturnType(functioName, line);
     }
 
     /**

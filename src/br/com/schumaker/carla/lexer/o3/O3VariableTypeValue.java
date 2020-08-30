@@ -2,7 +2,7 @@ package br.com.schumaker.carla.lexer.o3;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  * @param <O3VariableType>
  * @param <V>
  */

@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public interface IAtomVariableTable {
     void add(IO3Variable o3Var);

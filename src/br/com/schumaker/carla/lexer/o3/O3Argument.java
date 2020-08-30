@@ -10,7 +10,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class O3Argument {
+public class O3Argument implements IO3Variable {
 
     public static final String NAME = "arg";
     public static final String VALUE = "?";
@@ -19,6 +19,7 @@ public class O3Argument {
     private boolean isVariable;
     private O3TypeValue<?, ?> typeAndValue;
 
+    @Override
     public O3VariableType getType() {
         return (O3VariableType) this.typeAndValue.getType();
     }

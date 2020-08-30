@@ -6,11 +6,12 @@ import br.com.schumaker.carla.lexer.o3.O3VariableType;
 import br.com.schumaker.carla.o3.O3SyntaxKeyword;
 
 /**
+ * This class solves the arguments in function call of a O3 function.
  *
  * @author Hudson Schumaker
  */
 public class LexerArgument {
-    
+
     public O3Argument getTypeAndValue(String data) {
         if (data.contains("\"")) {
             return new O3Argument(O3Argument.NAME,
@@ -32,7 +33,7 @@ public class LexerArgument {
                         false, O3TypeValue.of(O3VariableType.DOUBLE, data));
             }
         }
-        
+
         return new O3Argument(O3Argument.NAME,
                 false, O3TypeValue.of(O3VariableType.INT, data));
     }

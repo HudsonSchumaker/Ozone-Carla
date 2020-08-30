@@ -2,7 +2,7 @@ package br.com.schumaker.carla.nasm;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public final class NasmCommon {
     private NasmCommon() {}

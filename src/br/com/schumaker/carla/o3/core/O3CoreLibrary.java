@@ -1,5 +1,6 @@
 package br.com.schumaker.carla.o3.core;
 
+import br.com.schumaker.carla.exception.FunctionNotFoundException;
 import br.com.schumaker.carla.exception.LoadingCoreLibraryException;
 import br.com.schumaker.carla.exception.X128RegisterNotFound;
 import br.com.schumaker.carla.exception.X64RegisterNotFound;
@@ -46,7 +47,7 @@ public class O3CoreLibrary implements IO3CoreLibrary {
                 .parallel()
                 .filter(v -> v.getO3Name().equals(name))        
                 .findAny()
-                .orElse(null);
+                .orElseThrow(() -> new FunctionNotFoundException());
     }
     
     private void loadCoreFunctions() throws Exception {

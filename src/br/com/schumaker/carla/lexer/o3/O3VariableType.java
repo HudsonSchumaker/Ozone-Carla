@@ -5,9 +5,10 @@ import br.com.schumaker.carla.o3.O3SyntaxType;
 /**
  * This enumerator defines the variables types of O³ pl.
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public enum O3VariableType {
+    VOID("void", "void", O3SyntaxType.VOID.getSize()),
     BYTE("byte", "0", O3SyntaxType.BYTE.getSize()),
     BOOL("bool", "false", O3SyntaxType.BOOL.getSize()),
     CHAR("char", "", O3SyntaxType.CHAR.getSize()),

@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 @Data
 @AllArgsConstructor
@@ -14,6 +14,8 @@ public class O3FunctionCall {
 
     private String functionName;
     private List<O3Argument> arguments;
+    private boolean hasReturn;
+    private O3Return o3return;
 
     @Override
     public String toString() {
