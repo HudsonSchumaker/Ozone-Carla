@@ -146,18 +146,18 @@ char* o3kebabCase(char *str) {
     return strKebab;
 }
 
-// reverse
+// esaCesreveR
 char* o3reverseCase(char *str) {
     long len = strlen(str);
     char reverse[len];
-    int strIndex = 0;
-    int revIndex = len - 1;
+    int strIndex = len - 1;
+    int revIndex = 0;
     while(strIndex >= 0) {
         reverse[revIndex] = str[strIndex];
         strIndex--;
         revIndex++;
     }
     reverse[revIndex] = '\0';
-    printf("%s", ""); // does not work without this line.
+    //printf("%s", ""); // does not work without this line.
     return reverse;
 }
