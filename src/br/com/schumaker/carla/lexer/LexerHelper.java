@@ -2,36 +2,38 @@ package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.files.O3File;
 import br.com.schumaker.carla.files.O3FileLine;
-import br.com.schumaker.carla.o3.O3CoreKeyword;
+import br.com.schumaker.carla.o3.O3SyntaxKeyword;
 
 /**
  * Helper class
- * @author schumaker
+ *
+ * @author Hudson Schumaker
  */
 public final class LexerHelper {
 
-    private LexerHelper() {}
+    private LexerHelper() {
+    }
 
     public static boolean isFunctionHeader(String data) {
-        return data.startsWith(O3CoreKeyword.FUNCTION);
+        return data.startsWith(O3SyntaxKeyword.FUNCTION);
     }
 
     public static boolean isConditionalStatement(String data) {
-        return data.trim().startsWith(O3CoreKeyword.IF);
+        return data.trim().startsWith(O3SyntaxKeyword.IF);
     }
 
     public static boolean isLoopStatement(String data) {
-        return data.contains(O3CoreKeyword.WHILE) 
-                || data.contains(O3CoreKeyword.FOR);
+        return data.contains(O3SyntaxKeyword.WHILE)
+                || data.contains(O3SyntaxKeyword.FOR);
     }
-    
+
     public static boolean isVariableDeclaration(String data) {
-        return data.contains(O3CoreKeyword.VARIABLE);
+        return data.contains(O3SyntaxKeyword.VARIABLE);
     }
-    
+
     public static boolean isAnExpression(String data) {
-        return data.trim().contains(O3CoreKeyword.OPEN_EXPRESSION)
-                && data.trim().contains(O3CoreKeyword.CLOSE_EXPRESSION);
+        return data.trim().contains(O3SyntaxKeyword.OPEN_EXPRESSION)
+                && data.trim().contains(O3SyntaxKeyword.CLOSE_EXPRESSION);
     }
 
     public static boolean isReturnStatement(String data) {
