@@ -46,7 +46,7 @@ public class O3Print implements IO3CoreFunction {
         this.loadArgumentMap();
         this.loadRegisterMap();
     }
-    
+
     @Override
     public String getCoreNameByType(String type) {
         return "_" + Optional.ofNullable(
@@ -58,23 +58,23 @@ public class O3Print implements IO3CoreFunction {
     public String getCoreNameByType(O3VariableType type) {
         return this.getCoreNameByType(type.getName());
     }
-    
+
     @Override
     public Integer getArgumentSizeByO3Name(String name) {
-        return Optional.ofNullable( 
+        return Optional.ofNullable(
                 signatureArgumentMap.get(name))
                 .orElseThrow(() -> new FunctionNotFoundException());
     }
-    
+
     @Override
     public List<String> getOverloadMethods() {
         List list = new ArrayList(argTypeCoreNameMap.values());
         return list;
     }
-    
+
     @Override
     public List<String> getRegistersByCoreName(String name) {
-        return Optional.ofNullable( 
+        return Optional.ofNullable(
                 signatureRegisterMap.get(name))
                 .orElseThrow(() -> new FunctionNotFoundException());
     }
@@ -92,24 +92,24 @@ public class O3Print implements IO3CoreFunction {
         this.argTypeCoreNameMap.put(O3VariableType.FLOAT.getName(), O3PRTFLOAT);
         this.argTypeCoreNameMap.put(O3VariableType.DOUBLE.getName(), O3PRTDOUBLE);
     }
-    
+
     private void loadArgumentMap() {
         for (var name : coreNames) {
             this.signatureArgumentMap.put(name, 1);
         }
     }
-    
+
     private void loadRegisterMap() {
-        this.signatureRegisterMap.put("_" + O3PRTSTR, 
-                Arrays.asList(X64RegisterArgumentTable.getParamRegisterNameByIndex(0)));
-        
-        this.signatureRegisterMap.put("_" + O3PRTINT, 
-                Arrays.asList(X64RegisterArgumentTable.getParamRegisterNameByIndex(0)));
-        
+        this.signatureRegisterMap.put("_" + O3PRTSTR,
+                Arrays.asList("mov " + X64RegisterArgumentTable.getParamRegisterNameByIndex(0)));
+
+        this.signatureRegisterMap.put("_" + O3PRTINT,
+                Arrays.asList("mov " + X64RegisterArgumentTable.getParamRegisterNameByIndex(0)));
+
         this.signatureRegisterMap.put("_" + O3PRTFLOAT,
-                Arrays.asList(X128RegisterArgumentTable.getParamRegisterNameByIndex(0)));
-        
+                Arrays.asList("movss " + X128RegisterArgumentTable.getParamRegisterNameByIndex(0)));
+
         this.signatureRegisterMap.put("_" + O3PRTDOUBLE,
-                 Arrays.asList(X128RegisterArgumentTable.getParamRegisterNameByIndex(0)));
+                Arrays.asList("movsd " + X128RegisterArgumentTable.getParamRegisterNameByIndex(0)));
     }
 }
