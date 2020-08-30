@@ -9,6 +9,7 @@ import lombok.Getter;
  */
 @Getter
 public enum O3SyntaxType {
+    VOID(0),
     BYTE(1),    // byte,  1byte (db), 8 bits
     BOOL(1),    // byte,  1byte (db), 8 bits
     CHAR(1),    // byte,  1byte (db), 8 bits

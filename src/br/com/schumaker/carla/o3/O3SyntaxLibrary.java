@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class O3SyntaxLibrary {
     
-    public static final List<String> LIB_ID = Arrays.asList("STR_", "PRT_", "MATH_", "FILE");
+    public static final List<String> LIB_ID = Arrays.asList("STR_", "PRT_", "MATH_", "FILE_");
    
     // String lib
     public static final String STRINGS_O = "O3String.o";
