@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.files.O3FileLine;
-import br.com.schumaker.carla.o3.O3CoreKeyword;
+import br.com.schumaker.carla.o3.O3SyntaxKeyword;
 import br.com.schumaker.carla.lexer.o3.O3Variable;
 import br.com.schumaker.carla.lexer.o3.O3VariableType;
 import br.com.schumaker.carla.lexer.o3.O3VariableTypeValue;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * This class create the O³ variables representations.
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public class LexerVariable {
 
@@ -26,6 +26,7 @@ public class LexerVariable {
 
     /**
      * Get a declared variable inside a function.
+     *
      * @param functionName
      * @param line
      * @return O3Variable with type and value.
@@ -45,12 +46,12 @@ public class LexerVariable {
                 return new O3Variable(this.getVariableName(line.getData()),
                         this.getVariableInternalName(functionName, line.getData()),
                         O3VariableTypeValue.of(type, this.getValueFloat(line.getData())));
-            
+
             case DOUBLE:
                 return new O3Variable(this.getVariableName(line.getData()),
                         this.getVariableInternalName(functionName, line.getData()),
                         O3VariableTypeValue.of(type, this.getValueDouble(line.getData())));
-                
+
             default:
                 return new O3Variable(this.getVariableName(line.getData()),
                         this.getVariableInternalName(functionName, line.getData()),
@@ -69,8 +70,8 @@ public class LexerVariable {
      * @return the parameters list of the function
      */
     public List<O3Variable> getParameters(String functionName, O3FileLine headerLine) {
-        var raw = headerLine.getData().trim().substring(headerLine.getData().trim().indexOf(O3CoreKeyword.OPEN_EXPRESSION) + 1,
-                headerLine.getData().trim().indexOf(O3CoreKeyword.CLOSE_EXPRESSION));
+        var raw = headerLine.getData().trim().substring(headerLine.getData().trim().indexOf(O3SyntaxKeyword.OPEN_EXPRESSION) + 1,
+                headerLine.getData().trim().indexOf(O3SyntaxKeyword.CLOSE_EXPRESSION));
 
         var rawParams = raw.split(",");
         if (!this.validParamsArray(rawParams)) {
@@ -80,7 +81,7 @@ public class LexerVariable {
         var params = new ArrayList<O3Variable>();
         for (String p : rawParams) {
             var clean = p.trim();
-            var param = clean.substring(O3CoreKeyword.VARIABLE.length(), clean.length()).trim();
+            var param = clean.substring(O3SyntaxKeyword.VARIABLE.length(), clean.length()).trim();
             var internalName = "p_" + functionName + "_" + param + ":";
             params.add(new O3Variable(param, internalName,
                     O3VariableTypeValue.of(O3VariableType.PARAM,
@@ -109,21 +110,21 @@ public class LexerVariable {
      * @return
      */
     public O3VariableType getType(String data) {
-        var value = data.substring(data.indexOf(O3CoreKeyword.ASSINGN), data.length()).trim();
+        var value = data.substring(data.indexOf(O3SyntaxKeyword.ASSINGN), data.length()).trim();
 
-         if (value.contains("\"")) {
+        if (value.contains("\"")) {
             return O3VariableType.STRING;
         } else {
-            if (value.contains(O3CoreKeyword.TRUE) || value.contains(O3CoreKeyword.FALSE)) {
+            if (value.contains(O3SyntaxKeyword.TRUE) || value.contains(O3SyntaxKeyword.FALSE)) {
                 return O3VariableType.BOOL;
             }
 
-            if (value.contains(O3CoreKeyword.FLOATING_POINT_SIGN)) {
-                if (data.contains(O3CoreKeyword.FLOAT_SIGN)) {
+            if (value.contains(O3SyntaxKeyword.FLOATING_POINT_SIGN)) {
+                if (data.contains(O3SyntaxKeyword.FLOAT_SIGN)) {
                     return O3VariableType.FLOAT;
                 }
 
-                if (data.contains(O3CoreKeyword.DOUBLE_SIGN)) {
+                if (data.contains(O3SyntaxKeyword.DOUBLE_SIGN)) {
                     return O3VariableType.DOUBLE;
                 }
             }
@@ -133,37 +134,37 @@ public class LexerVariable {
 
     public String getValueString(String data) {
         var clean = data.trim();
-        return clean.substring(clean.indexOf(O3CoreKeyword.ASSINGN) + 1, clean.length()).trim();
+        return clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length()).trim();
     }
 
     public Boolean getValueBoolean(String data) {
         var clean = data.trim();
-        var value = clean.substring(clean.indexOf(O3CoreKeyword.ASSINGN) + 1, clean.length()).trim();
+        var value = clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length()).trim();
         return Boolean.valueOf(value);
     }
 
     public Integer getValueInteger(String data) {
         var clean = data.trim();
-        var value = clean.substring(clean.indexOf(O3CoreKeyword.ASSINGN) + 1, clean.length()).trim();
+        var value = clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length()).trim();
         return Integer.valueOf(value);
     }
 
     public Float getValueFloat(String data) {
         var clean = data.trim();
-        var value = clean.substring(clean.indexOf(O3CoreKeyword.ASSINGN) + 1, clean.length() - 1).trim();
+        var value = clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length() - 1).trim();
         return Float.valueOf(value);
     }
-    
+
     public Double getValueDouble(String data) {
         var clean = data.trim();
-        var value = clean.substring(clean.indexOf(O3CoreKeyword.ASSINGN) + 1, clean.length() - 1).trim();
+        var value = clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length() - 1).trim();
         return Double.valueOf(value);
     }
 
     public String getVariableName(String data) {
         var clean = data.trim();
-        var name = clean.substring(O3CoreKeyword.VARIABLE.length(), clean.length()).trim();
-        name = name.substring(0, name.indexOf(O3CoreKeyword.ASSINGN)).trim();
+        var name = clean.substring(O3SyntaxKeyword.VARIABLE.length(), clean.length()).trim();
+        name = name.substring(0, name.indexOf(O3SyntaxKeyword.ASSINGN)).trim();
         return name;
     }
 
