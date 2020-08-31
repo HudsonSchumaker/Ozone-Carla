@@ -2,7 +2,7 @@ package br.com.schumaker.carla.run;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public class CarlaCompiler {
     public static void main(String[] args) throws Exception {
