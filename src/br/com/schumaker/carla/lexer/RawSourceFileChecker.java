@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public class RawSourceFileChecker {
     
