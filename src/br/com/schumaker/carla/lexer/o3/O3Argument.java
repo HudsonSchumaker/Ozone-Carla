@@ -6,7 +6,7 @@ import lombok.Data;
 /**
  * This class represents the arguments of function call O³ pl.
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 @Data
 @AllArgsConstructor
