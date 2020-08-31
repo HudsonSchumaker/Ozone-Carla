@@ -2,7 +2,7 @@ package br.com.schumaker.carla.io;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  * @param <T>
  */
 public interface Reader<T> {
