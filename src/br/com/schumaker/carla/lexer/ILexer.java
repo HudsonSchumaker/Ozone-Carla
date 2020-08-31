@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public interface ILexer {
     O3Atom createProgram(O3File o3File);
