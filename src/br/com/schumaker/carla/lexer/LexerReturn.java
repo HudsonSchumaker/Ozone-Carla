@@ -56,7 +56,7 @@ public class LexerReturn {
                     function.getReturnType(),
                     true,
                     false,
-                    o3variable.getInternalName(),
+                    o3variable.getInternalName().replaceAll(":", ""),
                     NA);
             } 
             
