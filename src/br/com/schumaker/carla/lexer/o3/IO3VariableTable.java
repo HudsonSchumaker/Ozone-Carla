@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public interface IO3VariableTable {
     List<O3FileLine> getLines();
