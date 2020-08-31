@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Main class of O3 (Carla Compiler) Lexer.
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public class Lexer implements ILexer {
     
