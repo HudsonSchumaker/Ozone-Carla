@@ -10,7 +10,7 @@ import lombok.Data;
 
 /**
  * This holds the declared variables inside a function.
- * @author schumaker
+ * @author Hudson Schumaker
  */
 @Data
 @AllArgsConstructor
