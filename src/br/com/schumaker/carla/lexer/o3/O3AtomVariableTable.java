@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 
 /**
  * This holds the declared o3variables inside an atom.
- * @author schumaker
+ *
+ * @author Hudson Schumaker
  */
 @Data
 @NoArgsConstructor
