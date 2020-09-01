@@ -11,7 +11,7 @@ import lombok.Data;
  * {
  *    print("some text...")
  * }
- * @author schumaker
+ * @author Hudson Schumaker
  */
 
 @Data
