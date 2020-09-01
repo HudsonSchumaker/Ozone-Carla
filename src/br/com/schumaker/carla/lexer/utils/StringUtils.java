@@ -2,7 +2,7 @@ package br.com.schumaker.carla.lexer.utils;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public final class StringUtils {
     private StringUtils() {}
