@@ -3,7 +3,7 @@ package br.com.schumaker.carla.lexer.o3;
 /**
  * This class is a concrete representation of a Pair
  *
- * @author schumaker
+ * @author Hudson Schumaker
  * @param <T> type value
  * @param <V> value
  */
