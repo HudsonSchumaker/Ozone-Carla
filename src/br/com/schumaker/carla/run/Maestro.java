@@ -28,9 +28,9 @@ public class Maestro {
 
         var lexer = new Lexer();
         var atom = lexer.createProgram(o3File);
-        System.out.println(atom);
+        //System.out.println(atom);
         
-       // this.machineCode(atom);
+        this.machineCode(atom);
     }
     
     public void machineCode(O3Atom atom) throws IOException {
