@@ -58,13 +58,15 @@ public class HalogenX64Function {
                 buffer.append("\n");
                 buffer.append("\tcall ").append(argument.getAmsFunctionName());
                 buffer.append("\n");
+                
+                
+                
             } else {
                 throw new UnsupportedNumberOfArgumentsException();
             }
         } else {
             int index = 0;
             for (var argument : arguments) {
-
                 index++;
             }
         }

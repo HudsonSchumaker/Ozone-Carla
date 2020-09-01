@@ -4,6 +4,7 @@ import br.com.schumaker.carla.files.O3AsmFile;
 import br.com.schumaker.carla.io.AsmFileWriter;
 import br.com.schumaker.carla.lexer.o3.O3Atom;
 import br.com.schumaker.carla.lexer.o3.O3Function;
+import br.com.schumaker.carla.lexer.o3.O3FunctionStatement;
 import br.com.schumaker.carla.lexer.o3.O3Variable;
 
 /**
@@ -40,11 +41,27 @@ public class HalogenX64Machinery {
             this.resolveVaribleTypeValueAndAdd(var);
         }
     }
-    
+
     public void createUninitilizedData() {
-        //some code goes here...
+        for (var func : o3Atom.getFunctions()) {
+            var statement = (O3FunctionStatement) func.getStatement();
+            for (var call : statement.getFunctionCalls()) {
+                if (call.isHasReturn()) {
+                    if (call.getO3return().isReturnToVariable()) {
+                        var b = call.getO3return().getFunctionName();
+                        var c = call.getO3return().getInternalName();
+                        var d = call.getO3return().getVariableName();
+                        var f = call.getO3return().getType();
+
+                        var i = 9;
+                    } else {
+
+                    }
+                }
+            }
+        }
     }
-    
+
     public void createSectionText() {
         var functions = o3Atom.getFunctions();
         for (var func : functions) {
@@ -57,18 +74,18 @@ public class HalogenX64Machinery {
     }
 
     public void writeFile() {
-       writer.write(o3AsmFile);
+        writer.write(o3AsmFile);
     }
 
     public void resolveVaribleTypeValueAndAdd(O3Variable o3Var) {
         Halogenx64Variable hx64Variable = new Halogenx64Variable();
         this.o3AsmFile.getSectionData().addLine(hx64Variable.resolveTypeValue(o3Var));
     }
-    
+
     public void resolveFunctionMainAndAdd(O3Function o3Func) {
         this.o3AsmFile.getSectionText().addLine(hx64Fucntion.resolveFunctionMain(o3Func));
     }
-    
+
     public void resolveFunctionAndAdd(O3Function o3Func) {
         this.o3AsmFile.getSectionText().addLine(hx64Fucntion.resolveFunction(o3Func));
     }
