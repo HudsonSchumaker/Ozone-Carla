@@ -52,6 +52,13 @@ public class HalogenX64Machinery {
             for (var call : statement.getFunctionCalls()) {
                 if (call.isHasReturn()) {
                     if (call.getO3return().isReturnToVariable()) {
+                        this.o3AsmFile.getSectionBss()
+                                .addLine("r_" + call.getO3return()
+                                        .getInternalName() 
+                                        + ":" 
+                                        + SPACES_2 
+                                        + "resq 1\n");
+                        
                         var b = call.getO3return().getFunctionName();
                         var c = call.getO3return().getInternalName();
                         var d = call.getO3return().getVariableName();
