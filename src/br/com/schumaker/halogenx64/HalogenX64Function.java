@@ -39,9 +39,8 @@ public class HalogenX64Function {
         StringBuffer buffer = new StringBuffer();
         if (arguments.size() == 1) {
             var argument = new X64FirstArgument(coreFunctionName, arguments.get(0));
-
             if (coreFunction.getArgumentSizeByO3Name(argument.getAmsFunctionName()) == arguments.size()) {
-                buffer.append("\n\n");
+                buffer.append("\n");
                 if (argument.getType().getName().equalsIgnoreCase(O3VariableType.STRING.getName())) {
                     buffer.append("\t")
                             .append(argument.getRegisterName())
@@ -58,9 +57,18 @@ public class HalogenX64Function {
                 buffer.append("\n");
                 buffer.append("\tcall ").append(argument.getAmsFunctionName());
                 buffer.append("\n");
-                
-                
-                
+                if (call.isHasReturn()) {
+                    buffer.append("\tmov [rel r_" + call.getFunctionName()+ "], rax");
+                    buffer.append("\n");
+                    
+                    if (call.getO3return().isReturnToVariable()) {
+                        // verificar mov para variavel de scetion .data e/ou criar e mover dados para .bss                                                         
+                        buffer.append("\tmov [rel " + call.getO3return().getVariableName() + "], rax");
+                        buffer.append("\n");
+                    } else {
+                        // return to a function
+                    }
+                }
             } else {
                 throw new UnsupportedNumberOfArgumentsException();
             }
