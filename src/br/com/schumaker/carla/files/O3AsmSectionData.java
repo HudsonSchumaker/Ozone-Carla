@@ -15,9 +15,10 @@ public class O3AsmSectionData implements IO3AsmFileSection {
     private List<String> sectionDataLines = new ArrayList<>();
                 
     public O3AsmSectionData() {
-        sectionDataLines.add(SECTION_DATA);
+        this.sectionDataLines.add(SECTION_DATA);
     }
 
+    @Override
     public void addLine(String line) {
         this.sectionDataLines.add("\t" + line);
     }
