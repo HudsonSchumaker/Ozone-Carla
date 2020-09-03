@@ -15,6 +15,7 @@ public class O3AsmFile {
     private O3AsmFileHeader header;
     private O3AsmFileExtern extern;
     private O3AsmSectionData sectionData;
+    private O3AsmSectionBss sectionBss;
     private O3AsmSectionText sectionText;
 
     public O3AsmFile(String name) {
@@ -23,6 +24,7 @@ public class O3AsmFile {
             this.header = new O3AsmFileHeader();
             this.extern = new O3AsmFileExtern();
             this.sectionData = new O3AsmSectionData();
+            this.sectionBss = new O3AsmSectionBss();
             this.sectionText = new O3AsmSectionText();
         } catch (Exception e) {
             throw new AsmFilePreProcesserException();
