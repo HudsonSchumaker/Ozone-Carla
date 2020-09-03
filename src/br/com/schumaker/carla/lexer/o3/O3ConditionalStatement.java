@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 
 @Data
