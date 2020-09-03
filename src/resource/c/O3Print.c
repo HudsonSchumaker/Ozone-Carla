@@ -8,41 +8,41 @@
 #include <stdio.h>
 
 void o3prtStr(char *str) {
-    printf("%s", str);
-    fflush(stdout);
+   printf("%s", str);
+   fflush(stdout);
 }
 
 void o3prtStrLn(char *str) {
-    printf("%s\n", str);
-    fflush(stdout);
+   printf("%s\n", str);
+   fflush(stdout);
 }
 
 void o3prtInt(int i) {
-    printf("%d", i);
-    fflush(stdout);
+   printf("%d", i);
+   fflush(stdout);
 }
 
 void o3prtIntLn(int i) {
-    printf("%d\n", i);
-    fflush(stdout);
+   printf("%d\n", i);
+   fflush(stdout);
 }
 
 void o3prtFloat(float f) {
-    printf("%lf", f);
-    fflush(stdout);
+   printf("%lf", f);
+   fflush(stdout);
 }
 
 void o3prtFloatLn(float f) {
-    printf("%lf\n", f);
-    fflush(stdout);
+   printf("%lf\n", f);
+   fflush(stdout);
 }
 
 void o3prtDouble(double d) {
-    printf("%f", d);
-    fflush(stdout);
+   printf("%f", d);
+   fflush(stdout);
 }
 
 void o3prtDoubleLn(double d) {
-    printf("%f\n", d);
-    fflush(stdout); 
+   printf("%f\n", d);
+   fflush(stdout);
 }
