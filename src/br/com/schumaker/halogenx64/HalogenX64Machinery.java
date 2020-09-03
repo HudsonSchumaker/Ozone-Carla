@@ -30,7 +30,7 @@ public class HalogenX64Machinery {
 
     public void processO3AsmFile() {
         this.createInitializedData();
-        this.createUninitilizedData();
+        this.createUninitializedData();
         this.createSectionText();
         this.writeFile();
     }
@@ -42,7 +42,11 @@ public class HalogenX64Machinery {
         }
     }
 
-    public void createUninitilizedData() {
+    /**
+     * Create the uninitialized variables and also check the function calls to
+     * create a reserved space in memory to hold the function returned data.
+     */
+    public void createUninitializedData() {
         for (var func : o3Atom.getFunctions()) {
             var statement = (O3FunctionStatement) func.getStatement();
             for (var call : statement.getFunctionCalls()) {
