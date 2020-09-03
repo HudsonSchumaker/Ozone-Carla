@@ -9,7 +9,7 @@ import lombok.Data;
  * @author Hudson Schumaker
  */
 @Data
-public class O3AsmSectionText {
+public class O3AsmSectionText implements IO3AsmFileSection {
 
     public static final String SECTION_TEXT = "\nsection .text";
     private List<String> sectionTextLines = new ArrayList<>();
@@ -23,6 +23,7 @@ public class O3AsmSectionText {
         this.setUpExitCall();    
     }
     
+    @Override
     public void addLine(String line) {
         sectionTextLines.add("\t" + line);
     }
@@ -39,16 +40,17 @@ public class O3AsmSectionText {
 
     public void setUpStack() {
         this.sectionTextLines.add("\n");
-        this.sectionTextLines.add("\tpush      rbp");
+        this.sectionTextLines.add("\tpush  rbp");
         this.sectionTextLines.add("\n");
-        this.sectionTextLines.add("\tmov       rbp, rsp");
+        this.sectionTextLines.add("\tmov   rbp, rsp");
+        this.sectionTextLines.add("\n");
     }
 
     public void setUpExitCall() {
         this.exitCallLines.add("\n");
-        this.exitCallLines.add("\tmov     rax, 0x02000001");
+        this.exitCallLines.add("\tmov   rax, 0x02000001");
         this.exitCallLines.add("\n");
-        this.exitCallLines.add("\txor     rdi, rdi");
+        this.exitCallLines.add("\txor   rdi, rdi");
         this.exitCallLines.add("\n");
         this.exitCallLines.add("\tsyscall");
         this.exitCallLines.add("\n");
