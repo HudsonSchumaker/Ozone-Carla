@@ -44,6 +44,11 @@ public class AsmFileWriter {
             for (String line : o3asmfile.getSectionData().getSectionDataLines()) {
                 bw.write(line);
             }
+            
+             // Section .bss
+            for (String line : o3asmfile.getSectionBss().getSectionBssLines()) {
+                bw.write(line);
+            }
 
             // Section .text
             for (String line : o3asmfile.getSectionText().getSectionTextLines()) {
