@@ -6,11 +6,12 @@
 //
 
 #include <stdio.h>
-#include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
+#include <string.h>
 
 // UPPERCASE
-char* o3upperCase(char *str) {
+const char* o3upperCase(char *str) {
     int i = 0;
     long len = strlen(str);
     char strUpper[len];
@@ -19,13 +20,13 @@ char* o3upperCase(char *str) {
        strUpper[i] = toupper(str[i]);
        i++;
     }
-    //fflush(stdout);
-    printf("%s", ""); // does not work without this line.
-    return strUpper;
+    char *buffer = malloc(len);
+    strcpy(buffer, strUpper);
+    return buffer;
 }
 
 // lowercase
-char* o3lowerCase(char *str) {
+const char* o3lowerCase(char *str) {
     int i = 0;
     long len = strlen(str);
     char strLower[len];
@@ -34,12 +35,13 @@ char* o3lowerCase(char *str) {
        strLower[i] = tolower(str[i]);
        i++;
     }
-    printf("%s", ""); // does not work without this line.
-    return strLower;
+    char *buffer = malloc(len);
+    strcpy(buffer, strLower);
+    return buffer;
 }
 
 // camelCase
-char* o3camelCase(char *str) {
+const char* o3camelCase(char *str) {
     long len = strlen(str);
     char srtCapitalLetters[len];
     srtCapitalLetters[0] = tolower(str[0]);
@@ -60,16 +62,16 @@ char* o3camelCase(char *str) {
         if (srtCapitalLetters[reader] != ' ' && srtCapitalLetters[reader] != '_' && srtCapitalLetters[reader] != '-') {
             strCamel[writer++] = srtCapitalLetters[reader];
         }
-
         reader++;
     }
     strCamel[writer] = 0;
-    printf("%s", ""); // does not work without this line.
-    return strCamel;
+    char *buffer = malloc(len);
+    strcpy(buffer, strCamel);
+    return buffer;
 }
 
 // PascalCase
-char* o3pascalCase(char *str) {
+const char* o3pascalCase(char *str) {
     long len = strlen(str);
     char srtCapitalLetters[len];
     srtCapitalLetters[0] = toupper(str[0]);
@@ -106,12 +108,13 @@ char* o3pascalCase(char *str) {
     }
 
     strPascal[writer] = 0;
-    printf("%s", ""); // does not work without this line.
-    return strPascal;
+    char *buffer = malloc(size);
+    strcpy(buffer, strPascal);
+    return buffer;
 }
 
 // snake_case
-char* o3snakeCase(char *str) {
+const char* o3snakeCase(char *str) {
     int i = 0;
     long len = strlen(str);
     char strSnake[len];
@@ -124,12 +127,13 @@ char* o3snakeCase(char *str) {
         }
         i++;
     }
-    printf("%s", ""); // does not work without this line.
-    return strSnake;
+    char *buffer = malloc(len);
+    strcpy(buffer, strSnake);
+    return buffer;
 }
 
 // kebab-case
-char* o3kebabCase(char *str) {
+const char* o3kebabCase(char *str) {
     int i = 0;
     long len = strlen(str);
     char strKebab[len];
@@ -142,22 +146,24 @@ char* o3kebabCase(char *str) {
         }
         i++;
     }
-    printf("%s", ""); // does not work without this line.
-    return strKebab;
+    char *buffer = malloc(len);
+    strcpy(buffer, strKebab);
+    return buffer;
 }
 
-// esaCesreveR
-char* o3reverseCase(char *str) {
+// reverse
+const char* o3reverseCase(char *str) {
     long len = strlen(str);
     char reverse[len];
-    int strIndex = len - 1;
-    int revIndex = 0;
+    int strIndex = 0;
+    int revIndex = len - 1;
     while(strIndex >= 0) {
         reverse[revIndex] = str[strIndex];
         strIndex--;
         revIndex++;
     }
     reverse[revIndex] = '\0';
-    //printf("%s", ""); // does not work without this line.
-    return reverse;
+    char *buffer = malloc(len);
+    strcpy(buffer, reverse);
+    return buffer;
 }
