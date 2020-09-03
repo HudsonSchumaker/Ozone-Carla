@@ -86,6 +86,6 @@ public class O3UpperCase implements IO3CoreFunction {
         }
 
         this.signatureRegisterMap.put("_" + O3STR_UPPER_CASE,
-                Arrays.asList(X64RegisterArgumentTable.getParamRegisterNameByIndex(0)));
+                Arrays.asList("mov " + X64RegisterArgumentTable.getParamRegisterNameByIndex(0)));
     }
 }
