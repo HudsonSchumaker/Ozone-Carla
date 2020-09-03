@@ -128,6 +128,11 @@ public class LexerVariable {
                     return O3VariableType.DOUBLE;
                 }
             }
+            
+            if (data.contains(O3SyntaxKeyword.OPEN_EXPRESSION) && data.contains(O3SyntaxKeyword.CLOSE_EXPRESSION)) {
+                // resolver tipo de retorno e crira variavel.
+                return O3VariableType.STRING;
+            }
             return O3VariableType.INT;
         }
     }
