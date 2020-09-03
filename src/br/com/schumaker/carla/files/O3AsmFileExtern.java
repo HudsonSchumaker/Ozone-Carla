@@ -20,6 +20,7 @@ public final class O3AsmFileExtern implements IO3AsmFileSection {
         this.addAllO3Lib();
     }
 
+    @Override
     public void addLine(String line) {
         this.externLines.add(line);
     }
