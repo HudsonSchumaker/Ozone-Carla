@@ -31,4 +31,9 @@ public final class O3AsmFileHeader implements IO3AsmFileSection {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         amsHeader = HEADER + "; " + LocalDateTime.now().format(formatter) + "\n" + BITS + "\n\n";
     }
+
+    @Override
+    public void addLine(String line) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
