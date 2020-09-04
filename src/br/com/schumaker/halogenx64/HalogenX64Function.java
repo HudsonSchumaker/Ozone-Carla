@@ -66,7 +66,7 @@ public class HalogenX64Function {
                         buffer.append("\tmov [rel " + call.getO3return().getVariableName() + "], rax");
                         buffer.append("\n");
                     } else {
-                        // return to a function
+                        // return to a function should b e resolved here.
                     }
                 }
             } else {
