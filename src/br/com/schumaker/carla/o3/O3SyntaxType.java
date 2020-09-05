@@ -21,7 +21,8 @@ public enum O3SyntaxType {
     PARAM(8),   // quadword,   8bytes (dq), 64bits
     RETURN_STRING(8),  // quadword,   8bytes (dq), 64bits
     RETURN_INTEGER(4), // doubleword, 4bytes (dd), 32bits
-    RETURN_FLOAT(4);   // doubleword, 4bytes (dd), 32bits
+    RETURN_FLOAT(4),   // doubleword, 4bytes (dd), 32bits
+    RETURN_DOUBLE(8);  // quadword,   8bytes (dq), 64bits
 
     private final int size; // size in bytes
     private O3SyntaxType(int size) {
