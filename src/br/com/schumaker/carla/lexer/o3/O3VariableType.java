@@ -14,13 +14,14 @@ public enum O3VariableType {
     CHAR("char", "", O3SyntaxType.CHAR.getSize()),
     STRING("string", "", O3SyntaxType.STRING.getSize()),
     INT("int", "0", O3SyntaxType.INT.getSize()),
-    LONG("long", "0L", O3SyntaxType.LONG.getSize()),
-    FLOAT("float", "0.0f", O3SyntaxType.FLOAT.getSize()),
-    DOUBLE("double", "0.0d", O3SyntaxType.DOUBLE.getSize()),
+    LONG("long", "0", O3SyntaxType.LONG.getSize()),
+    FLOAT("float", "0.0", O3SyntaxType.FLOAT.getSize()),
+    DOUBLE("double", "0.0", O3SyntaxType.DOUBLE.getSize()),
     PARAM("param", "?", O3SyntaxType.PARAM.getSize()),
     RETURN_STRING("ret_s", "?", O3SyntaxType.RETURN_STRING.getSize()),
     RETURN_INTEGER("ret_i", "?", O3SyntaxType.RETURN_INTEGER.getSize()),
-    RETURN_FLOAT("ret_f", "?", O3SyntaxType.RETURN_FLOAT.getSize());
+    RETURN_FLOAT("ret_f", "?", O3SyntaxType.RETURN_FLOAT.getSize()),
+    RETURN_DOUBLE("ret_d", "?", O3SyntaxType.RETURN_DOUBLE.getSize());
 
     private final String name;
     private final String defaultValue;
