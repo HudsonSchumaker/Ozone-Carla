@@ -15,12 +15,8 @@ import lombok.Getter;
 @Getter
 public class X64O3Variable2AsmMapper {
     private Map<String, String> o3Var2AsmVarTypeMap = new HashMap<>();
+    private Map<String, String> o3Var2AsmBssVarTypeMap = new HashMap<>();
     
-    public String getAsmType(String o3type) {
-        return Optional.ofNullable(
-                o3Var2AsmVarTypeMap.get(o3type))
-                .orElseThrow(() -> new ArgumentTypeNotSupportedException());
-    }
     /**
      * BYTE     byte,  1byte (db), 8 bits.
      * BOOL     byte,  1byte (db), 8 bits.
@@ -32,7 +28,35 @@ public class X64O3Variable2AsmMapper {
      * DOUBLE   quadword,   8bytes (dq), 64bits.
      */
     public X64O3Variable2AsmMapper() {
-        // TODO do the others types.
+        this.loadSectionDataTypes();
+        this.loadSectionBssTypes(); 
+    }
+    
+    /**
+     * Use these method to find the types for the asm Data.
+     * 
+     * @param o3type
+     * @return 
+     */
+    public String getAsmType(String o3type) {
+        return Optional.ofNullable(
+                o3Var2AsmVarTypeMap.get(o3type))
+                .orElseThrow(() -> new ArgumentTypeNotSupportedException());
+    }
+    
+    /**
+     * Use these method to find the types for the asm Block Started by Symbol.
+     * 
+     * @param o3type
+     * @return 
+     */
+    public String getAsmBssType(String o3type) {
+        return Optional.ofNullable(
+                o3Var2AsmBssVarTypeMap.get(o3type))
+                .orElseThrow(() -> new ArgumentTypeNotSupportedException());
+    }
+    
+    public void loadSectionDataTypes() {
         this.o3Var2AsmVarTypeMap.put(O3VariableType.STRING.getName(), X64AsmVariableType.DB.getAsmName());
         this.o3Var2AsmVarTypeMap.put(O3VariableType.INT.getName(), X64AsmVariableType.DD.getAsmName());
         this.o3Var2AsmVarTypeMap.put(O3VariableType.FLOAT.getName(), X64AsmVariableType.DD.getAsmName());
@@ -40,6 +64,14 @@ public class X64O3Variable2AsmMapper {
         this.o3Var2AsmVarTypeMap.put(O3VariableType.RETURN_STRING.getName(), X64AsmVariableType.RESQ.getAsmName());
         this.o3Var2AsmVarTypeMap.put(O3VariableType.RETURN_INTEGER.getName(), X64AsmVariableType.RESD.getAsmName());
         this.o3Var2AsmVarTypeMap.put(O3VariableType.RETURN_FLOAT.getName(), X64AsmVariableType.RESD.getAsmName());
-        
+        this.o3Var2AsmVarTypeMap.put(O3VariableType.RETURN_DOUBLE.getName(), X64AsmVariableType.RESQ.getAsmName());
+    }
+    
+    public void loadSectionBssTypes() {
+        this.o3Var2AsmBssVarTypeMap.put(O3VariableType.BOOL.getName(), X64AsmVariableType.RESB.getAsmName());
+        this.o3Var2AsmBssVarTypeMap.put(O3VariableType.STRING.getName(), X64AsmVariableType.RESQ.getAsmName());
+        this.o3Var2AsmBssVarTypeMap.put(O3VariableType.INT.getName(), X64AsmVariableType.RESD.getAsmName());
+        this.o3Var2AsmBssVarTypeMap.put(O3VariableType.FLOAT.getName(), X64AsmVariableType.RESD.getAsmName());
+        this.o3Var2AsmBssVarTypeMap.put(O3VariableType.DOUBLE.getName(), X64AsmVariableType.RESQ.getAsmName());
     }
 }
