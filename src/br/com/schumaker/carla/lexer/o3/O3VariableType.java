@@ -18,7 +18,9 @@ public enum O3VariableType {
     FLOAT("float", "0.0f", O3SyntaxType.FLOAT.getSize()),
     DOUBLE("double", "0.0d", O3SyntaxType.DOUBLE.getSize()),
     PARAM("param", "?", O3SyntaxType.PARAM.getSize()),
-    RETURN("ret", "?", O3SyntaxType.RETURN.getSize());
+    RETURN_STRING("ret_s", "?", O3SyntaxType.RETURN_STRING.getSize()),
+    RETURN_INTEGER("ret_i", "?", O3SyntaxType.RETURN_INTEGER.getSize()),
+    RETURN_FLOAT("ret_f", "?", O3SyntaxType.RETURN_FLOAT.getSize());
 
     private final String name;
     private final String defaultValue;
