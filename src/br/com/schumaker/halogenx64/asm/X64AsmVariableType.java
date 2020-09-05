@@ -18,7 +18,11 @@ public enum X64AsmVariableType {
     DB("db", ""),
     DW("dw", "0"),
     DD("dd", "0"),
-    DQ("dq", "0");
+    DQ("dq", "0"),
+    RESB("resb", ""),
+    RESW("resw", ""),
+    RESD("resd", ""),
+    RESQ("resq", "");
 
     private final String asmName;
     private final String defaultValue;
