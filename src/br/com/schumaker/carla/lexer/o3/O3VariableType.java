@@ -17,7 +17,8 @@ public enum O3VariableType {
     LONG("long", "0L", O3SyntaxType.LONG.getSize()),
     FLOAT("float", "0.0f", O3SyntaxType.FLOAT.getSize()),
     DOUBLE("double", "0.0d", O3SyntaxType.DOUBLE.getSize()),
-    PARAM("param", "?", O3SyntaxType.PARAM.getSize());
+    PARAM("param", "?", O3SyntaxType.PARAM.getSize()),
+    RETURN("ret", "?", O3SyntaxType.RETURN.getSize());
 
     private final String name;
     private final String defaultValue;
