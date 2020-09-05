@@ -6,6 +6,9 @@ import br.com.schumaker.carla.lexer.o3.O3Atom;
 import br.com.schumaker.carla.lexer.o3.O3Function;
 import br.com.schumaker.carla.lexer.o3.O3FunctionStatement;
 import br.com.schumaker.carla.lexer.o3.O3Variable;
+import br.com.schumaker.carla.lexer.utils.StringUtils;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -13,8 +16,10 @@ import br.com.schumaker.carla.lexer.o3.O3Variable;
  */
 public class HalogenX64Machinery {
 
+    public static final String SPACES_1 = " ";
     public static final String SPACES_2 = "  ";
     private final AsmFileWriter writer;
+    private final Halogenx64Variable hx64Variable = new Halogenx64Variable();
     private final HalogenX64Function hx64Fucntion = new HalogenX64Function();
 
     private String workspace;
@@ -38,7 +43,9 @@ public class HalogenX64Machinery {
     public void createInitializedData() {
         var variables = o3Atom.getVaribleTable().getVariables();
         for (var var : variables) {
-            this.resolveVaribleTypeValueAndAdd(var);
+            if (var.isInitialized()) {
+                this.resolveVaribleTypeValueAndAdd(var);
+            }
         }
     }
 
@@ -47,28 +54,21 @@ public class HalogenX64Machinery {
      * create a reserved space in memory to hold the function returned data.
      */
     public void createUninitializedData() {
+        Set<String> functionReturnMemorySpaces = new HashSet<>();
         for (var func : o3Atom.getFunctions()) {
-            var statement = (O3FunctionStatement) func.getStatement();
-            for (var call : statement.getFunctionCalls()) {
-                if (call.isHasReturn()) {
-                    if (call.getO3return().isReturnToVariable()) {
-                        this.o3AsmFile.getSectionBss()
-                                .addLine("r_" + call.getO3return()
-                                        .getInternalName() 
-                                        + ":" 
-                                        + SPACES_2 
-                                        + "resq 1\n");
-                        
-                        var b = call.getO3return().getFunctionName();
-                        var c = call.getO3return().getInternalName();
-                        var d = call.getO3return().getVariableName();
-                        var f = call.getO3return().getType();
+            functionReturnMemorySpaces.add(this.createFunctionReturnMemorySpace(func));
+        }
 
-                        var i = 9;
-                    } else {
+        for (String line : functionReturnMemorySpaces) {
+            if (!StringUtils.isBlankString(line)) {
+                this.o3AsmFile.getSectionBss().addLine(line);
+            }
+        }
 
-                    }
-                }
+        var variables = o3Atom.getVaribleTable().getVariables();
+        for (var var : variables) {
+            if (!var.isInitialized()) {
+                this.createMemorySpaceAndAdd(var);
             }
         }
     }
@@ -89,8 +89,11 @@ public class HalogenX64Machinery {
     }
 
     public void resolveVaribleTypeValueAndAdd(O3Variable o3Var) {
-        Halogenx64Variable hx64Variable = new Halogenx64Variable();
-        this.o3AsmFile.getSectionData().addLine(hx64Variable.resolveTypeValue(o3Var));
+        this.o3AsmFile.getSectionData().addLine(hx64Variable.resolveTypeValueData(o3Var));
+    }
+    
+    public void createMemorySpaceAndAdd(O3Variable o3Var) {
+        this.o3AsmFile.getSectionBss().addLine(hx64Variable.resolveTypeValueBss(o3Var));
     }
 
     public void resolveFunctionMainAndAdd(O3Function o3Func) {
@@ -99,5 +102,21 @@ public class HalogenX64Machinery {
 
     public void resolveFunctionAndAdd(O3Function o3Func) {
         this.o3AsmFile.getSectionText().addLine(hx64Fucntion.resolveFunction(o3Func));
+    }
+
+    public String createFunctionReturnMemorySpace(O3Function func) {
+        var statement = (O3FunctionStatement) func.getStatement();
+        for (var call : statement.getFunctionCalls()) {
+            if (call.isHasReturn()) {
+                if (call.getO3return().isReturnToVariable()) {
+                    return "r_" + call.getO3return()
+                            .getInternalName()
+                            + ":"
+                            + SPACES_1
+                            + "resq 1\n";
+                }
+            }
+        }
+        return "";
     }
 }
