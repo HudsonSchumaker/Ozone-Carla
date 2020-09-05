@@ -101,7 +101,7 @@ public class LexerFunctionCall {
     }
 
     /**
-     * Resolves argument values
+     * Resolves argument values and check if arg is ams type data or bss.
      *
      * @param data
      * @param variableTable
@@ -110,9 +110,9 @@ public class LexerFunctionCall {
     public O3Argument resloveArgument(String data, O3FunctionVariableTable variableTable) {
         if (variableTable.variableIsDeclared(data)) {
             var o3Var = variableTable.getVariableByName(data); //resolve value when exist
-            return new O3Argument(o3Var.getInternalName()
-                    .replaceAll(":", ""), //remove because ams file
+            return new O3Argument(o3Var.getInternalName().replaceAll(":", ""), //remove because ams file
                     true,
+                    o3Var.isInitialized(),
                     O3TypeValue.of(o3Var.getType(), O3Argument.VALUE));
         } else {
             return this.resolveTypeAndValue(data);
