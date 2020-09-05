@@ -42,7 +42,7 @@ public class O3KebabCase implements IO3CoreFunction {
 
     @Override
     public String getCoreNameByType(String type) {
-        return Optional.ofNullable(
+        return "_" + Optional.ofNullable(
                 argTypeCoreNameMap.get(type))
                 .orElseThrow(() -> new ArgumentTypeNotSupportedException());
     }
@@ -78,7 +78,7 @@ public class O3KebabCase implements IO3CoreFunction {
     }
 
     public void loadMethod() {
-        this.coreNames.add(O3STR_KEBAB_CASE);
+        this.coreNames.add("_" + O3STR_KEBAB_CASE);
         this.argTypeCoreNameMap.put(O3VariableType.STRING.getName(), O3STR_KEBAB_CASE);
 
         for (var name : coreNames) {
@@ -86,6 +86,6 @@ public class O3KebabCase implements IO3CoreFunction {
         }
 
         this.signatureRegisterMap.put("_" + O3STR_KEBAB_CASE,
-                Arrays.asList(X64RegisterArgumentTable.getParamRegisterNameByIndex(0)));
+                Arrays.asList("mov " + X64RegisterArgumentTable.getParamRegisterNameByIndex(0)));
     }
 }
