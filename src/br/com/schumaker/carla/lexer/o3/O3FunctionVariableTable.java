@@ -1,5 +1,6 @@
 package br.com.schumaker.carla.lexer.o3;
 
+import br.com.schumaker.carla.exception.VariableNotdelcaredException;
 import br.com.schumaker.carla.files.O3FileLine;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -38,7 +39,7 @@ public class O3FunctionVariableTable implements IO3VariableTable {
                 .parallel()
                 .filter(v -> v.getName().equals(name))        
                 .findAny()
-                .orElse(null);
+                .orElseThrow(() -> new VariableNotdelcaredException());
     }
 
     @Override
