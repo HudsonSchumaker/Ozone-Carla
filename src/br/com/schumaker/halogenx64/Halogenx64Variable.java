@@ -10,7 +10,7 @@ public class Halogenx64Variable {
 
     private final X64O3Variable2AsmMapper mapper = new X64O3Variable2AsmMapper();
 
-    public String resolveTypeValue(O3Variable o3Var) {
+    public String resolveTypeValueData(O3Variable o3Var) {
         StringBuffer buffer = new StringBuffer();
 
         // internal name
@@ -29,6 +29,24 @@ public class Halogenx64Variable {
         } else {
             buffer.append(value);
         }
+        buffer.append("\n");
+        return buffer.toString();
+    }
+    
+    public String resolveTypeValueBss(O3Variable o3Var) {
+        StringBuffer buffer = new StringBuffer();
+
+        // internal name
+        buffer.append(o3Var.getInternalName());
+        buffer.append(HalogenX64Machinery.SPACES_2);
+        
+         // type
+        buffer.append(mapper.getAsmBssType(o3Var.getTypeValue().getType().getName()));
+        buffer.append(HalogenX64Machinery.SPACES_1);
+        
+        // Amount 
+        buffer.append("1"); // for now just one.
+        
         buffer.append("\n");
         return buffer.toString();
     }
