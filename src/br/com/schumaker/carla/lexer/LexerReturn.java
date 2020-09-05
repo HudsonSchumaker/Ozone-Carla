@@ -38,6 +38,7 @@ public class LexerReturn {
                     O3VariableType.VOID.getName());
         } else {
             var rawLine = line.getData();
+            // return of the function was ignored
             if (!rawLine.contains(O3SyntaxKeyword.ASSINGN)) {
                 return new O3Return(functioName, 
                     function.getReturnType(),
@@ -47,10 +48,10 @@ public class LexerReturn {
                     IGNORED_RETURN);
             }
             
+            // return of the fucntion goes to a variable
             if (rawLine.contains(O3SyntaxKeyword.ASSINGN)) {
-                var clear = rawLine.trim();
-                var subLine = clear.substring(0, clear.indexOf(O3SyntaxKeyword.ASSINGN)).trim();
-                var o3variable = variableTable.getVariableByName(subLine);
+                var varName = this.getVariableName(rawLine);
+                var o3variable = variableTable.getVariableByName(varName);
               
                 return new O3Return(functioName, 
                     function.getReturnType(),
@@ -65,5 +66,20 @@ public class LexerReturn {
         }
             
         throw new ReturnTypeNotFoundException();
+    }
+    
+    /**
+     * Return the clean name of a variable
+     * 
+     * @param data raw line
+     * @return 
+     */
+    public String getVariableName(String data) {
+        var clear = data.trim();
+        var subLine = clear.substring(0, clear.indexOf(O3SyntaxKeyword.ASSINGN)).trim();
+        if (subLine.contains(O3SyntaxKeyword.VARIABLE)) {
+           subLine = subLine.substring(O3SyntaxKeyword.VARIABLE.length(), subLine.length()).trim();
+        }
+        return subLine;
     }
 }
