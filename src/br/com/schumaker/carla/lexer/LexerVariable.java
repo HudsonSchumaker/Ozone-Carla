@@ -6,6 +6,7 @@ import br.com.schumaker.carla.lexer.o3.O3Variable;
 import br.com.schumaker.carla.lexer.o3.O3VariableType;
 import br.com.schumaker.carla.lexer.o3.O3VariableTypeValue;
 import br.com.schumaker.carla.lexer.utils.StringUtils;
+import br.com.schumaker.carla.o3.core.O3CoreLibrary;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,8 @@ import java.util.List;
  * @author Hudson Schumaker
  */
 public class LexerVariable {
+
+    private final O3CoreLibrary coreLibrary = new O3CoreLibrary();
 
     public List<O3Variable> getVariables(String functionName, List<O3FileLine> lines) {
         var variables = new ArrayList<O3Variable>();
@@ -33,28 +36,34 @@ public class LexerVariable {
      */
     public O3Variable getVariable(String functionName, O3FileLine line) {
         var type = this.getType(line.getData());
+        var isInitialized = this.isInitialized(line.getData());
         switch (type) {
             case STRING:
                 return new O3Variable(this.getVariableName(line.getData()),
                         this.getVariableInternalName(functionName, line.getData()),
+                        isInitialized,
                         O3VariableTypeValue.of(type, this.getValueString(line.getData())));
             case BOOL:
                 return new O3Variable(this.getVariableName(line.getData()),
                         this.getVariableInternalName(functionName, line.getData()),
+                        isInitialized,
                         O3VariableTypeValue.of(type, this.getValueBoolean(line.getData())));
             case FLOAT:
                 return new O3Variable(this.getVariableName(line.getData()),
                         this.getVariableInternalName(functionName, line.getData()),
+                        isInitialized,
                         O3VariableTypeValue.of(type, this.getValueFloat(line.getData())));
 
             case DOUBLE:
                 return new O3Variable(this.getVariableName(line.getData()),
                         this.getVariableInternalName(functionName, line.getData()),
+                        isInitialized,
                         O3VariableTypeValue.of(type, this.getValueDouble(line.getData())));
 
             default:
                 return new O3Variable(this.getVariableName(line.getData()),
                         this.getVariableInternalName(functionName, line.getData()),
+                        isInitialized,
                         O3VariableTypeValue.of(type, this.getValueInteger(line.getData())));
         }
     }
@@ -83,7 +92,9 @@ public class LexerVariable {
             var clean = p.trim();
             var param = clean.substring(O3SyntaxKeyword.VARIABLE.length(), clean.length()).trim();
             var internalName = "p_" + functionName + "_" + param + ":";
-            params.add(new O3Variable(param, internalName,
+            params.add(new O3Variable(param,
+                    internalName,
+                    false,
                     O3VariableTypeValue.of(O3VariableType.PARAM,
                             O3VariableType.PARAM.getDefaultValue())));
         }
@@ -106,11 +117,11 @@ public class LexerVariable {
     /**
      * Resolves the type of declared variable with assignment.
      *
-     * @param data Raw like from .o3 file source
+     * @param data Raw line from .o3 file source
      * @return
      */
     public O3VariableType getType(String data) {
-        var value = data.substring(data.indexOf(O3SyntaxKeyword.ASSINGN), data.length()).trim();
+        var value = data.substring(data.indexOf(O3SyntaxKeyword.ASSINGN) + 1, data.length()).trim();
 
         if (value.contains("\"")) {
             return O3VariableType.STRING;
@@ -128,10 +139,9 @@ public class LexerVariable {
                     return O3VariableType.DOUBLE;
                 }
             }
-            
+
             if (data.contains(O3SyntaxKeyword.OPEN_EXPRESSION) && data.contains(O3SyntaxKeyword.CLOSE_EXPRESSION)) {
-                // resolver tipo de retorno e crira variavel.
-                return O3VariableType.STRING;
+                return this.resolveReturnVariableType(data);
             }
             return O3VariableType.INT;
         }
@@ -185,5 +195,57 @@ public class LexerVariable {
      */
     public String getVariableInternalName(String functionName, String data) {
         return functionName + "_" + this.getVariableName(data) + ":";
+    }
+
+    /**
+     * Resolves the type of the return of a function.
+     *
+     * @param data raw line
+     * @return variable type of the function return.
+     */
+    public O3VariableType resolveReturnVariableType(String data) {
+        var clear = data.trim();
+        var subLine = clear.substring(clear.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clear.length()).trim();
+        if (subLine.contains(O3SyntaxKeyword.OPEN_EXPRESSION)) {
+            subLine = subLine.substring(0, subLine.indexOf(O3SyntaxKeyword.OPEN_EXPRESSION));
+        }
+
+        var function = coreLibrary.getByName(subLine);
+        return function.getReturnType();
+    }
+
+    /**
+     * Determine if the variable is initialized or not.
+     * 
+     * @param data raw line
+     * @return 
+     */
+    public boolean isInitialized(String data) {
+        var value = data.substring(data.indexOf(O3SyntaxKeyword.ASSINGN) + 1, data.length()).trim();
+        if (value.contains("\"")) {
+            return true;
+        }
+
+        if (value.contains(O3SyntaxKeyword.TRUE) 
+                || value.contains(O3SyntaxKeyword.FALSE)) {
+            return true;
+        }
+
+        if (value.contains(O3SyntaxKeyword.FLOATING_POINT_SIGN)) {
+            if (data.contains(O3SyntaxKeyword.FLOAT_SIGN)) {
+                return true;
+            }
+
+            if (data.contains(O3SyntaxKeyword.DOUBLE_SIGN)) {
+                return true;
+            }
+        }
+
+        if (data.contains(O3SyntaxKeyword.OPEN_EXPRESSION) 
+                && data.contains(O3SyntaxKeyword.CLOSE_EXPRESSION)) {
+            return false;
+        }
+
+        return true;
     }
 }
