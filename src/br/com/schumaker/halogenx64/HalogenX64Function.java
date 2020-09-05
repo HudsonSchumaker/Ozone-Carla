@@ -42,10 +42,19 @@ public class HalogenX64Function {
             if (coreFunction.getArgumentSizeByO3Name(argument.getAmsFunctionName()) == arguments.size()) {
                 buffer.append("\n");
                 if (argument.getType().getName().equalsIgnoreCase(O3VariableType.STRING.getName())) {
-                    buffer.append("\t")
-                            .append(argument.getRegisterName())
-                            .append(", ")
-                            .append(argument.getName());
+                    if (argument.isInitialized()) {
+                        buffer.append("\t")
+                                .append(argument.getRegisterName())
+                                .append(", ")
+                                .append(argument.getName());
+                    } else {
+                        buffer.append("\t")
+                                .append(argument.getRegisterName())
+                                .append(", ")
+                                .append("[rel ")
+                                .append(argument.getName())
+                                .append("]");
+                    }
                 } else {
                     buffer.append("\t")
                             .append(argument.getRegisterName())
@@ -58,15 +67,15 @@ public class HalogenX64Function {
                 buffer.append("\tcall ").append(argument.getAmsFunctionName());
                 buffer.append("\n");
                 if (call.isHasReturn()) {
-                    buffer.append("\tmov [rel r_" + call.getFunctionName()+ "], rax");
+                    buffer.append("\tmov [rel r_" + call.getFunctionName() + "], rax");
                     buffer.append("\n");
-                    
+
                     if (call.getO3return().isReturnToVariable()) {
                         // verificar mov para variavel de scetion .data e/ou criar e mover dados para .bss                                                         
                         buffer.append("\tmov [rel " + call.getO3return().getVariableName() + "], rax");
                         buffer.append("\n");
                     } else {
-                        // return to a function should b e resolved here.
+                        // return to a function should be resolved here.
                     }
                 }
             } else {
