@@ -2,6 +2,7 @@ package br.com.schumaker.carla.lexer.o3;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * This class represents the arguments of function call O³ pl.
@@ -9,6 +10,7 @@ import lombok.Data;
  * @author Hudson Schumaker
  */
 @Data
+@ToString
 @AllArgsConstructor
 public class O3Argument implements IO3Variable {
 
@@ -17,19 +19,17 @@ public class O3Argument implements IO3Variable {
 
     private String name;
     private boolean isVariable;
+    private boolean isInitialized;
     private O3TypeValue<?, ?> typeAndValue;
-
+    
+    public O3Argument(String name, boolean isVar, O3TypeValue<?, ?> typeAndValue) {
+        this.name = name;
+        this.isVariable = isVar;
+        this.typeAndValue = typeAndValue;
+    }
+    
     @Override
     public O3VariableType getType() {
         return (O3VariableType) this.typeAndValue.getType();
-    }
-
-    @Override
-    public String toString() {
-        return "{\n"
-                + "\tArgument : "
-                + "Name : " + name + "\n"
-                + typeAndValue + "\n"
-                + "}";
     }
 }
