@@ -25,7 +25,7 @@ public class Halogenx64Variable {
         var value = o3Var.getTypeValue().getValue();
         if (value instanceof String) {
             buffer.append(value);
-            buffer.append(" , 0x0");
+            buffer.append(", 0x0");
         } else {
             buffer.append(value);
         }
