@@ -37,5 +37,9 @@ public class X64O3Variable2AsmMapper {
         this.o3Var2AsmVarTypeMap.put(O3VariableType.INT.getName(), X64AsmVariableType.DD.getAsmName());
         this.o3Var2AsmVarTypeMap.put(O3VariableType.FLOAT.getName(), X64AsmVariableType.DD.getAsmName());
         this.o3Var2AsmVarTypeMap.put(O3VariableType.DOUBLE.getName(), X64AsmVariableType.DQ.getAsmName());
+        this.o3Var2AsmVarTypeMap.put(O3VariableType.RETURN_STRING.getName(), X64AsmVariableType.RESQ.getAsmName());
+        this.o3Var2AsmVarTypeMap.put(O3VariableType.RETURN_INTEGER.getName(), X64AsmVariableType.RESD.getAsmName());
+        this.o3Var2AsmVarTypeMap.put(O3VariableType.RETURN_FLOAT.getName(), X64AsmVariableType.RESD.getAsmName());
+        
     }
 }
