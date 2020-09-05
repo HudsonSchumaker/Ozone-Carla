@@ -2,12 +2,14 @@ package br.com.schumaker.carla.lexer.o3;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  *
  * @author Hudson Schumaker
  */
 @Data
+@ToString
 @AllArgsConstructor
 public class O3Return implements IO3Variable {
 

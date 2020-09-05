@@ -4,12 +4,14 @@ import br.com.schumaker.carla.files.O3FileLine;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  *
  * @author Hudson Schumaker
  */
 @Data
+@ToString
 @AllArgsConstructor
 public class O3FunctionStatement implements IO3Statement {
 

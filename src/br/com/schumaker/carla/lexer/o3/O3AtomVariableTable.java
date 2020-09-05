@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * This holds the declared o3variables inside an atom.
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
  * @author Hudson Schumaker
  */
 @Data
+@ToString
 @NoArgsConstructor
 public class O3AtomVariableTable implements IO3VariableTable {
 
