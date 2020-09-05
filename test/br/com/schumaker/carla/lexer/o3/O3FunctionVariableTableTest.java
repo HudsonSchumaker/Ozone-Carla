@@ -7,16 +7,16 @@ import org.junit.Test;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public class O3FunctionVariableTableTest {
     
     @Test
     public void testVaribleIsDeclared() {
         // Preparation
-        var varX = new O3Variable("axisX", "main_axisX", null);
-        var varY = new O3Variable("axisY", "main_axisY", null);
-        var varZ = new O3Variable("axisZ", "main_axisZ", null);
+        var varX = new O3Variable("axisX", "main_axisX", true, null);
+        var varY = new O3Variable("axisY", "main_axisY", true, null);
+        var varZ = new O3Variable("axisZ", "main_axisZ", true, null);
         var funcVars = new HashSet<O3Variable>();
         funcVars.add(varZ);
         funcVars.add(varY);
