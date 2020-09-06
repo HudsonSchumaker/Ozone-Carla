@@ -51,7 +51,7 @@ const char* o3camelCase(char *str) {
         if (str[i-1] == ' ' || str[i-1] == '_' || str[i-1] == '-') {
             srtCapitalLetters[i] = toupper(str[i]);
         } else {
-            srtCapitalLetters[i] = str[i];
+            srtCapitalLetters[i] = tolower(str[i]);
         }
         i++;
     }
@@ -165,5 +165,41 @@ const char* o3reverseCase(char *str) {
     reverse[revIndex] = '\0';
     char *buffer = malloc(len);
     strcpy(buffer, reverse);
+    return buffer;
+}
+
+// l-trim
+const char* o3ltrim(char *str) {
+   while(isspace(*str)) str++;
+   long len = strlen(str);
+
+   char *buffer = malloc(len);
+   strcpy(buffer, str);
+   return buffer;
+}
+
+// r-trim
+const char* o3rtrim(char *str) {
+    long len = strlen(str);
+    char* back = str + len;
+    while(isspace(*--back));
+    *(back+1) = '\0';
+
+    char *buffer = malloc(len);
+    strcpy(buffer, str);
+    return buffer;
+}
+
+// trim
+const char* o3trim(char *str) {
+    while(isspace(*str)) str++;
+    long len = strlen(str);
+    char* back = str + len;
+    while(isspace(*--back));
+    *(back+1) = '\0';
+       
+    long len_trim = strlen(str);
+    char *buffer = malloc(len_trim);
+    strcpy(buffer, str);
     return buffer;
 }
