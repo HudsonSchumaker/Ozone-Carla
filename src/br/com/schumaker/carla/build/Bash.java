@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.build;
 
 /**
- * Interface contract for create a Bash terminal command executer.
+ * Interface contract for create a Bash terminal command executor.
  *
  * @author Hudson Schumaker
  */
