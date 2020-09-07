@@ -1,6 +1,10 @@
 package br.com.schumaker.carla.o3;
 
+import br.com.schumaker.carla.exception.LoadMathLibException;
+import br.com.schumaker.carla.exception.LoadPrintLibException;
+import br.com.schumaker.carla.exception.LoadStringLibException;
 import br.com.schumaker.carla.exception.LoadSyntaxFunctionException;
+import br.com.schumaker.carla.exception.ObjectLibNotFoundException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,11 +15,11 @@ import java.util.Map;
  *
  * @author Hudson Schumaker
  */
-public class O3SyntaxFunctionTable {
+public final class O3SyntaxFunctionTable {
 
     // Print uses PRT as indentifier
     public static final String PRT_PRINT = "print";
-    public static final String PRT_PRINT_LN = "printLn";
+    public static final String PRT_PRINT_LN = "println";
 
     // Strings uses STR as indentifier
     public static final String STR_UPPER_CASE = "upperCase";
@@ -25,10 +29,19 @@ public class O3SyntaxFunctionTable {
     public static final String STR_SNAKE_CASE = "snakeCase";
     public static final String STR_KEBAB_CASE = "kebabCase";
     public static final String STR_REVERSE_CASE = "reverseCase";
+    public static final String STR_L_TRIM = "leftTrim";
+    public static final String STR_R_TRIM = "rightTrim";
+    public static final String STR_TRIM = "trim";
 
     // Math uses MATH as identifier
+    public static final String MATH_ADD = "add";
+    public static final String MATH_SUB = "sub";
+    public static final String MATH_MUL = "mul";
+    public static final String MATH_DIV = "div";
     public static final String MATH_POW = "pow";
     public static final String MATH_SQRT = "sqrt";
+    public static final String MATH_INC = "inc";
+    public static final String MATH_DEC = "dec";
     public static final String MATH_ABS = "abs";
     public static final String MATH_MIN = "min";
     public static final String MATH_MAX = "max";
@@ -36,10 +49,11 @@ public class O3SyntaxFunctionTable {
     private List<String> allFunction = new ArrayList<>();
     private Map<String, String> allFunctionMap = new HashMap<>();
 
-    public O3SyntaxFunctionTable() throws Exception {
+    public O3SyntaxFunctionTable() {
         this.loadValues();
         this.loadStringLib();
         this.loadPrintLib();
+        this.loadMathLib();
     }
 
     public boolean functionExists(String name) {
@@ -56,7 +70,7 @@ public class O3SyntaxFunctionTable {
         if (this.functionExists(name)) {
             return allFunctionMap.get(name);
         } else {
-            return "";
+            throw new ObjectLibNotFoundException(name);
         }
     }
 
@@ -72,7 +86,8 @@ public class O3SyntaxFunctionTable {
             Field[] aClassFields = thisClass.getDeclaredFields();
             for (Field f : aClassFields) {
                 if (f.getName().startsWith("STR_")
-                        || f.getName().startsWith("PRT_")) { //|| f.getName().startsWith("MATH_")
+                        || f.getName().startsWith("PRT_")
+                        || f.getName().startsWith("MATH_")) {
 
                     String aux = (String) f.get(this);
                     allFunction.add(aux);
@@ -94,11 +109,11 @@ public class O3SyntaxFunctionTable {
                 }
             }
         } catch (Exception e) {
-            throw new LoadSyntaxFunctionException();
+            throw new LoadStringLibException();
         }
     }
 
-    private void loadPrintLib() throws Exception {
+    private void loadPrintLib() {
         Class<?> thisClass = null;
         try {
             thisClass = Class.forName(this.getClass().getName());
@@ -109,7 +124,22 @@ public class O3SyntaxFunctionTable {
                 }
             }
         } catch (Exception e) {
-            throw new LoadSyntaxFunctionException();
+            throw new LoadPrintLibException();
+        }
+    }
+
+    private void loadMathLib() {
+        Class<?> thisClass = null;
+        try {
+            thisClass = Class.forName(this.getClass().getName());
+            Field[] aClassFields = thisClass.getDeclaredFields();
+            for (Field f : aClassFields) {
+                if (f.getName().startsWith("MATH_")) {
+                    allFunctionMap.put((String) f.get(this), O3SyntaxLibrary.MATH_O);
+                }
+            }
+        } catch (Exception e) {
+            throw new LoadMathLibException();
         }
     }
 }
