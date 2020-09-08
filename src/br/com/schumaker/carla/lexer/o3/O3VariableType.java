@@ -1,5 +1,7 @@
 package br.com.schumaker.carla.lexer.o3;
 
+import br.com.schumaker.carla.exception.VariableDefaultValueNotFoundException;
+import br.com.schumaker.carla.exception.VariableTypeNotFoundException;
 import br.com.schumaker.carla.o3.O3SyntaxType;
 
 /**
@@ -32,6 +34,15 @@ public enum O3VariableType {
         this.defaultValue = defaultValue;
         this.size = size;
     }
+    
+    public static O3VariableType getByReference(O3VariableType type) {
+        for (O3VariableType vt : O3VariableType.values()){
+            if (vt.name().equals(type.name())) {
+                return vt;
+            }
+        }
+        throw new VariableTypeNotFoundException();
+    }
 
     public static String getDefaultValueByName(String name) {
         for (O3VariableType vt : O3VariableType.values()) {
@@ -39,7 +50,7 @@ public enum O3VariableType {
                 return vt.defaultValue;
             }
         }
-        return null;
+        throw new VariableDefaultValueNotFoundException();
     }
     
     public static int getSizeByName(String name) {
