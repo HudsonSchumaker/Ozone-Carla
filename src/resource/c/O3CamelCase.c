@@ -20,7 +20,7 @@ char* o3camelCase(char value[]) {
         if (value[i-1] == ' ' || value[i-1] == '_' || value[i-1] == '-') {
             srtCapitalLetters[i] = toupper(value[i]);
         } else {
-            srtCapitalLetters[i] = value[i];
+            srtCapitalLetters[i] = tolower(str[i]);
         }
         i++;
     }
@@ -35,5 +35,7 @@ char* o3camelCase(char value[]) {
         reader++;
     }
     strCamel[writer] = 0;
-    return strCamel;
+    char *buffer = malloc(len);
+    strcpy(buffer, strCamel);
+    return buffer;
 }
