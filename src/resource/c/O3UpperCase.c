@@ -20,5 +20,7 @@ char* o3upperCase(char string[]) {
        strUpper[i] = toupper(string[i]);
        i++;
     }
-    return strUpper;
+    char *buffer = malloc(len);
+    strcpy(buffer, strUpper);
+    return buffer;
 }
