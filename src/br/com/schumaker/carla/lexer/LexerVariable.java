@@ -18,6 +18,7 @@ import java.util.List;
 public class LexerVariable {
 
     private final O3CoreLibrary coreLibrary = new O3CoreLibrary();
+    private final LexerArithmetic lexerArithmetic = new LexerArithmetic();
 
     public List<O3Variable> getVariables(String functionName, List<O3FileLine> lines) {
         var variables = new ArrayList<O3Variable>();
@@ -123,7 +124,7 @@ public class LexerVariable {
     public O3VariableType getType(String data) {
         var value = data.substring(data.indexOf(O3SyntaxKeyword.ASSINGN) + 1, data.length()).trim();
 
-        if (value.contains("\"")) {
+        if (data.contains("\"") && !value.contains(O3SyntaxKeyword.PLUS)) {
             return O3VariableType.STRING;
         } else {
             if (value.contains(O3SyntaxKeyword.TRUE) || value.contains(O3SyntaxKeyword.FALSE)) {
@@ -140,9 +141,20 @@ public class LexerVariable {
                 }
             }
 
-            if (data.contains(O3SyntaxKeyword.OPEN_EXPRESSION) && data.contains(O3SyntaxKeyword.CLOSE_EXPRESSION)) {
+            if (data.contains(O3SyntaxKeyword.OPEN_EXPRESSION)
+                    && data.contains(O3SyntaxKeyword.CLOSE_EXPRESSION)) {
                 return this.resolveReturnVariableType(data);
             }
+
+            // will treat concatenation of string either.
+            if (data.contains(O3SyntaxKeyword.PLUS)
+                    || data.contains(O3SyntaxKeyword.DIVISION)
+                    || data.contains(O3SyntaxKeyword.MINUS)
+                    || data.contains(O3SyntaxKeyword.MULTIPLICATION)) {
+
+                return this.lexerArithmetic.getReturnTypeExpression(value);
+            }
+
             return O3VariableType.INT;
         }
     }
@@ -161,18 +173,40 @@ public class LexerVariable {
     public Integer getValueInteger(String data) {
         var clean = data.trim();
         var value = clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length()).trim();
+        if (data.contains(O3SyntaxKeyword.PLUS)
+                || data.contains(O3SyntaxKeyword.DIVISION)
+                || data.contains(O3SyntaxKeyword.MINUS)
+                || data.contains(O3SyntaxKeyword.MULTIPLICATION)) {
+
+            return this.lexerArithmetic.getIntegerValueFromExpression(value);
+        }
         return Integer.valueOf(value);
     }
 
     public Float getValueFloat(String data) {
         var clean = data.trim();
         var value = clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length() - 1).trim();
+        if (data.contains(O3SyntaxKeyword.PLUS)
+                || data.contains(O3SyntaxKeyword.DIVISION)
+                || data.contains(O3SyntaxKeyword.MINUS)
+                || data.contains(O3SyntaxKeyword.MULTIPLICATION)) {
+
+            return this.lexerArithmetic.getFloatValueFromExpression(value);
+        }
         return Float.valueOf(value);
     }
 
     public Double getValueDouble(String data) {
         var clean = data.trim();
         var value = clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length() - 1).trim();
+        if (data.contains(O3SyntaxKeyword.PLUS)
+                || data.contains(O3SyntaxKeyword.DIVISION)
+                || data.contains(O3SyntaxKeyword.MINUS)
+                || data.contains(O3SyntaxKeyword.MULTIPLICATION)) {
+
+            return this.lexerArithmetic.getDoubleValueFromExpression(value);
+        }
+
         return Double.valueOf(value);
     }
 
@@ -216,9 +250,9 @@ public class LexerVariable {
 
     /**
      * Determine if the variable is initialized or not.
-     * 
+     *
      * @param data raw line
-     * @return 
+     * @return
      */
     public boolean isInitialized(String data) {
         var value = data.substring(data.indexOf(O3SyntaxKeyword.ASSINGN) + 1, data.length()).trim();
@@ -226,7 +260,7 @@ public class LexerVariable {
             return true;
         }
 
-        if (value.contains(O3SyntaxKeyword.TRUE) 
+        if (value.contains(O3SyntaxKeyword.TRUE)
                 || value.contains(O3SyntaxKeyword.FALSE)) {
             return true;
         }
@@ -241,11 +275,11 @@ public class LexerVariable {
             }
         }
 
-        if (data.contains(O3SyntaxKeyword.OPEN_EXPRESSION) 
+        if (data.contains(O3SyntaxKeyword.OPEN_EXPRESSION)
                 && data.contains(O3SyntaxKeyword.CLOSE_EXPRESSION)) {
             return false;
         }
-
+       
         return true;
     }
 }
