@@ -11,4 +11,8 @@ public class FunctionNotFoundException extends RuntimeException {
     public FunctionNotFoundException() {
         super(MESSAGE);
     }
+
+    public FunctionNotFoundException(String function) {
+        super(MESSAGE + " " + function + ".");
+    }
 }
