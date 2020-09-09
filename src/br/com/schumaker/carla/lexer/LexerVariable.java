@@ -161,7 +161,7 @@ public class LexerVariable {
                 while (st.hasMoreTokens()) {
                     parts.add(st.nextToken());
                 }
-                // 
+                // Verificar os tokens, validar a expressao, pegar o tipo de retorno.
                 return this.lexerArithmetic.getReturnTypeExpression(value);
             }
 
