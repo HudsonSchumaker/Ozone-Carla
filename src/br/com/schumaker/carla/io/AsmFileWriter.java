@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.io;
 
 import br.com.schumaker.carla.exception.CloseStreamsException;
-import br.com.schumaker.carla.exception.WriteMakefileException;
+import br.com.schumaker.carla.exception.WriteAsmFileException;
 import br.com.schumaker.carla.files.O3AsmFile;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -61,7 +61,7 @@ public class AsmFileWriter {
             }
             
         } catch (Exception e) {
-            throw new WriteMakefileException();
+            throw new WriteAsmFileException();
         } finally {
             try {
                 bw.close();
