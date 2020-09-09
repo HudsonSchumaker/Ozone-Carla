@@ -11,4 +11,8 @@ public class X128RegisterNotFound extends RuntimeException {
     public X128RegisterNotFound() {
         super(MESSAGE);
     }
+
+    public X128RegisterNotFound(String name) {
+        super(MESSAGE + "" + name + ".");
+    }
 }
