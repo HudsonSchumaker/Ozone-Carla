@@ -11,4 +11,8 @@ public class X64RegisterNotFound extends RuntimeException {
     public X64RegisterNotFound() {
         super(MESSAGE);
     }
+
+    public X64RegisterNotFound(String name) {
+        super(MESSAGE + "" + name + ".");
+    }
 }
