@@ -1,6 +1,6 @@
 package br.com.schumaker.halogenx64;
 
-import br.com.schumaker.carla.build.Terninal;
+import br.com.schumaker.carla.build.Terminal;
 import br.com.schumaker.carla.io.CopyNASM;
 import br.com.schumaker.carla.io.CopyO3oLib;
 import br.com.schumaker.carla.io.MakeFileWriter;
@@ -28,7 +28,7 @@ public class HalogenX64CrossCompiler {
     }
 
     public void callMakefileFile() {
-        var bash = new Terninal();
+        var bash = new Terminal();
 //        String[] commands = {"cd " + atomName, "make", "make clear", "rm Makefile",
 //            "clear",
 //            "echo ----------------------------------------------------------------",
@@ -50,6 +50,7 @@ public class HalogenX64CrossCompiler {
         var copy = new CopyO3oLib(atomName);
         copy.copyOByName(O3SyntaxLibrary.PRINT_O);
         copy.copyOByName(O3SyntaxLibrary.STRINGS_O);
+        copy.copyOByName(O3SyntaxLibrary.MATH_O);
     }
 
     public void createMakefileFile() {

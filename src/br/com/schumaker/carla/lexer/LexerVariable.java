@@ -6,9 +6,11 @@ import br.com.schumaker.carla.lexer.o3.O3Variable;
 import br.com.schumaker.carla.lexer.o3.O3VariableType;
 import br.com.schumaker.carla.lexer.o3.O3VariableTypeValue;
 import br.com.schumaker.carla.lexer.utils.StringUtils;
+import br.com.schumaker.carla.o3.O3VariableList;
 import br.com.schumaker.carla.o3.core.O3CoreLibrary;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * This class create the O³ variables representations.
@@ -16,12 +18,14 @@ import java.util.List;
  * @author Hudson Schumaker
  */
 public class LexerVariable {
-
+   
     private final O3CoreLibrary coreLibrary = new O3CoreLibrary();
     private final LexerArithmetic lexerArithmetic = new LexerArithmetic();
+    private List<O3Variable> variables = new ArrayList<O3Variable>();
+    private O3VariableList variableList;
 
     public List<O3Variable> getVariables(String functionName, List<O3FileLine> lines) {
-        var variables = new ArrayList<O3Variable>();
+        this.variableList = new O3VariableList(lines);
         lines.forEach(line -> {
             variables.add(this.getVariable(functionName, line));
         });
@@ -152,6 +156,12 @@ public class LexerVariable {
                     || data.contains(O3SyntaxKeyword.MINUS)
                     || data.contains(O3SyntaxKeyword.MULTIPLICATION)) {
 
+                StringTokenizer st = new StringTokenizer(value, " ");
+                var parts = new ArrayList<String>();
+                while (st.hasMoreTokens()) {
+                    parts.add(st.nextToken());
+                }
+                // 
                 return this.lexerArithmetic.getReturnTypeExpression(value);
             }
 
@@ -161,7 +171,17 @@ public class LexerVariable {
 
     public String getValueString(String data) {
         var clean = data.trim();
-        return clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length()).trim();
+        var value = clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length()).trim();
+
+        if (data.contains(O3SyntaxKeyword.PLUS)
+                || data.contains(O3SyntaxKeyword.DIVISION)
+                || data.contains(O3SyntaxKeyword.MINUS)
+                || data.contains(O3SyntaxKeyword.MULTIPLICATION)) {
+
+            return this.lexerArithmetic.getStringValueFromExpression(value);
+        }
+
+        return value;
     }
 
     public Boolean getValueBoolean(String data) {
@@ -279,7 +299,9 @@ public class LexerVariable {
                 && data.contains(O3SyntaxKeyword.CLOSE_EXPRESSION)) {
             return false;
         }
-       
+
         return true;
     }
+    
+    
 }

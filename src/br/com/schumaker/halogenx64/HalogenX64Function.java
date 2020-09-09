@@ -67,12 +67,12 @@ public class HalogenX64Function {
                 buffer.append("\tcall ").append(argument.getAmsFunctionName());
                 buffer.append("\n");
                 if (call.isHasReturn()) {
-                    buffer.append("\tmov [rel r_" + call.getFunctionName() + "], rax");
+                    buffer.append("\tmov [rel r_").append(call.getFunctionName()).append("], rax");
                     buffer.append("\n");
 
                     if (call.getO3return().isReturnToVariable()) {
                         // verificar mov para variavel de scetion .data e/ou criar e mover dados para .bss                                                         
-                        buffer.append("\tmov [rel " + call.getO3return().getVariableName() + "], rax");
+                        buffer.append("\tmov [rel ").append(call.getO3return().getVariableName()).append("], rax");
                         buffer.append("\n");
                     } else {
                         // return to a function should be resolved here.

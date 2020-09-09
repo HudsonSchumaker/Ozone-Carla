@@ -16,7 +16,7 @@ public class TerminalTest {
         var cmd = "pwd";
         
         // Test
-        var tested = new Terninal();
+        var tested = new Terminal();
         //tested.executeCommand(cmd);
         
         // Assertion

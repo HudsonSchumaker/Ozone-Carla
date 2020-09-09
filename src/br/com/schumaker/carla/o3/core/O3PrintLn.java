@@ -20,7 +20,7 @@ import lombok.Data;
  * @author Hudson Schumaker
  */
 @Data
-public class O3PrintLn implements IO3CoreFunction {
+public final class O3PrintLn implements IO3CoreFunction {
 
     public static final String O3PRT_STRLN = "o3prtStrLn";
     public static final String O3PRT_INTLN = "o3prtIntLn";
@@ -86,7 +86,7 @@ public class O3PrintLn implements IO3CoreFunction {
 
     public void loadCoreNames() {
         this.coreNames.add("_" + O3PRT_STRLN);
-        this.coreNames.add("_" + O3PRT_STRLN);
+        this.coreNames.add("_" + O3PRT_INTLN);
         this.coreNames.add("_" + O3PRTF_FLOATLN);
         this.coreNames.add("_" + O3PRT_DOUBLELN);
     }
@@ -108,7 +108,7 @@ public class O3PrintLn implements IO3CoreFunction {
         this.signatureRegisterMap.put("_" + O3PRT_STRLN,
                 Arrays.asList("mov " + X64RegisterArgumentTable.getParamRegisterNameByIndex(0)));
 
-        this.signatureRegisterMap.put("_" + O3PRT_STRLN,
+        this.signatureRegisterMap.put("_" + O3PRT_INTLN,
                 Arrays.asList("mov " + X64RegisterArgumentTable.getParamRegisterNameByIndex(0)));
 
         this.signatureRegisterMap.put("_" + O3PRTF_FLOATLN,

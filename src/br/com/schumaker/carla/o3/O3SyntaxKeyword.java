@@ -46,5 +46,5 @@ public final class O3SyntaxKeyword {
     public static final String FLOAT_SIGN = "f";
     public static final String DOUBLE_SIGN = "d";
 
-    public static final String RETURN = "return";
+    public static final String RETURN = "r:";
 }

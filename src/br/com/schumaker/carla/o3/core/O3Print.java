@@ -20,7 +20,7 @@ import lombok.Data;
  * @author Hudson Schumaker
  */
 @Data
-public class O3Print implements IO3CoreFunction {
+public final class O3Print implements IO3CoreFunction {
 
     public static final String O3PRTSTR = "o3prtStr";
     public static final String O3PRTINT = "o3prtInt";

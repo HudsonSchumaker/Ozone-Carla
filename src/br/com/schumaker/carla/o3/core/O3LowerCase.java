@@ -19,7 +19,7 @@ import lombok.Data;
  * @author Hudson Schumaker
  */
 @Data
-public class O3LowerCase implements IO3CoreFunction {
+public final class O3LowerCase implements IO3CoreFunction {
     public static final String O3STR_LOWER_CASE = "o3lowerCase";
   
     private String o3Name;

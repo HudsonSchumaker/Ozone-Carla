@@ -3,8 +3,8 @@ package br.com.schumaker.carla.lexer.o3;
 /**
  *
  * @author Hudson Schumaker
- * @param <O3VariableType>
- * @param <V>
+ * @param <O3VariableType> Type
+ * @param <V> Value
  */
 public class O3VariableTypeValue<O3VariableType, V> {
     private final O3VariableType type;

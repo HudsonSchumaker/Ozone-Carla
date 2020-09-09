@@ -17,7 +17,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class O3FunctionVariableTable implements IO3VariableTable {
-
+    
     private Set<O3Variable> funcVars = new HashSet<>();
 
     public void add(O3Variable o3Var) {
@@ -27,7 +27,7 @@ public class O3FunctionVariableTable implements IO3VariableTable {
     public Set<O3Variable> getVariables() {
         return funcVars;
     }
-
+    
     public boolean variableIsDeclared(String name) {
         //Predicate<O3Variable> pVar = v -> v.getName().equals(name);
         return funcVars.stream()

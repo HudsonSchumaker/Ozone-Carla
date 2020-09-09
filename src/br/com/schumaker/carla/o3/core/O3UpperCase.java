@@ -19,7 +19,7 @@ import lombok.Data;
  * @author Hudson Schumaker
  */
 @Data
-public class O3UpperCase implements IO3CoreFunction {
+public final class O3UpperCase implements IO3CoreFunction {
 
     public static final String O3STR_UPPER_CASE = "o3upperCase";
 

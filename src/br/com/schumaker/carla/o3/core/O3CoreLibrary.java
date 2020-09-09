@@ -22,11 +22,10 @@ public class O3CoreLibrary implements IO3CoreLibrary {
             this.syntaxFunctionTable = new O3SyntaxFunctionTable();
             this.loadCoreFunctions();
         } 
-        catch(X64RegisterNotFound e) {
-            throw e;
-        } catch(X128RegisterNotFound e) {
+        catch(X64RegisterNotFound | X128RegisterNotFound e) {
             throw e;
         } catch(Exception e) {
+            System.err.println(e);
             throw new LoadingCoreLibraryException();
         }
     }
@@ -47,7 +46,7 @@ public class O3CoreLibrary implements IO3CoreLibrary {
                 .parallel()
                 .filter(v -> v.getO3Name().equals(name))        
                 .findAny()
-                .orElseThrow(() -> new FunctionNotFoundException());
+                .orElseThrow(() -> new FunctionNotFoundException(name));
     }
     
     private void loadCoreFunctions() throws Exception {
@@ -63,5 +62,8 @@ public class O3CoreLibrary implements IO3CoreLibrary {
         this.coreLibrary.add(new O3SnakeCase(syntaxFunctionTable));
         this.coreLibrary.add(new O3KebabCase(syntaxFunctionTable));
         this.coreLibrary.add(new O3ReverseCase(syntaxFunctionTable));
+        this.coreLibrary.add(new O3LeftTrim(syntaxFunctionTable));
+        this.coreLibrary.add(new O3RightTrim(syntaxFunctionTable));
+        this.coreLibrary.add(new O3Trim(syntaxFunctionTable));
     }
 }

@@ -18,7 +18,10 @@ public class O3SyntaxLibrary {
     // Print lib
     public static final String PRINT_O = "O3Print.o";
     public static final String PRINT_C = "O3Print.c";
-
+    
+    public static final String MATH_O = "O3Math.o";
+    public static final String MATH_A = "O3Math.asm";
+    
     // File lib
     public static final String FILE_O = "O3File.o";
     public static final String FILE_C = "O3File.c";

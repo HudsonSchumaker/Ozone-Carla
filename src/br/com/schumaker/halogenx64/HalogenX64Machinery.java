@@ -7,6 +7,7 @@ import br.com.schumaker.carla.lexer.o3.O3Function;
 import br.com.schumaker.carla.lexer.o3.O3FunctionCall;
 import br.com.schumaker.carla.lexer.o3.O3FunctionStatement;
 import br.com.schumaker.carla.lexer.o3.O3Variable;
+import br.com.schumaker.carla.lexer.o3.mapper.O3Argument2O3VariableMapper;
 import br.com.schumaker.carla.lexer.utils.StringUtils;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,6 +23,7 @@ public class HalogenX64Machinery {
     private final AsmFileWriter writer;
     private final Halogenx64Variable hx64Variable = new Halogenx64Variable();
     private final HalogenX64Function hx64Fucntion = new HalogenX64Function();
+    private O3Argument2O3VariableMapper mapper = new O3Argument2O3VariableMapper();
 
     private String workspace;
     private O3Atom o3Atom;
@@ -46,6 +48,18 @@ public class HalogenX64Machinery {
         for (var var : variables) {
             if (var.isInitialized()) {
                 this.resolveVaribleTypeValueAndAdd(var);
+            }
+        }
+        
+        for (var func : o3Atom.getFunctions()) {
+            var statement = (O3FunctionStatement) func.getStatement();
+            for (var call : statement.getFunctionCalls()) {
+                for (var arg : call.getArguments()) {
+                    if (!arg.isVariable() && arg.isInitialized()) {
+                        var o3var = mapper.from(arg);
+                        this.resolveVaribleTypeValueAndAdd(o3var);
+                    }
+                }
             }
         }
     }
@@ -108,6 +122,12 @@ public class HalogenX64Machinery {
         this.o3AsmFile.getSectionText().addLine(hx64Fucntion.resolveFunction(o3Func));
     }
 
+    /**
+     * Create the memory space for the return of the function.
+     * 
+     * @param call
+     * @return 
+     */
     public String createFunctionReturnMemorySpace(O3FunctionCall call) {
         if (call.isHasReturn()) {
             if (call.getO3return().isReturnToVariable()) {
