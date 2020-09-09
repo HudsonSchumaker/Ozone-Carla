@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="nasm2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/build/classes/resource/nasm.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
