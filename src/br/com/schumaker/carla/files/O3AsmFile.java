@@ -1,13 +1,15 @@
 package br.com.schumaker.carla.files;
 
-import br.com.schumaker.carla.exception.AsmFilePreProcesserException;
+import br.com.schumaker.carla.exception.AsmFilePreProcessorException;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  *
  * @author Hudson Schumaker
  */
 @Data
+@ToString
 public class O3AsmFile {
 
     public static final String EXT = "asm";
@@ -27,7 +29,7 @@ public class O3AsmFile {
             this.sectionBss = new O3AsmSectionBss();
             this.sectionText = new O3AsmSectionText();
         } catch (Exception e) {
-            throw new AsmFilePreProcesserException();
+            throw new AsmFilePreProcessorException();
         }
     }
 }
