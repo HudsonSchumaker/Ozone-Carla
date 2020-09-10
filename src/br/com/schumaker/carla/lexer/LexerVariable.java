@@ -18,9 +18,10 @@ import java.util.StringTokenizer;
  * @author Hudson Schumaker
  */
 public class LexerVariable {
-   
+
     private final O3CoreLibrary coreLibrary = new O3CoreLibrary();
     private final LexerArithmetic lexerArithmetic = new LexerArithmetic();
+    private O3LexerAssignment lexerAssignment = new O3LexerAssignment();
     private List<O3Variable> variables = new ArrayList<O3Variable>();
     private O3VariableList variableList;
 
@@ -30,6 +31,14 @@ public class LexerVariable {
             variables.add(this.getVariable(functionName, line));
         });
         return variables;
+    }
+
+    public O3Variable getVariableByName(String name) {
+        return this.variables.stream()
+                .parallel()
+                .filter(v -> v.getName().equals(name))
+                .findAny()
+                .orElse(null);
     }
 
     /**
@@ -156,11 +165,11 @@ public class LexerVariable {
                     || data.contains(O3SyntaxKeyword.MINUS)
                     || data.contains(O3SyntaxKeyword.MULTIPLICATION)) {
 
-                StringTokenizer st = new StringTokenizer(value, " ");
-                var parts = new ArrayList<String>();
-                while (st.hasMoreTokens()) {
-                    parts.add(st.nextToken());
+                var parts = this.getParts(value);
+                if (this.verifyVariablesInTheExpression(parts)) {
+                    return this.getReturnExpressionType(parts);
                 }
+
                 // Verificar os tokens, validar a expressao, pegar o tipo de retorno.
                 return this.lexerArithmetic.getReturnTypeExpression(value);
             }
@@ -205,14 +214,20 @@ public class LexerVariable {
 
     public Float getValueFloat(String data) {
         var clean = data.trim();
-        var value = clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length() - 1).trim();
+        var value = clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length()).trim();
         if (data.contains(O3SyntaxKeyword.PLUS)
                 || data.contains(O3SyntaxKeyword.DIVISION)
                 || data.contains(O3SyntaxKeyword.MINUS)
                 || data.contains(O3SyntaxKeyword.MULTIPLICATION)) {
 
+            var parts = this.getParts(value);
+            if (this.verifyVariablesInTheExpression(parts)) {
+                return this.lexerArithmetic.getFloatValueFromExpression(this.createExpressionWithLiterals(parts));
+            }
+
             return this.lexerArithmetic.getFloatValueFromExpression(value);
         }
+        value = clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length() -1).trim();
         return Float.valueOf(value);
     }
 
@@ -300,8 +315,82 @@ public class LexerVariable {
             return false;
         }
 
+        // was integer, now ?
         return true;
     }
-    
-    
+
+    public String createExpressionWithLiterals(List<String> parts) {
+        StringBuffer buffer = new StringBuffer();
+        for (int k = 0; k < parts.size(); k++) {
+            if (k % 2 == 0) {
+                buffer.append(this.getVariableByName(parts.get(k)).getTypeValue().getValue());
+            } else {
+                buffer.append(parts.get(k));
+            }
+        }
+        return buffer.toString();
+    }
+
+    public boolean verifyVariablesInTheExpression(List<String> values) {
+        var variables = 0;
+        var signs = 0;
+        var others = 0;
+        for (String value : values) {
+            if (!LexerArithmetic.arithmeticSigns.contains(value)) {
+                if (variableList.isVariablePreDeclared(value)) {
+                    variables++;
+                } else {
+                    others++;
+                }
+            } else {
+                signs++;
+            }
+        }
+
+        if (lexerAssignment.getNumberOfSigns(variables) > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public O3VariableType getReturnExpressionType(List<String> parts) {
+        var vars = this.countVariablesOnParts(parts);
+        var positions = lexerAssignment.getVariablePositions(vars);
+
+        if (null != positions) {
+            List<String> varNames = new ArrayList<>();
+            for (var k : positions) {
+                varNames.add(parts.get(k));
+            }
+
+            List<String> varTypes = new ArrayList<>();
+            for (var name : varNames) {
+                varTypes.add(this.getVariableByName(name).getType().getName());
+            }
+            return lexerAssignment.getVariableReturnType(varTypes);
+        }
+
+        return null;
+    }
+
+    public List<String> getParts(String data) {
+        StringTokenizer st = new StringTokenizer(data, " ");
+        var parts = new ArrayList<String>();
+        while (st.hasMoreTokens()) {
+            parts.add(st.nextToken());
+        }
+        return parts;
+    }
+
+    public int countVariablesOnParts(List<String> parts) {
+        var vars = 0;
+        for (String value : parts) {
+            if (!LexerArithmetic.arithmeticSigns.contains(value)) {
+                if (variableList.isVariablePreDeclared(value)) {
+                    vars++;
+                }
+            }
+        }
+        return vars;
+    }
 }
