@@ -20,7 +20,6 @@ public class LexerArithmetic {
                     O3SyntaxKeyword.DIVISION, O3SyntaxKeyword.MULTIPLICATION);
     
     
-
     private static final String TYPE_STRING = "java.lang.String";
     private static final String TYPE_FLOAT = "java.lang.Float";
     private static final String TYPE_DOUBLE = "java.lang.Double";
@@ -33,6 +32,12 @@ public class LexerArithmetic {
         this.v8engine = sem.getEngineByName("JavaScript");
     }
 
+    /**
+     * Evaluates the type of the return of the expression.
+     * 
+     * @param data
+     * @return 
+     */
     public O3VariableType getReturnTypeExpression(String data) {
         var clean = data.replaceAll(" ", "");
         try {
