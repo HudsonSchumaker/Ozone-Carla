@@ -206,6 +206,11 @@ public class LexerVariable {
                 || data.contains(O3SyntaxKeyword.DIVISION)
                 || data.contains(O3SyntaxKeyword.MINUS)
                 || data.contains(O3SyntaxKeyword.MULTIPLICATION)) {
+            
+            var parts = this.getParts(value);
+            if (this.verifyVariablesInTheExpression(parts)) {
+                return this.lexerArithmetic.getIntegerValueFromExpression(this.createExpressionWithLiterals(parts));
+            }
 
             return this.lexerArithmetic.getIntegerValueFromExpression(value);
         }
@@ -233,15 +238,19 @@ public class LexerVariable {
 
     public Double getValueDouble(String data) {
         var clean = data.trim();
-        var value = clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length() - 1).trim();
+        var value = clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length()).trim();
         if (data.contains(O3SyntaxKeyword.PLUS)
                 || data.contains(O3SyntaxKeyword.DIVISION)
                 || data.contains(O3SyntaxKeyword.MINUS)
                 || data.contains(O3SyntaxKeyword.MULTIPLICATION)) {
-
+            
+            var parts = this.getParts(value);
+            if (this.verifyVariablesInTheExpression(parts)) {
+                return this.lexerArithmetic.getDoubleValueFromExpression(this.createExpressionWithLiterals(parts));
+            }
             return this.lexerArithmetic.getDoubleValueFromExpression(value);
         }
-
+        value = clean.substring(clean.indexOf(O3SyntaxKeyword.ASSINGN) + 1, clean.length() -1).trim(); 
         return Double.valueOf(value);
     }
 
