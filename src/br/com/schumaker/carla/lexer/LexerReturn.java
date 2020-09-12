@@ -29,7 +29,7 @@ public class LexerReturn {
         var function = coreLibrary.getByName(functioName);
         
         // void return from a function
-        if (O3VariableType.VOID.equals(function.getReturnType())) {
+        if (O3VariableType.VOID.equals(function.getReturnType(functioName))) {
             return new O3Return(functioName, 
                     O3VariableType.VOID,
                     false,
@@ -41,7 +41,7 @@ public class LexerReturn {
             // return of the function was ignored
             if (!rawLine.contains(O3SyntaxKeyword.ASSINGN)) {
                 return new O3Return(functioName, 
-                    function.getReturnType(),
+                    function.getReturnType(functioName),
                     false,
                     false,
                     IGNORED_RETURN,
@@ -54,7 +54,7 @@ public class LexerReturn {
                 var o3variable = variableTable.getVariableByName(varName);
               
                 return new O3Return(functioName, 
-                    function.getReturnType(),
+                    function.getReturnType(functioName),
                     true,
                     false,
                     o3variable.getInternalName().replaceAll(":", ""),

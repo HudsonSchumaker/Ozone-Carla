@@ -289,7 +289,7 @@ public class LexerVariable {
         }
 
         var function = coreLibrary.getByName(subLine);
-        return function.getReturnType();
+        return function.getReturnType(function.getO3Name());
     }
 
     /**

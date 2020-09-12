@@ -15,5 +15,5 @@ public interface IO3CoreFunction {
     Integer getArgumentSizeByO3Name(String name);
     List<String> getOverloadMethods();
     List<String> getRegistersByCoreName(String name);
-    O3VariableType getReturnType();
+    O3VariableType getReturnType(String name);
 }

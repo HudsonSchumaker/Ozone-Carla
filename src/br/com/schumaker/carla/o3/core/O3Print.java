@@ -80,7 +80,7 @@ public final class O3Print implements IO3CoreFunction {
     }
    
     @Override
-    public O3VariableType getReturnType() {
+    public O3VariableType getReturnType(String name) {
         return O3VariableType.VOID;
     }
 

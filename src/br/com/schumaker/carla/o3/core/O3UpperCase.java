@@ -73,7 +73,7 @@ public final class O3UpperCase implements IO3CoreFunction {
     }
     
     @Override
-    public O3VariableType getReturnType() {
+    public O3VariableType getReturnType(String name) {
         return O3VariableType.STRING;
     }
 
