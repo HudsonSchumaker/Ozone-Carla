@@ -65,9 +65,7 @@ public class LexerArithmetic {
     public Integer getIntegerValueFromExpression(String data) {
         var clean = data.replaceAll(" ", "");
         try {
-            ScriptEngineManager mgr = new ScriptEngineManager();
-            ScriptEngine engine = mgr.getEngineByName("JavaScript");
-            var val = engine.eval(clean);
+            var val = v8engine.eval(clean);
             return (Integer) val;
 
         } catch (ScriptException ex) {
