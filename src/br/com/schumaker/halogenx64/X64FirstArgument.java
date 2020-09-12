@@ -13,32 +13,34 @@ import lombok.Getter;
  */
 public class X64FirstArgument {
     
+    public static String FirstArgument = "rdi";
+
     private final O3CoreLibrary coreLibrary = new O3CoreLibrary();
-    
+
     @Getter
     private final String name;
-    
+
     @Getter
     private final String amsFunctionName;
-    
+
     @Getter
     private final String registerName;
-    
+
     @Getter
     private final O3VariableType type;
-    
+
     @Getter
     private final boolean isInitialized;
-    
+
     @Getter
     private final IO3CoreFunction coreFunction;
-   
+
     public X64FirstArgument(String coreFunctionName, O3Argument source) {
-            this.name = source.getName();
-            this.type = source.getType();
-            this.coreFunction = coreLibrary.getByName(coreFunctionName);
-            this.amsFunctionName = coreFunction.getCoreNameByType(type.getName());
-            this.registerName = coreFunction.getRegistersByCoreName(amsFunctionName).get(0);  
-            this.isInitialized = source.isInitialized();
+        this.name = source.getName();
+        this.type = source.getType();
+        this.coreFunction = coreLibrary.getByName(coreFunctionName);
+        this.amsFunctionName = coreFunction.getCoreNameByType(type.getName());
+        this.registerName = coreFunction.getRegistersByCoreName(amsFunctionName).get(0);
+        this.isInitialized = source.isInitialized();
     }
 }
