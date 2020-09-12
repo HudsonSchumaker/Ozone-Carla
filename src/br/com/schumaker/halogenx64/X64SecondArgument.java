@@ -13,6 +13,8 @@ import lombok.Getter;
  */
 public class X64SecondArgument {
 
+    public static String SecondArgument = "rsi";
+    
     private final O3CoreLibrary coreLibrary = new O3CoreLibrary();
 
     @Getter
