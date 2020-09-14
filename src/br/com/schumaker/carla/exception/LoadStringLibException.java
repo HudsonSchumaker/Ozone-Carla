@@ -1,5 +1,4 @@
 package br.com.schumaker.carla.exception;
-
 /**
  *
  * @author Hudson Schumaker
