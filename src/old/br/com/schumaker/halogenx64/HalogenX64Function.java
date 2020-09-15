@@ -1,6 +1,6 @@
 package old.br.com.schumaker.halogenx64;
 
-import br.com.schumaker.carla.build.exception.UnsupportedNumberOfArgumentsException;
+import br.com.schumaker.carla.exception.UnsupportedNumberOfArgumentsException;
 import old.br.com.schumaker.carla.lexer.o3.O3Function;
 import old.br.com.schumaker.carla.lexer.o3.O3FunctionCall;
 import old.br.com.schumaker.carla.lexer.o3.O3FunctionStatement;
