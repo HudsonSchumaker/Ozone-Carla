@@ -1,6 +1,6 @@
 package old.br.com.schumaker.halogenx64;
 
-import br.com.schumaker.carla.build.exception.ArgumentTypeNotSupportedException;
+import br.com.schumaker.carla.exception.ArgumentTypeNotSupportedException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
