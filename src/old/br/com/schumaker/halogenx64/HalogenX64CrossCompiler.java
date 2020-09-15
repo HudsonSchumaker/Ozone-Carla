@@ -1,8 +1,8 @@
 package old.br.com.schumaker.halogenx64;
 
 import br.com.schumaker.carla.build.Terminal;
-import br.com.schumaker.carla.build.io.CopyNASM;
-import br.com.schumaker.carla.build.io.CopyO3oLib;
+import br.com.schumaker.carla.io.CopyNASM;
+import br.com.schumaker.carla.io.CopyO3oLib;
 import java.io.IOException;
 import old.br.com.schumaker.carla.io.MakeFileWriter;
 import old.br.com.schumaker.carla.io.Zip;
