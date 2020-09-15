@@ -1,6 +1,6 @@
 package old.br.com.schumaker.halogenx64;
 
-import br.com.schumaker.carla.build.exception.X128RegisterNotFound;
+import br.com.schumaker.carla.exception.X128RegisterNotFound;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
