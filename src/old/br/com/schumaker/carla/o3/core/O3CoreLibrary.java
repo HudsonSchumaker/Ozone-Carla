@@ -1,9 +1,9 @@
 package old.br.com.schumaker.carla.o3.core;
 
-import br.com.schumaker.carla.build.exception.FunctionNotFoundException;
-import br.com.schumaker.carla.build.exception.LoadingCoreLibraryException;
-import br.com.schumaker.carla.build.exception.X128RegisterNotFound;
-import br.com.schumaker.carla.build.exception.X64RegisterNotFound;
+import br.com.schumaker.carla.exception.FunctionNotFoundException;
+import br.com.schumaker.carla.exception.LoadingCoreLibraryException;
+import br.com.schumaker.carla.exception.X128RegisterNotFound;
+import br.com.schumaker.carla.exception.X64RegisterNotFound;
 import java.util.ArrayList;
 import java.util.List;
 import old.br.com.schumaker.carla.o3.O3SyntaxFunctionTable;
