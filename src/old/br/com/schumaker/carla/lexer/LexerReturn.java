@@ -1,6 +1,6 @@
 package old.br.com.schumaker.carla.lexer;
 
-import br.com.schumaker.carla.build.exception.ReturnTypeNotFoundException;
+import br.com.schumaker.carla.exception.ReturnTypeNotFoundException;
 import old.br.com.schumaker.carla.files.O3FileLine;
 import old.br.com.schumaker.carla.lexer.o3.O3FunctionVariableTable;
 import old.br.com.schumaker.carla.lexer.o3.O3Return;
