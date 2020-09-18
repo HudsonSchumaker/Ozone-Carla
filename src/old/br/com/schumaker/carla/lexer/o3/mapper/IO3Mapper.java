@@ -1,6 +1,6 @@
 package old.br.com.schumaker.carla.lexer.o3.mapper;
 
-import br.com.schumaker.carla.build.exception.MapperOperationException;
+import br.com.schumaker.carla.exception.MapperOperationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
