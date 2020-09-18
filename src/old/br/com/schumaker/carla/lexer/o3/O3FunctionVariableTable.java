@@ -1,6 +1,6 @@
 package old.br.com.schumaker.carla.lexer.o3;
 
-import br.com.schumaker.carla.build.exception.VariableNotDeclaredException;
+import br.com.schumaker.carla.exception.VariableNotDeclaredException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

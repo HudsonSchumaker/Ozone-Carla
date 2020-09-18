@@ -1,7 +1,7 @@
 package old.br.com.schumaker.carla.lexer.o3;
 
-import br.com.schumaker.carla.build.exception.VariableDefaultValueNotFoundException;
-import br.com.schumaker.carla.build.exception.VariableTypeNotFoundException;
+import br.com.schumaker.carla.exception.VariableDefaultValueNotFoundException;
+import br.com.schumaker.carla.exception.VariableTypeNotFoundException;
 import old.br.com.schumaker.carla.o3.O3SyntaxType;
 
 /**
