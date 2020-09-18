@@ -1,10 +1,10 @@
 package old.br.com.schumaker.carla.o3;
 
-import br.com.schumaker.carla.build.exception.LoadMathLibException;
-import br.com.schumaker.carla.build.exception.LoadPrintLibException;
-import br.com.schumaker.carla.build.exception.LoadStringLibException;
-import br.com.schumaker.carla.build.exception.LoadSyntaxFunctionException;
-import br.com.schumaker.carla.build.exception.ObjectLibNotFoundException;
+import br.com.schumaker.carla.exception.LoadMathLibException;
+import br.com.schumaker.carla.exception.LoadPrintLibException;
+import br.com.schumaker.carla.exception.LoadStringLibException;
+import br.com.schumaker.carla.exception.LoadSyntaxFunctionException;
+import br.com.schumaker.carla.exception.ObjectLibNotFoundException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
