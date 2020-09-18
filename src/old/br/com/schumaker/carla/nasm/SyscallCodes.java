@@ -1,6 +1,6 @@
 package old.br.com.schumaker.carla.nasm;
 
-import br.com.schumaker.carla.build.exception.LoadSysCallCodesException;
+import br.com.schumaker.carla.exception.LoadSysCallCodesException;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
