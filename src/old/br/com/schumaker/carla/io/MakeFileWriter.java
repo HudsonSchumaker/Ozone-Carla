@@ -1,7 +1,7 @@
 package old.br.com.schumaker.carla.io;
 
-import br.com.schumaker.carla.build.exception.CloseStreamsException;
-import br.com.schumaker.carla.build.exception.WriteMakefileException;
+import br.com.schumaker.carla.exception.CloseStreamsException;
+import br.com.schumaker.carla.exception.WriteMakefileException;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;

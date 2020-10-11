@@ -1,6 +1,6 @@
 package old.br.com.schumaker.carla.files;
 
-import br.com.schumaker.carla.build.exception.FunctionMainNotFoundException;
+import br.com.schumaker.carla.exception.FunctionMainNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import old.br.com.schumaker.carla.io.O3FileReader;

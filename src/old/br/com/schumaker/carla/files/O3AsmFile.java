@@ -1,6 +1,6 @@
 package old.br.com.schumaker.carla.files;
 
-import br.com.schumaker.carla.build.exception.AsmFilePreProcessorException;
+import br.com.schumaker.carla.exception.AsmFilePreProcessorException;
 import lombok.Data;
 import lombok.ToString;
 

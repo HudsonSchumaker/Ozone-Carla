@@ -1,6 +1,6 @@
 package old.br.com.schumaker.carla.io;
 
-import br.com.schumaker.carla.build.exception.FileNotSupportedException;
+import br.com.schumaker.carla.exception.FileNotSupportedException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
