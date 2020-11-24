@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public class RawSourceFileCheckerTest {
 
