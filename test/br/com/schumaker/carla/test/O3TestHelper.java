@@ -8,7 +8,7 @@ import java.io.FileWriter;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public final class O3TestHelper {
     private O3TestHelper() {}
