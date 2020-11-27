@@ -1,16 +1,22 @@
 package br.com.schumaker.carla.build;
 
+import lombok.Getter;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Hudson Schumaker
  */
 public class Terminal implements Bash {
+    @Getter
+    private List<String> out = new ArrayList<>();
 
     @Override
     public void executeCommand(String[] commands) {
@@ -32,9 +38,10 @@ public class Terminal implements Bash {
                 String line;
                 while ((line = br.readLine()) != null) {
                     System.out.println(line);
+                    this.out.add(line);
                 }
             } catch (IOException e) {
-                System.out.println(e);
+                System.err.println(e);
             } finally {
                 process.destroy();
             }
