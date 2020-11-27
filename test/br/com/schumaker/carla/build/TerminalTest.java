@@ -5,7 +5,7 @@ import org.junit.Test;
 
 /**
  *
- * @author schumaker
+ * @author Hudson Schumaker
  */
 public class TerminalTest {
 
