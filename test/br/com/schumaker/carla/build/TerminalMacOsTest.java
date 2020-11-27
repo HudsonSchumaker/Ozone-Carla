@@ -7,7 +7,7 @@ import org.junit.Test;
  *
  * @author Hudson Schumaker
  */
-public class TerminalTest {
+public class TerminalMacOsTest {
 
     @Test
     public void testExecuteCommand() throws InterruptedException {
@@ -16,7 +16,7 @@ public class TerminalTest {
         var cmd = "pwd";
 
         // Test
-        var tested = new Terminal();
+        var tested = new TerminalMacOs();
         tested.executeCommand(new String[]{cmd});
 
         // Assertion

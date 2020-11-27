@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Hudson Schumaker
  */
-public class Terminal implements Bash {
+public class TerminalMacOs implements Bash {
     @Getter
     private List<String> out = new ArrayList<>();
 
