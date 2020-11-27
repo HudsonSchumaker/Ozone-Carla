@@ -21,6 +21,6 @@ public class TerminalMacOsTest {
 
         // Assertion
         Thread.sleep(500); // wait for clean the buffer.
-        //assertEquals(path,
+        assertEquals(path, tested.getOut().get(0));
     }
 }
