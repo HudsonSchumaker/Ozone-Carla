@@ -7,3 +7,5 @@ CarlaCompiler.iml
 /nbproject/private/
 /build/
 /.idea/
+/out/production/
+/out/test/
