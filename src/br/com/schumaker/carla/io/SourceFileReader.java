@@ -32,17 +32,17 @@ public class SourceFileReader implements Reader<List<String>> {
 
         var fis = new FileInputStream(path);
         var isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
-        var br = new BufferedReader(isr);
+        var bfr = new BufferedReader(isr);
 
         var rawLines = new ArrayList<String>();
         var rawLine = "";
         while (null != rawLine) {
-            rawLine = br.readLine();
+            rawLine = bfr.readLine();
             if (null != rawLine) {
                 rawLines.add(rawLine);
             }
         }
-        br.close();
+        bfr.close();
         return rawLines;
     }
 
