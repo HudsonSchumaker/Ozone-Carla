@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,11 +26,12 @@ public class SourceFileReader implements Reader<List<String>> {
      */
     @Override
     public List<String> read(String path) throws Exception {
+        // Validations
         this.fileExists(path);
         this.validExtension(path);
 
         var fis = new FileInputStream(path);
-        var isr = new InputStreamReader(fis, "UTF-8");
+        var isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
         var br = new BufferedReader(isr);
 
         var rawLines = new ArrayList<String>();
