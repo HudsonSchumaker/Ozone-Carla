@@ -2,6 +2,11 @@ package br.com.schumaker.carla.io;
 
 import lombok.Data;
 
+/**
+ * This class holds O3 line from source file.
+ *
+ * @author Hudson Schumaker
+ */
 @Data
 public class FileLine {
 
