@@ -6,5 +6,10 @@ package br.com.schumaker.carla.io;
  * @see SourceFile
  * @author Hudson Schumaker
  */
-public class SourceFileBuilder {
+public class SourceFileBuilder implements FileBuilder<SourceFile> {
+
+    @Override
+    public SourceFile build(String path) throws Exception {
+        return null;
+    }
 }
