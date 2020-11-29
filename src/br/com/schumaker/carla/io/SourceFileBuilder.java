@@ -6,8 +6,8 @@ import java.util.List;
 /**
  * This class builds O3 SourceFiles.
  *
- * @see SourceFile
  * @author Hudson Schumaker
+ * @see SourceFile
  */
 public class SourceFileBuilder implements FileBuilder<SourceFile> {
 
@@ -16,9 +16,20 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
         var o3FileReader = new SourceFileReader();
         var lines = o3FileReader.read(path);
 
+        var file = new SourceFile(
+                FileUtils.getName(path),
+                FileUtils.getClearPath(path),
+                this.createLines(lines));
 
+        //TODO :
+        // setFunctionHeaders,
+        // setConditionalStatements,
+        // setLoopStatements,
+        // setVariableDeclarations,
+        // setFunctionCalls,
+        // setReturnStatements
 
-        return null;
+        return file;
     }
 
     /**
