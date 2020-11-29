@@ -24,7 +24,7 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
     /**
      * Creates the O3FileLine from the rawLines read form a .o3 source file.
      *
-     * @param rawLines
+     * @param rawLines Lines from the physical file. Ex: foo.o3
      * @return A list of O3FileLine
      */
     @Override
