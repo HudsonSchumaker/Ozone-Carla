@@ -53,7 +53,7 @@ public class SourceFileReader implements Reader<List<String>> {
     }
 
     private void validExtension(String path) {
-        if (!O3SourceFile.EXT.equals(FileUtils.getFileExtension(path))) {
+        if (!SourceFile.EXT.equals(FileUtils.getFileExtension(path))) {
             throw new FileNotSupportedException();
         }
     }
