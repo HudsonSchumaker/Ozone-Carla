@@ -1,5 +1,7 @@
 package br.com.schumaker.carla.run;
 
+import br.com.schumaker.carla.io.SourceFile;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,4 +22,8 @@ public final class Maestro {
 
     }
 
+    public SourceFile initializeO3File(String path) throws Exception {
+
+        return null;
+    }
 }
