@@ -10,6 +10,11 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
 
     @Override
     public SourceFile build(String path) throws Exception {
+        var o3FileReader = new SourceFileReader();
+        var lines = o3FileReader.read(path);
+
+
+
         return null;
     }
 }
