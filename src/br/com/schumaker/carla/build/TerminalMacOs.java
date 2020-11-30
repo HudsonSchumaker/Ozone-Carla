@@ -26,7 +26,7 @@ public class TerminalMacOs implements Bash {
             Process process = null;
             try {
                 process = builder.start();
-                BufferedWriter input = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
+                var input = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
 
                 for (int i = 0; i < commands.length; i++) {
                     input.write(commands[i]);
@@ -35,7 +35,7 @@ public class TerminalMacOs implements Bash {
                 }
 
                 input.flush();
-                BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                var br = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 String line;
                 while ((line = br.readLine()) != null) {
                     System.out.println(line);
