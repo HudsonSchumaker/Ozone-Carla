@@ -22,7 +22,7 @@ public class TerminalMacOs implements Bash {
     @Override
     public void executeCommand(String[] commands) {
         new Thread(() -> {
-            ProcessBuilder builder = new ProcessBuilder("/bin/bash");
+            var builder = new ProcessBuilder("/bin/bash");
             Process process = null;
             try {
                 process = builder.start();
