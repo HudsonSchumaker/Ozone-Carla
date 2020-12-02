@@ -53,7 +53,7 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
      * @param file SourceFile param
      */
     public void setFunctionHeaders(SourceFile file) {
-        for (O3FileLine line : file.getLines()) {
+        for (FileLine line : file.getLines()) {
             if (LexerHelper.isFunctionHeader(line.getData())) {
                 line.setFunctionHeader(true);
             }
@@ -65,7 +65,7 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
      * @param file SourceFile param
      */
     public void setConditionalStatements(SourceFile file) {
-        for (O3FileLine line : file.getLines()) {
+        for (FileLine line : file.getLines()) {
             if (!line.isFunctionHeader()) {
                 if (LexerHelper.isConditionalStatement(line.getData())) {
                     line.setConditionalStatement(true);
@@ -79,7 +79,7 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
      * @param file SourceFile param
      */
     public void setLoopStatements(SourceFile file) {
-        for (O3FileLine line : file.getLines()) {
+        for (FileLine line : file.getLines()) {
             if (!line.isFunctionHeader()) {
                 if (LexerHelper.isLoopStatement(line.getData())) {
                     line.setLoopStatement(true);
@@ -93,7 +93,7 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
      * @param file SourceFile param
      */
     public void setVariableDeclarations(SourceFile file) {
-        for (O3FileLine line : file.getLines()) {
+        for (FileLine line : file.getLines()) {
             if (!line.isFunctionHeader()) {
                 if (LexerHelper.isVariableDeclaration(line.getData())) {
                     line.setVariableDeclaration(true);
@@ -107,7 +107,7 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
      * @param file SourceFile param
      */
     public void setFunctionCalls(SourceFile file) {
-        for (O3FileLine line : file.getLines()) {
+        for (FileLine line : file.getLines()) {
             if (!line.isFunctionHeader()) {
                 if (LexerHelper.isAnExpression(line.getData())) {
                     line.setFunctionCall(true);
@@ -117,6 +117,11 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
     }
 
     public void setReturnStatements(SourceFile file) {
+        for (FileLine line : file.getLines()) {
+            if(!line.isFunctionHeader()) {
+
+            }
+        }
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
