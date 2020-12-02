@@ -35,7 +35,7 @@ public class TerminalWin implements Cmd {
                         }
                     }
                 } catch (IOException e) {
-                    System.err.println(e);
+                    System.err.println(e.getMessage());
                 } finally {
                     process.destroy();
                 }
