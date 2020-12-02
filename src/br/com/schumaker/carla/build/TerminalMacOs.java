@@ -42,7 +42,7 @@ public class TerminalMacOs implements Bash {
                     this.out.add(line);
                 }
             } catch (IOException e) {
-                System.err.println(e);
+                System.err.println(e.getMessage());
             } finally {
                 process.destroy();
             }
