@@ -46,4 +46,77 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
         }
         return lines;
     }
+
+    /**
+     * Sets the O3FileLines that have a function header.
+     *
+     * @param file SourceFile param
+     */
+    public void setFunctionHeaders(SourceFile file) {
+        for (O3FileLine line : file.getLines()) {
+            if (LexerHelper.isFunctionHeader(line.getData())) {
+                line.setFunctionHeader(true);
+            }
+        }
+    }
+
+    /**
+     *
+     * @param file SourceFile param
+     */
+    public void setConditionalStatements(SourceFile file) {
+        for (O3FileLine line : file.getLines()) {
+            if (!line.isFunctionHeader()) {
+                if (LexerHelper.isConditionalStatement(line.getData())) {
+                    line.setConditionalStatement(true);
+                }
+            }
+        }
+    }
+
+    /**
+     *
+     * @param file SourceFile param
+     */
+    public void setLoopStatements(SourceFile file) {
+        for (O3FileLine line : file.getLines()) {
+            if (!line.isFunctionHeader()) {
+                if (LexerHelper.isLoopStatement(line.getData())) {
+                    line.setLoopStatement(true);
+                }
+            }
+        }
+    }
+
+    /**
+     *
+     * @param file SourceFile param
+     */
+    public void setVariableDeclarations(SourceFile file) {
+        for (O3FileLine line : file.getLines()) {
+            if (!line.isFunctionHeader()) {
+                if (LexerHelper.isVariableDeclaration(line.getData())) {
+                    line.setVariableDeclaration(true);
+                }
+            }
+        }
+    }
+
+    /**
+     *
+     * @param file SourceFile param
+     */
+    public void setFunctionCalls(SourceFile file) {
+        for (O3FileLine line : file.getLines()) {
+            if (!line.isFunctionHeader()) {
+                if (LexerHelper.isAnExpression(line.getData())) {
+                    line.setFunctionCall(true);
+                }
+            }
+        }
+    }
+
+    public void setReturnStatements(SourceFile file) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
