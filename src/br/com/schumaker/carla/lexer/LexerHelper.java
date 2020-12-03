@@ -1,8 +1,6 @@
 package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.core.O3Keyword;
-import br.com.schumaker.carla.io.FileLine;
-import br.com.schumaker.carla.io.SourceFile;
 
 /**
  * Helper class
