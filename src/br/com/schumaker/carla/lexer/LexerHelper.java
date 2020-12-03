@@ -39,12 +39,7 @@ public final class LexerHelper {
         return data.trim().contains(O3Keyword.RETURN);
     }
 
-    public static boolean containsFunctionMain(SourceFile file) {
-        for (FileLine line : file.getLines()) {
-            if (line.getData().contains("f: main()")) {
-                return true;
-            }
-        }
-        return false;
+    public static boolean containsFunctionMain(String data) {
+        return data.contains("f: main()");
     }
 }
