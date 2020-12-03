@@ -28,6 +28,7 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
         this.setLoopStatements(file);
         this.setVariableDeclarations(file);
         this.setFunctionCalls(file);
+        this.setReturnStatements(file);
         return file;
     }
 
