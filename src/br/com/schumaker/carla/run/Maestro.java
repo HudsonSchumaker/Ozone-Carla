@@ -1,6 +1,8 @@
 package br.com.schumaker.carla.run;
 
+import br.com.schumaker.carla.io.RawSourceFileChecker;
 import br.com.schumaker.carla.io.SourceFile;
+import br.com.schumaker.carla.io.SourceFileBuilder;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +25,9 @@ public final class Maestro {
     }
 
     public SourceFile initializeO3File(String path) throws Exception {
-
-        return null;
+        var file =  new SourceFileBuilder().build(path);
+        var preChecker = new RawSourceFileChecker();
+        preChecker.startCheck(file);
+        return file;
     }
 }
