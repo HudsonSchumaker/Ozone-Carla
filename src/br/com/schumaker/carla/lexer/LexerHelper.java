@@ -9,8 +9,7 @@ import br.com.schumaker.carla.core.O3Keyword;
  */
 public final class LexerHelper {
 
-    private LexerHelper() {
-    }
+    private LexerHelper() {}
 
     public static boolean isFunctionHeader(String data) {
         return data.startsWith(O3Keyword.FUNCTION);
