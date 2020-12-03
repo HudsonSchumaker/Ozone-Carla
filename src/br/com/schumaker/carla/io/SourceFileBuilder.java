@@ -1,5 +1,8 @@
 package br.com.schumaker.carla.io;
 
+import br.com.schumaker.carla.exception.FunctionMainNotFoundException;
+import br.com.schumaker.carla.lexer.LexerHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,28 +18,24 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
     public SourceFile build(String path) throws Exception {
         var o3FileReader = new SourceFileReader();
         var lines = o3FileReader.read(path);
+        var file = new SourceFile(FileUtils.getName(path), FileUtils.getClearPath(path), this.createLines(lines));
 
-        var file = new SourceFile(
-                FileUtils.getName(path),
-                FileUtils.getClearPath(path),
-                this.createLines(lines));
-
-        //TODO :
-        // setFunctionHeaders,
-        // setConditionalStatements,
-        // setLoopStatements,
-        // setVariableDeclarations,
-        // setFunctionCalls,
-        // setReturnStatements
-
+        // check if the source file has a function main
+        this.checkForMainFunction(file);
+        // set the source file lines attributes
+        this.setFunctionHeaders(file);
+        this.setConditionalStatements(file);
+        this.setLoopStatements(file);
+        this.setVariableDeclarations(file);
+        this.setFunctionCalls(file);
         return file;
     }
 
     /**
-     * Creates the O3FileLine from the rawLines read form a .o3 source file.
+     * Creates the FileLine from the rawLines read form a .o3 source file.
      *
      * @param rawLines Lines from the physical file. Ex: foo.o3
-     * @return A list of O3FileLine
+     * @return A list of FileLine
      */
     @Override
     public List<FileLine> createLines(List<String> rawLines) {
@@ -48,7 +47,7 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
     }
 
     /**
-     * Sets the O3FileLines that have a function header.
+     * Sets the FileLines that have a function header.
      *
      * @param file SourceFile param
      */
@@ -86,6 +85,7 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
                 }
             }
         }
+
     }
 
     /**
@@ -116,12 +116,30 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
         }
     }
 
+    /**
+     *
+     * @param file SourceFile param
+     */
     public void setReturnStatements(SourceFile file) {
         for (FileLine line : file.getLines()) {
             if(!line.isFunctionHeader()) {
-
+                if (LexerHelper.isReturnStatement(line.getData())) {
+                    line.setReturnStatement(true);
+                }
             }
         }
-        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    /**
+     *
+     * @param file SourceFile param
+     */
+    public void checkForMainFunction(SourceFile file) {
+        for(FileLine line : file.getLines()) {
+            if (LexerHelper.containsFunctionMain(line.getData())) {
+                return;
+            }
+        }
+        throw new FunctionMainNotFoundException();
     }
 }
