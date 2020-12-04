@@ -1,7 +1,10 @@
 package br.com.schumaker.carla.io;
 
+import br.com.schumaker.carla.utils.FileUtils;
 import org.junit.Test;
+
 import java.io.File;
+
 import static org.junit.Assert.assertEquals;
 
 /**

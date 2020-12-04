@@ -2,6 +2,7 @@ package br.com.schumaker.carla.io;
 
 import br.com.schumaker.carla.exception.FunctionMainNotFoundException;
 import br.com.schumaker.carla.lexer.LexerHelper;
+import br.com.schumaker.carla.utils.FileUtils;
 
 import java.util.ArrayList;
 import java.util.List;
