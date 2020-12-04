@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Hudson Schumaker
  */
 public class RawSourceFileChecker {
-    public void startCheck(SourceFile file) {
+    public void doCheck(SourceFile file) {
         this.removeComments(file);
         this.removeBlankLines(file);
         this.setInternalLineNumbers(file);
