@@ -26,8 +26,7 @@ public final class Maestro {
 
     public SourceFile initializeSourceFile(String path) throws Exception {
         var file =  new SourceFileBuilder().build(path);
-        var preChecker = new RawSourceFileChecker();
-        preChecker.startCheck(file);
+        new RawSourceFileChecker().doCheck(file);
         return file;
     }
 }
