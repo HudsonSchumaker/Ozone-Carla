@@ -3,6 +3,7 @@ package br.com.schumaker.carla.run;
 import br.com.schumaker.carla.io.RawSourceFileChecker;
 import br.com.schumaker.carla.io.SourceFile;
 import br.com.schumaker.carla.io.SourceFileBuilder;
+import br.com.schumaker.carla.lexer.Lexer;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +21,14 @@ public final class Maestro {
         this.args = Arrays.asList(args);
     }
 
-    public void start() {
+    public void start()  throws Exception {
+        var SourceFile = this.initializeSourceFile(args.get(0));
+        var lexer = new Lexer();
+        //var atom = lexer.createProgram(o3File);
+        this.machineCode();
+    }
+
+    public void machineCode() {
 
     }
 
