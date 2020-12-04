@@ -24,7 +24,7 @@ public final class Maestro {
 
     }
 
-    public SourceFile initializeO3File(String path) throws Exception {
+    public SourceFile initializeSourceFile(String path) throws Exception {
         var file =  new SourceFileBuilder().build(path);
         var preChecker = new RawSourceFileChecker();
         preChecker.startCheck(file);
