@@ -33,7 +33,7 @@ public class FileUtils {
     }
 
     public static String getClearPath(String path) {
-        int pos = path.lastIndexOf("/");
+        int pos = path.lastIndexOf(System.getProperty("file.separator"));
         return path.substring(0, pos + 1);
     }
 
