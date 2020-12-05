@@ -1,4 +1,4 @@
-package br.com.schumaker.carla.core;
+package br.com.schumaker.carla.o3;
 
 /**
  * This class defines the keywords of O³ p.l.
