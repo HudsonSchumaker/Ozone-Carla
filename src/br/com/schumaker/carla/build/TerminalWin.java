@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Hudson Schumaker
  */
-public class TerminalWin implements Cmd {
+public final class TerminalWin implements Cmd {
 
     @Getter
     private List<String> output = new ArrayList<>();
