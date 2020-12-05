@@ -1,8 +1,7 @@
 package br.com.schumaker.carla.lexer;
 
+import br.com.schumaker.carla.io.SourceFile;
 import br.com.schumaker.carla.o3.Atom;
-
-import java.io.File;
 
 /**
  *
@@ -10,5 +9,5 @@ import java.io.File;
  */
 public interface ILexer {
 
-    Atom createProgram(File file);
+    Atom createProgram(SourceFile file);
 }

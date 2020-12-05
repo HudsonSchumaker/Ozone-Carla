@@ -22,9 +22,9 @@ public final class Maestro {
     }
 
     public void start()  throws Exception {
-        var SourceFile = this.initializeSourceFile(args.get(0));
+        var sourceFile = this.initializeSourceFile(args.get(0));
         var lexer = new Lexer();
-        //var atom = lexer.createProgram(o3File);
+        var atom = lexer.createProgram(sourceFile);
         this.machineCode();
     }
 
