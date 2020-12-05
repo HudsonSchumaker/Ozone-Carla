@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.lexer;
 
-import br.com.schumaker.carla.io.SourceFile;
-import br.com.schumaker.carla.o3.Atom;
+import br.com.schumaker.carla.io.O3File;
+import br.com.schumaker.carla.o3.O3Atom;
 
 /**
  *
@@ -9,5 +9,5 @@ import br.com.schumaker.carla.o3.Atom;
  */
 public interface ILexer {
 
-    Atom createProgram(SourceFile file);
+    O3Atom createProgram(O3File file);
 }

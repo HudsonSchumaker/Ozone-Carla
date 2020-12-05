@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.lexer;
 
-import br.com.schumaker.carla.io.SourceFile;
-import br.com.schumaker.carla.o3.Atom;
+import br.com.schumaker.carla.io.O3File;
+import br.com.schumaker.carla.o3.O3Atom;
 
 /**
  * Main class of O3 (Carla Compiler) Lexer.
@@ -11,7 +11,7 @@ import br.com.schumaker.carla.o3.Atom;
 public class Lexer implements ILexer {
 
     @Override
-    public Atom createProgram(SourceFile file) {
+    public O3Atom createProgram(O3File file) {
         return null;
     }
 }

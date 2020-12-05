@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.run;
 
+import br.com.schumaker.carla.io.O3File;
 import br.com.schumaker.carla.io.RawSourceFileChecker;
-import br.com.schumaker.carla.io.SourceFile;
 import br.com.schumaker.carla.io.SourceFileBuilder;
 import br.com.schumaker.carla.lexer.Lexer;
 
@@ -32,7 +32,7 @@ public final class Maestro {
 
     }
 
-    public SourceFile initializeSourceFile(String path) throws Exception {
+    public O3File initializeSourceFile(String path) throws Exception {
         var file =  new SourceFileBuilder().build(path);
         new RawSourceFileChecker().doCheck(file);
         return file;

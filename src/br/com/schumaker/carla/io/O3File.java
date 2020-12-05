@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-public class SourceFile {
+public class O3File {
     public static final String EXT = "o3";
 
     private String name;
