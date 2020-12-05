@@ -2,6 +2,10 @@ package br.com.schumaker.carla.o3.impl;
 
 import br.com.schumaker.carla.o3.Variable;
 
+/**
+ *
+ * @author Hudson Schumaker
+ */
 public final class O3Return implements Variable {
 
     @Override
