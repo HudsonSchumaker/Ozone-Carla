@@ -1,5 +1,7 @@
 package br.com.schumaker.carla.io;
 
+import br.com.schumaker.carla.io.impl.FileLine;
+
 import java.util.List;
 
 /**

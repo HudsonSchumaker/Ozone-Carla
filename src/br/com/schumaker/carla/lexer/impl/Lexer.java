@@ -1,6 +1,6 @@
 package br.com.schumaker.carla.lexer.impl;
 
-import br.com.schumaker.carla.io.O3File;
+import br.com.schumaker.carla.io.impl.O3File;
 import br.com.schumaker.carla.lexer.ILexer;
 import br.com.schumaker.carla.o3.impl.O3Atom;
 

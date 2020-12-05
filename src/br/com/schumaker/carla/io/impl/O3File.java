@@ -1,4 +1,4 @@
-package br.com.schumaker.carla.io;
+package br.com.schumaker.carla.io.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
