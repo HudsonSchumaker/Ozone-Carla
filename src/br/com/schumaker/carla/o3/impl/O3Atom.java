@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class O3Atom {
+public final class O3Atom {
 
     private String name;
 }
