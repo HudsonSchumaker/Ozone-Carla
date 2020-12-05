@@ -32,5 +32,4 @@ public final class O3Variable implements Variable {
     public String getAType() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }
