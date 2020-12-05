@@ -2,19 +2,14 @@ package br.com.schumaker.carla.build;
 
 import lombok.Getter;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Hudson Schumaker
  */
-public class TerminalMacOs implements Bash {
+public final class TerminalMacOs implements Bash {
 
     @Getter
     private List<String> out = new ArrayList<>();
