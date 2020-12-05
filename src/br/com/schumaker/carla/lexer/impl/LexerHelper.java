@@ -1,4 +1,4 @@
-package br.com.schumaker.carla.lexer;
+package br.com.schumaker.carla.lexer.impl;
 
 import br.com.schumaker.carla.o3.impl.O3Keyword;
 
