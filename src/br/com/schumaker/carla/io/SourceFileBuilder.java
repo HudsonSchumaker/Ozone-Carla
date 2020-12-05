@@ -43,7 +43,7 @@ public class SourceFileBuilder implements FileBuilder<SourceFile> {
     public List<FileLine> createLines(List<String> rawLines) {
         var lines = new ArrayList<FileLine>();
         for (int l = 0, n = 1; l < rawLines.size(); l++, n++) {
-            lines.add(new FileLine(rawLines.get(l), n));
+            lines.add(new FileLine(rawLines.get(l).trim(), n));
         }
         return lines;
     }
