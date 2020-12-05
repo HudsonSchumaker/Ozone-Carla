@@ -1,10 +1,12 @@
-package br.com.schumaker.carla.o3;
+package br.com.schumaker.carla.o3.impl;
+
+import br.com.schumaker.carla.o3.Variable;
 
 /**
  *
  * @author Hudson Schumaker
  */
-public class O3Variable implements Variable {
+public class O3Parameter implements Variable {
 
     @Override
     public Object getValue() {

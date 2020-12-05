@@ -1,4 +1,4 @@
-package br.com.schumaker.carla.o3;
+package br.com.schumaker.carla.o3.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
