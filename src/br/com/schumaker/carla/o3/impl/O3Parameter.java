@@ -6,7 +6,7 @@ import br.com.schumaker.carla.o3.Variable;
  *
  * @author Hudson Schumaker
  */
-public class O3Parameter implements Variable {
+public final class O3Parameter implements Variable {
 
     @Override
     public Object getValue() {
