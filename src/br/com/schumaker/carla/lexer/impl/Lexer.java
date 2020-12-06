@@ -13,6 +13,9 @@ public class Lexer implements ILexer {
 
     @Override
     public O3Atom createProgram(O3File file) {
+        var lexerFunction = new LexerFunction();
+        var functions = lexerFunction.getFunctions(file);
+
         return null;
     }
 }
