@@ -1,12 +1,16 @@
 package br.com.schumaker.carla.o3.impl;
 
 import br.com.schumaker.carla.o3.Variable;
+import lombok.Data;
 
 /**
- *
  * @author Hudson Schumaker
  */
+@Data
 public final class O3Variable implements Variable {
+
+
+    private boolean isGlobal;
 
     @Override
     public Object getValue() {
