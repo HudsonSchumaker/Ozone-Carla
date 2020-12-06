@@ -20,5 +20,5 @@ public class O3File {
 
     private String name;
     private String path;
-    private List<FileLine> lines;
+    private List<O3FileLine> lines;
 }

@@ -8,7 +8,7 @@ import lombok.Data;
  * @author Hudson Schumaker
  */
 @Data
-public class FileLine {
+public class O3FileLine {
 
     private String data;
     private boolean functionHeader;
@@ -20,7 +20,7 @@ public class FileLine {
     private Integer originalNumber;
     private Integer internalNumber;
 
-    public FileLine(String data, Integer originalNumber) {
+    public O3FileLine(String data, Integer originalNumber) {
         this.data = data;
         this.originalNumber = originalNumber;
     }

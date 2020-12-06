@@ -22,8 +22,8 @@ public class RawSourceFileChecker {
     }
 
     public void removeComments(O3File file) {
-        var newLines = new ArrayList<FileLine>();
-        for (FileLine line : file.getLines()) {
+        var newLines = new ArrayList<O3FileLine>();
+        for (O3FileLine line : file.getLines()) {
             if (!line.getData().trim().startsWith(";")) {
                 newLines.add(line);
             }
@@ -32,8 +32,8 @@ public class RawSourceFileChecker {
     }
 
     public void removeBlankLines(O3File file) {
-        var newLines = new ArrayList<FileLine>();
-        for (FileLine line : file.getLines()) {
+        var newLines = new ArrayList<O3FileLine>();
+        for (O3FileLine line : file.getLines()) {
             if (!StringUtils.isBlankString(line.getData())) {
                 newLines.add(line);
             }

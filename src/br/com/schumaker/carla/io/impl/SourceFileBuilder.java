@@ -41,10 +41,10 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
      * @return A list of FileLine
      */
     @Override
-    public List<FileLine> createLines(List<String> rawLines) {
-        var lines = new ArrayList<FileLine>();
+    public List<O3FileLine> createLines(List<String> rawLines) {
+        var lines = new ArrayList<O3FileLine>();
         for (int l = 0, n = 1; l < rawLines.size(); l++, n++) {
-            lines.add(new FileLine(rawLines.get(l).trim(), n));
+            lines.add(new O3FileLine(rawLines.get(l).trim(), n));
         }
         return lines;
     }
@@ -55,7 +55,7 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
      * @param file SourceFile param
      */
     public void setFunctionHeaders(O3File file) {
-        for (FileLine line : file.getLines()) {
+        for (O3FileLine line : file.getLines()) {
             if (LexerHelper.isFunctionHeader(line.getData())) {
                 line.setFunctionHeader(true);
             }
@@ -67,7 +67,7 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
      * @param file SourceFile param
      */
     public void setConditionalStatements(O3File file) {
-        for (FileLine line : file.getLines()) {
+        for (O3FileLine line : file.getLines()) {
             if (!line.isFunctionHeader()) {
                 if (LexerHelper.isConditionalStatement(line.getData())) {
                     line.setConditionalStatement(true);
@@ -81,7 +81,7 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
      * @param file SourceFile param
      */
     public void setLoopStatements(O3File file) {
-        for (FileLine line : file.getLines()) {
+        for (O3FileLine line : file.getLines()) {
             if (!line.isFunctionHeader()) {
                 if (LexerHelper.isLoopStatement(line.getData())) {
                     line.setLoopStatement(true);
@@ -96,7 +96,7 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
      * @param file SourceFile param
      */
     public void setVariableDeclarations(O3File file) {
-        for (FileLine line : file.getLines()) {
+        for (O3FileLine line : file.getLines()) {
             if (!line.isFunctionHeader()) {
                 if (LexerHelper.isVariableDeclaration(line.getData())) {
                     line.setVariableDeclaration(true);
@@ -110,7 +110,7 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
      * @param file SourceFile param
      */
     public void setFunctionCalls(O3File file) {
-        for (FileLine line : file.getLines()) {
+        for (O3FileLine line : file.getLines()) {
             if (!line.isFunctionHeader()) {
                 if (LexerHelper.isAnExpression(line.getData())) {
                     line.setFunctionCall(true);
@@ -124,8 +124,8 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
      * @param file SourceFile param
      */
     public void setReturnStatements(O3File file) {
-        for (FileLine line : file.getLines()) {
-            if(!line.isFunctionHeader()) {
+        for (O3FileLine line : file.getLines()) {
+            if (!line.isFunctionHeader()) {
                 if (LexerHelper.isReturnStatement(line.getData())) {
                     line.setReturnStatement(true);
                 }
@@ -138,7 +138,7 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
      * @param file SourceFile param
      */
     public void checkForMainFunction(O3File file) {
-        for(FileLine line : file.getLines()) {
+        for (O3FileLine line : file.getLines()) {
             if (LexerHelper.containsFunctionMain(line.getData())) {
                 return;
             }
