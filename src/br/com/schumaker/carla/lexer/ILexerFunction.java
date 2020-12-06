@@ -11,6 +11,5 @@ import java.util.List;
 public interface ILexerFunction {
 
     List<O3Function> getFunctions(O3File file);
-
     String getFunctionName(String data);
 }
