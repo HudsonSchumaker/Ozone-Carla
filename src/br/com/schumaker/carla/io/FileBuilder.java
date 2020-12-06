@@ -1,6 +1,6 @@
 package br.com.schumaker.carla.io;
 
-import br.com.schumaker.carla.io.impl.FileLine;
+import br.com.schumaker.carla.io.impl.O3FileLine;
 
 import java.util.List;
 
@@ -11,5 +11,6 @@ import java.util.List;
  */
 public interface FileBuilder<T> {
     T build(String path) throws Exception;
-    List<FileLine> createLines(List<String> rawLines);
+
+    List<O3FileLine> createLines(List<String> rawLines);
 }
