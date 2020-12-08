@@ -8,7 +8,7 @@ import lombok.Data;
  * @author Hudson Schumaker
  */
 @Data
-public class O3FileLine {
+public final class O3FileLine {
 
     private String data;
     private boolean functionHeader;
