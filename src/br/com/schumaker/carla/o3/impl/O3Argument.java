@@ -10,7 +10,6 @@ import lombok.Data;
 public final class O3Argument implements Variable {
 
     private boolean isConstant;
-
     private String name;
     private String internalName;
 
@@ -23,5 +22,4 @@ public final class O3Argument implements Variable {
     public String getType() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }
