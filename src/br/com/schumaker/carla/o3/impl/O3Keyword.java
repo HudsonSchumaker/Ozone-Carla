@@ -7,11 +7,14 @@ package br.com.schumaker.carla.o3.impl;
  */
 public final class O3Keyword {
 
-    private O3Keyword() {}
+    private O3Keyword() {
+    }
 
     public static final String COMMENT = ";";
     public static final String FUNCTION = "f:";
     public static final String VARIABLE = "v:";
+    public static final String CONSTANT = "c:";
+    public static final String PARAM = "p:";
     public static final String RETURN = "r:";
 
     public static final String IF = "if";
