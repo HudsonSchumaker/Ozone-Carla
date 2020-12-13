@@ -17,6 +17,8 @@ import java.util.List;
  */
 public final class LexerFunction implements ILexerFunction {
 
+    private LexerFunctionTable functionTable = new LexerFunctionTable();
+
     @Override
     public List<O3Function> getFunctions(O3File file) {
         return null;
@@ -29,6 +31,16 @@ public final class LexerFunction implements ILexerFunction {
 
     @Override
     public O3Function getBody(O3FileLine headerLine, O3File file) {
+        var endBlock = "";
+        var k = headerLine.getInternalNumber();
+        var functionLines = new ArrayList<O3FileLine>();
+        while (!endBlock.equals(O3Keyword.CLOSE_STATEMENT)) {
+            functionLines.add(file.getLines().get(k));
+            endBlock = file.getLines().get(k).getData();
+            k++;
+        }
+
+
         return null;
     }
 
@@ -45,7 +57,7 @@ public final class LexerFunction implements ILexerFunction {
 
     @Override
     public String getFunctionName(String data) {
-        var name = data.substring(O3Keyword.FUNCTION.length(), data.length()).trim();
+        var name = data.substring(O3Keyword.FUNCTION.length()).trim();
         return name.substring(0, name.indexOf(O3Keyword.OPEN_EXPRESSION)).trim();
     }
 

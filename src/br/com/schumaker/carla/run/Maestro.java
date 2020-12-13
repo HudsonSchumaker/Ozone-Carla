@@ -22,6 +22,8 @@ public final class Maestro {
     }
 
     public void start()  throws Exception {
+        System.out.println("Reading source file: " + args.get(0));
+
         var sourceFile = this.initializeSourceFile(args.get(0));
         var lexer = new Lexer();
         var atom = lexer.createProgram(sourceFile);
