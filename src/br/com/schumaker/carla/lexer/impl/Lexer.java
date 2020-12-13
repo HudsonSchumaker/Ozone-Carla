@@ -16,6 +16,6 @@ public class Lexer implements ILexer {
         var lexerFunction = new LexerFunction();
         var functions = lexerFunction.getFunctions(file);
 
-        return null;
+        return new O3Atom(file.getName(), functions);
     }
 }
