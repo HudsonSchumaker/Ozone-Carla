@@ -21,6 +21,13 @@ public final class LexerFunction implements ILexerFunction {
 
     @Override
     public List<O3Function> getFunctions(O3File file) {
+        var headerLines = this.getHeaderLines(file);
+        var functions = new ArrayList<O3Function>();
+
+        for (O3FileLine line : headerLines) {
+            functions.add(this.getBody(line, file));
+        }
+
         return null;
     }
 
