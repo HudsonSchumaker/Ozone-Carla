@@ -9,16 +9,15 @@ import lombok.Data;
 @Data
 public final class O3Variable implements Variable {
 
-
     private boolean isGlobal;
 
     @Override
-    public Object getValue() {
+    public String getName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String getName() {
+    public Object getValue() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
