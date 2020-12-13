@@ -11,12 +11,12 @@ public final class O3Return implements Variable {
 
     private String name;
     private String internalName;
+    private boolean constant;
 
     @Override
     public String getType() {
         return null;
     }
-
 
     @Override
     public Object getValue() {
