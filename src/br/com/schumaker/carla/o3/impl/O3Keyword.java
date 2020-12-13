@@ -46,6 +46,5 @@ public final class O3Keyword {
     public static final String TRUE = "true";
     public static final String FALSE = "false";
     public static final String FLOATING_POINT_SIGN = ".";
-    public static final String FLOAT_SIGN = "f";
     public static final String DOUBLE_SIGN = "d";
 }
