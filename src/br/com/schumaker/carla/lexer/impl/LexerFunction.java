@@ -3,9 +3,9 @@ package br.com.schumaker.carla.lexer.impl;
 import br.com.schumaker.carla.io.impl.O3File;
 import br.com.schumaker.carla.io.impl.O3FileLine;
 import br.com.schumaker.carla.lexer.ILexerFunction;
-import br.com.schumaker.carla.o3.impl.O3Function;
-import br.com.schumaker.carla.o3.impl.O3Keyword;
-import br.com.schumaker.carla.o3.impl.O3Parameter;
+import br.com.schumaker.carla.o3.VariableTable;
+import br.com.schumaker.carla.o3.impl.*;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,7 @@ import java.util.List;
  *
  * @author Hudson Schumaker
  */
+@Getter
 public final class LexerFunction implements ILexerFunction {
 
     private LexerFunctionTable functionTable = new LexerFunctionTable();
@@ -22,33 +23,40 @@ public final class LexerFunction implements ILexerFunction {
     @Override
     public List<O3Function> getFunctions(O3File file) {
         var headerLines = this.getHeaderLines(file);
-        var functions = new ArrayList<O3Function>();
-
         for (O3FileLine line : headerLines) {
-            functions.add(this.getBody(line, file));
+            functionTable.add(this.getBody(line, file));
         }
 
-        return null;
+        return functionTable.getAllFunctions();
     }
 
     @Override
-    public List<O3Parameter> getParams(String functionName, O3FileLine line) {
-        return null;
+    public List<O3Parameter> getParams(String functionName, O3FileLine headLine) {
+        return new LexerParameter().getParameters(functionName, headLine);
     }
 
     @Override
     public O3Function getBody(O3FileLine headerLine, O3File file) {
         var endBlock = "";
         var k = headerLine.getInternalNumber();
-        var functionLines = new ArrayList<O3FileLine>();
+        var body = new ArrayList<O3FileLine>();
         while (!endBlock.equals(O3Keyword.CLOSE_STATEMENT)) {
-            functionLines.add(file.getLines().get(k));
+            body.add(file.getLines().get(k));
             endBlock = file.getLines().get(k).getData();
             k++;
         }
 
+        var functionName = this.getFunctionName(headerLine);
+        var params = this.getParams(functionName, headerLine);
+        var function = new O3Function(this.isMainFunction(headerLine),
+                hasReturn(body),
+                functionName,
+                this.getFunctionInternalName(headerLine),
+                new O3FunctionVariableTable(params),
+                new O3Statement(body));
 
-        return null;
+        this.functionTable.add(function);
+        return function;
     }
 
     @Override
@@ -63,18 +71,27 @@ public final class LexerFunction implements ILexerFunction {
     }
 
     @Override
-    public String getFunctionName(String data) {
-        var name = data.substring(O3Keyword.FUNCTION.length()).trim();
+    public VariableTable createVariableTable(String functionName, List<O3FileLine> lines) {
+        return null;
+    }
+
+    @Override
+    public String getFunctionName(O3FileLine headerLine) {
+        var name = headerLine.getData().substring(O3Keyword.FUNCTION.length()).trim();
         return name.substring(0, name.indexOf(O3Keyword.OPEN_EXPRESSION)).trim();
     }
 
     @Override
-    public String getFunctionInternalName(String data) {
-        return "_" + this.getFunctionName(data);
+    public String getFunctionInternalName(O3FileLine headerLine) {
+        return "_" + this.getFunctionName(headerLine);
     }
 
     @Override
     public boolean isMainFunction(O3FileLine headerLine) {
         return headerLine.getData().contains("f: main()");
+    }
+
+    public boolean hasReturn(List<O3FileLine> body) {
+        return body.stream().filter(O3FileLine::isReturnStatement).findAny().isPresent();
     }
 }
