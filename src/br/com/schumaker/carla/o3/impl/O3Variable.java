@@ -10,6 +10,7 @@ import lombok.Data;
 public final class O3Variable implements Variable {
 
     private boolean isGlobal;
+
     private String name;
     private String internalName;
 

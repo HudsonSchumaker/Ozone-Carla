@@ -9,6 +9,8 @@ import lombok.Data;
 @Data
 public final class O3Argument implements Variable {
 
+    private boolean isConstant;
+
     private String name;
     private String internalName;
 
