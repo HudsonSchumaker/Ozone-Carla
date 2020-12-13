@@ -6,6 +6,5 @@ package br.com.schumaker.carla.build;
  * @author Hudson Schumaker
  */
 public interface Bash {
-
     void executeCommand(String[] commands);
 }
