@@ -9,6 +9,8 @@ import br.com.schumaker.carla.o3.impl.O3Keyword;
 import java.util.List;
 
 /**
+ * This class create the O3 functions representations.
+ *
  * @author Hudson Schumaker
  */
 public final class LexerFunction implements ILexerFunction {
