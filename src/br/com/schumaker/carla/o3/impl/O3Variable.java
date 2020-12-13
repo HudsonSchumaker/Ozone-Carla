@@ -10,11 +10,8 @@ import lombok.Data;
 public final class O3Variable implements Variable {
 
     private boolean isGlobal;
-
-    @Override
-    public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    private String name;
+    private String internalName;
 
     @Override
     public Object getValue() {
@@ -23,11 +20,6 @@ public final class O3Variable implements Variable {
 
     @Override
     public String getOType() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getInternalName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
