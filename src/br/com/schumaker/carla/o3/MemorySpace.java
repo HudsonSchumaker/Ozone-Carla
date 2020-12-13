@@ -5,8 +5,6 @@ package br.com.schumaker.carla.o3;
  */
 public interface MemorySpace {
     String getName();
-
     String getType();
-
     String getInternalName();
 }
