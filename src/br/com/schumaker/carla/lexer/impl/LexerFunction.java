@@ -23,7 +23,7 @@ public final class LexerFunction implements ILexerFunction {
     @Override
     public String getFunctionName(String data) {
         var name = data.substring(O3Keyword.FUNCTION.length(), data.length()).trim();
-        return name.substring(0, name.indexOf(O3Keyword.OPEN_EXPRESSION));
+        return name.substring(0, name.indexOf(O3Keyword.OPEN_EXPRESSION)).trim();
     }
 
     @Override
