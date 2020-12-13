@@ -1,12 +1,16 @@
 package br.com.schumaker.carla.o3.impl;
 
 import br.com.schumaker.carla.o3.Variable;
+import lombok.Data;
 
 /**
- *
  * @author Hudson Schumaker
  */
+@Data
 public final class O3Parameter implements Variable {
+
+    private String name;
+    private String internalName;
 
     @Override
     public Object getValue() {
@@ -14,23 +18,7 @@ public final class O3Parameter implements Variable {
     }
 
     @Override
-    public String getName() {
+    public String getType() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public String getOType() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getInternalName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getAType() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

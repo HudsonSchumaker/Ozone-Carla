@@ -4,8 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 
+/**
+ * @author Hudson Schumaker
+ */
 @Data
 @ToString
-@AllArgsConstructor
 public class O3Function {
+
+    private String name;
+    private String internalName;
+    private boolean isMain;
 }

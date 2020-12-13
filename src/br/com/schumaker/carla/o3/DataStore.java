@@ -6,5 +6,6 @@ package br.com.schumaker.carla.o3;
  */
 public interface DataStore extends MemorySpace {
     String getName();
-    String getOType(); 
+
+    String getType();
 }

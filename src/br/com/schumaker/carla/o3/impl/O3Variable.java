@@ -19,12 +19,8 @@ public final class O3Variable implements Variable {
     }
 
     @Override
-    public String getOType() {
+    public String getType() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public String getAType() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

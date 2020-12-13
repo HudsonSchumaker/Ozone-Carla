@@ -7,6 +7,7 @@ import br.com.schumaker.carla.o3.impl.O3Function;
 import br.com.schumaker.carla.o3.impl.O3Keyword;
 import br.com.schumaker.carla.o3.impl.O3Parameter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +34,13 @@ public final class LexerFunction implements ILexerFunction {
 
     @Override
     public List<O3FileLine> getHeaderLines(O3File file) {
-        return null;
+        var headerLines = new ArrayList<O3FileLine>();
+        for (O3FileLine line : file.getLines()) {
+            if (line.isFunctionHeader()) {
+                headerLines.add(line);
+            }
+        }
+        return headerLines;
     }
 
     @Override
