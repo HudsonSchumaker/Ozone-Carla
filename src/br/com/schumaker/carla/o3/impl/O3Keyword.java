@@ -28,6 +28,7 @@ public final class O3Keyword {
     public static final String MULTIPLICATION = "*";
     public static final String DIVISION = "/";
 
+    public static final String NOT = "!";
     public static final String BIGGER = ">";
     public static final String SMALLER = "<";
     public static final String EQUAL = "==";
