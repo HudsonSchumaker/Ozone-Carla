@@ -36,7 +36,6 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
 
     /**
      * Creates the FileLine from the rawLines read form a .o3 source file.
-     *
      * @param rawLines Lines from the physical file. Ex: foo.o3
      * @return A list of FileLine
      */
@@ -51,7 +50,6 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
 
     /**
      * Sets the FileLines that have a function header.
-     *
      * @param file SourceFile param
      */
     public void setFunctionHeaders(O3File file) {
@@ -63,6 +61,7 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
     }
 
     /**
+     * Set flag for conditionals.
      *
      * @param file SourceFile param
      */
@@ -77,7 +76,7 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
     }
 
     /**
-     *
+     * Set flag for loops.
      * @param file SourceFile param
      */
     public void setLoopStatements(O3File file) {
@@ -92,7 +91,7 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
     }
 
     /**
-     *
+     * Set flag for variable declarations.
      * @param file SourceFile param
      */
     public void setVariableDeclarations(O3File file) {
@@ -106,7 +105,7 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
     }
 
     /**
-     *
+     * Set flag for function calls.
      * @param file SourceFile param
      */
     public void setFunctionCalls(O3File file) {
@@ -120,7 +119,7 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
     }
 
     /**
-     *
+     * Set flag for return.
      * @param file SourceFile param
      */
     public void setReturnStatements(O3File file) {
@@ -134,7 +133,7 @@ public class SourceFileBuilder implements FileBuilder<O3File> {
     }
 
     /**
-     *
+     * Set flag for main function.
      * @param file SourceFile param
      */
     public void checkForMainFunction(O3File file) {
