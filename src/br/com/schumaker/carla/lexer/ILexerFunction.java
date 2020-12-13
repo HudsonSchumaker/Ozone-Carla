@@ -2,6 +2,8 @@ package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.io.impl.O3File;
 import br.com.schumaker.carla.io.impl.O3FileLine;
+import br.com.schumaker.carla.lexer.impl.LexerFunctionTable;
+import br.com.schumaker.carla.o3.VariableTable;
 import br.com.schumaker.carla.o3.impl.O3Function;
 import br.com.schumaker.carla.o3.impl.O3Parameter;
 
@@ -14,7 +16,7 @@ public interface ILexerFunction {
 
     List<O3Function> getFunctions(O3File file);
 
-    List<O3Parameter> getParams(String functionName, O3FileLine line);
+    List<O3Parameter> getParams(String functionName, O3FileLine headLine);
 
     O3Function getBody(O3FileLine headerLine, O3File file);
 
@@ -22,7 +24,11 @@ public interface ILexerFunction {
 
     boolean isMainFunction(O3FileLine headerLine);
 
-    String getFunctionInternalName(String data);
+    String getFunctionInternalName(O3FileLine headerLine);
 
-    String getFunctionName(String data);
+    String getFunctionName(O3FileLine headerLine);
+
+    VariableTable createVariableTable(String functionName, List<O3FileLine> lines);
+
+    LexerFunctionTable getFunctionTable();
 }
