@@ -1,11 +1,13 @@
-package br.com.schumaker.carla.io;
+package br.com.schumaker.carla.utils;
 
+import br.com.schumaker.carla.test.TestHelper;
 import br.com.schumaker.carla.utils.FileUtils;
 import org.junit.Test;
 
 import java.io.File;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Test class for @FileUtils
@@ -13,6 +15,18 @@ import static org.junit.Assert.assertEquals;
  * @author Hudson Schumaker
  */
 public class FileUtilsTest {
+
+    @Test
+    public void testFileExists() throws Exception {
+        // Preparation
+        var file = TestHelper.createTempFile();
+
+        // Test
+        var result = FileUtils.fileExists(file);
+
+        // Assertions
+        assertTrue(result);
+    }
 
     @Test
     public void testGetFileExtension() {
@@ -71,8 +85,9 @@ public class FileUtilsTest {
     @Test
     public void testGetClearPath() {
         // Preparation
-        String clearPath = "/Library/hs/core/";
-        String fullFilePath = clearPath + "main.o3";
+        var s = System.getProperty("file.separator");
+        var clearPath = s + "Library" + s + "hs" + s + "core" + s;
+        var fullFilePath = clearPath + "main.o3";
 
         // Test
         String result = FileUtils.getClearPath(fullFilePath);
