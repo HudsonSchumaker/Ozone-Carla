@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author Hudson Schumaker
  */
 public class RawSourceFileChecker {
+
     public void doCheck(O3File file) {
         this.removeComments(file);
         this.removeBlankLines(file);
