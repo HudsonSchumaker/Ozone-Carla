@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Data
 @AllArgsConstructor
-public final class O3Atom {
+public final class Tabula {
 
     private String name;
     private List<O3Function> functions;
