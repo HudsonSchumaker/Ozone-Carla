@@ -26,7 +26,7 @@ public final class Maestro {
 
         var sourceFile = this.initializeSourceFile(args.get(0));
         var lexer = new Lexer();
-        var atom = lexer.createProgram(sourceFile);
+        var tabula = lexer.createProgram(sourceFile);
         this.machineCode();
     }
 
