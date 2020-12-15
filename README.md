@@ -1,10 +1,10 @@
 # Ozone-Carla
 Ozone³ (O³) Carla compiler
 
-Compiler for O³ language 
+Compiler for O³ language
 
 Steps in the compilation process: <br>
-  preprocessing <br>
-  lexical analysis <br>
-  parsing <br>
-  semantic analysis 
+&emsp;preprocessing    <br>
+&emsp;lexical analysis <br>
+&emsp;parsing          <br>
+&emsp;semantic analysis 
