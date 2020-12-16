@@ -19,7 +19,7 @@ import java.util.List;
 @Getter
 public final class LexerFunction implements ILexerFunction {
 
-    private ILexerFunctionTable functionTable = new LexerFunctionTable();
+    private LexerFunctionTable functionTable = new LexerFunctionTable();
 
     @Override
     public List<O3Function> getFunctions(O3File file) {
@@ -107,6 +107,11 @@ public final class LexerFunction implements ILexerFunction {
     @Override
     public boolean isMainFunction(O3FileLine headerLine) {
         return headerLine.getData().contains("f: main()");
+    }
+
+    @Override
+    public LexerFunctionTable getFunctionTable() {
+        return functionTable;
     }
 
     public boolean hasReturn(List<O3FileLine> body) {
