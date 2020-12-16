@@ -2,6 +2,7 @@ package br.com.schumaker.carla.o3.enums;
 
 import br.com.schumaker.carla.exception.VariableDefaultValueNotFoundException;
 import br.com.schumaker.carla.exception.VariableTypeNotFoundException;
+import lombok.Data;
 import lombok.Getter;
 
 /**
@@ -11,20 +12,25 @@ import lombok.Getter;
  */
 @Getter
 public enum MemorySpaceType {
-    VOID("void", "void", MemorySpaceTypeSize.VOID.getSize()),
-    BYTE("byte", "0", MemorySpaceTypeSize.BYTE.getSize()),
-    BOOL("bool", "0", MemorySpaceTypeSize.BOOL.getSize()),
-    CHAR("char", " ", MemorySpaceTypeSize.CHAR.getSize()),
-    STRING("string", "", MemorySpaceTypeSize.STRING.getSize()),
-    INT("int", "0", MemorySpaceTypeSize.INT.getSize()),
-    DOUBLE("double", "0.0", MemorySpaceTypeSize.DOUBLE.getSize()),
-    PARAM("param", "?", MemorySpaceTypeSize.PARAM.getSize()),
-    R_BYTE("r_byte", "0", MemorySpaceTypeSize.BYTE.getSize()),
-    R_BOOL("r_bool", "false", MemorySpaceTypeSize.BOOL.getSize()),
-    R_CHAR("r_char", " ", MemorySpaceTypeSize.CHAR.getSize()),
-    R_STRING("r_str", "", MemorySpaceTypeSize.STRING.getSize()),
-    R_INTEGER("r_int", "0", MemorySpaceTypeSize.INT.getSize()),
-    R_DOUBLE("r_double", "0.0", MemorySpaceTypeSize.DOUBLE.getSize());
+    VOID("void", "void", DataModel.VOID.getSize()),
+    BYTE("byte", "0b", DataModel._8.getSize()),
+    CHAR("char", " ", DataModel._8.getSize()),
+    STRING("string", "", DataModel._32.getSize()),
+    SHORT("short", "0s", DataModel._16.getSize()),
+    INT("int", "0", DataModel._32.getSize()),
+    LONG("long", "0l", DataModel._64.getSize()),
+    FLOAT("float", "0.0f", DataModel._32.getSize()),
+    DOUBLE("double", "0.0d", DataModel._64.getSize()),
+    PARAM("param", "?", DataModel._32.getSize()),
+    R_BYTE("r_byte", "0b", DataModel._8.getSize()),
+    R_BOOL("r_bool", "false", DataModel._8.getSize()),
+    R_CHAR("r_char", "''", DataModel._8.getSize()),
+    R_STRING("r_str", "", DataModel._32.getSize()),
+    R_SHORT("r_short", "0s", DataModel._16.getSize()),
+    R_INTEGER("r_int", "0", DataModel._32.getSize()),
+    R_LONG("r_long", "0l", DataModel._64.getSize()),
+    R_FLOAT("r_float", "0.0f", DataModel._32.getSize()),
+    R_DOUBLE("r_double", "0.0d", DataModel._64.getSize());
 
     private final String name;
     private final String defaultValue;
