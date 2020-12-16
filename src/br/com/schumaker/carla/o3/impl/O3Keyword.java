@@ -49,6 +49,11 @@ public final class O3Keyword {
 
     public static final String TRUE = "true";
     public static final String FALSE = "false";
+
+    public static final String BIT_SIGN = "b";
+    public static final String SHORT_SIGN = "s";
+    public static final String LONG_SIGN = "l";
     public static final String FLOATING_POINT_SIGN = ".";
+    public static final String FLOAT_SIGN = "f";
     public static final String DOUBLE_SIGN = "d";
 }
