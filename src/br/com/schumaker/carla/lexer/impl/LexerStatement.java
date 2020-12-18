@@ -29,7 +29,7 @@ public class LexerStatement implements ILexerStatement {
         var statement = function.getStatement();
         var varsDeclaration = this.getLinesWithVariableDeclaration(statement);
         var variables = this.getVariables(function.getName(), varsDeclaration);
-        function.setVariableTable(this.createVariableTable(variables));
+        function.getVariableTable().addVariables(variables);
 
         var functionCalls = this.getFunctionCalls(statement, function.getVariableTable());
         // conditional statements
@@ -61,15 +61,5 @@ public class LexerStatement implements ILexerStatement {
     public List<O3FunctionCall> getFunctionCalls(Statement statement, VariableTable variableTable) {
         var lexerFunctionCalls = new LexerFunctionCall();
         return null;
-    }
-
-    /**
-     * Creates a table variable of the function.
-     *
-     * @param variables List of variables.
-     * @return O3FunctionVariableTable
-     */
-    public O3FunctionVariableTable createVariableTable(List<O3Variable> variables) {
-        return new O3FunctionVariableTable(variables);
     }
 }
