@@ -1,12 +1,6 @@
 package br.com.schumaker.carla.o3.impl;
 
-import br.com.schumaker.carla.o3.Variable;
 import br.com.schumaker.carla.o3.VariableTable;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,9 +14,6 @@ public class O3FunctionVariableTable implements VariableTable {
     private String functionName;
     private Set<O3Parameter> funcParams = new HashSet<>();
     private Set<O3Variable> funcVars = new HashSet<>();
-
-    @Getter
-    @Setter
     private O3Return funcReturn;
 
     public O3FunctionVariableTable(String functionName) {
@@ -57,5 +48,15 @@ public class O3FunctionVariableTable implements VariableTable {
     @Override
     public List<O3Variable> getVariables() {
         return new ArrayList<>(funcVars);
+    }
+
+    @Override
+    public void setReturn(O3Return funcReturn) {
+        this.funcReturn = funcReturn;
+    }
+
+    @Override
+    public O3Return getReturn() {
+        return this.funcReturn;
     }
 }
