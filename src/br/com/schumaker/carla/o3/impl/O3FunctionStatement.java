@@ -13,8 +13,9 @@ import java.util.List;
 @AllArgsConstructor
 public class O3FunctionStatement implements Statement {
 
+    private List<O3Parameter> parameters;
     private List<O3Variable> variables;
-    //private List<O3FunctionCall> functionCalls;
+    private O3Return funcReturn;
+    private List<O3FunctionCall> functionCalls;
     private List<O3FileLine> lines;
-
 }
