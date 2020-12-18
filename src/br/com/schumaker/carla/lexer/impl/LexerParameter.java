@@ -19,7 +19,7 @@ public class LexerParameter implements ILexerParameter {
     /**
      * Creates the the parameters list of a function, based on the name of the
      * function and the declared parameters. Formula: p_ + functionName + _ +
-     * nameOfParam, Ex: f: print(p: text) { ;some code... } The internal
+     * nameOfParam, Ex: f: print(p: text) { some code... } The internal
      * name of the "p: text" variable will be "p_main_text:"
      *
      * @param functionName name of the function

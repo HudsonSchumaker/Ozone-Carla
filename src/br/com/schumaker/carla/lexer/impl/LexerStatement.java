@@ -3,10 +3,13 @@ package br.com.schumaker.carla.lexer.impl;
 import br.com.schumaker.carla.io.impl.O3FileLine;
 import br.com.schumaker.carla.lexer.ILexerStatement;
 import br.com.schumaker.carla.o3.Statement;
-import br.com.schumaker.carla.o3.impl.O3Function;
-import br.com.schumaker.carla.o3.impl.O3Variable;
+import br.com.schumaker.carla.o3.VariableTable;
+import br.com.schumaker.carla.o3.impl.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * This class create the O³ functions statements representations.
@@ -23,16 +26,50 @@ public class LexerStatement implements ILexerStatement {
     }
 
     public void getFunctionStatement(O3Function function) {
-        //TODO
+        var statement = function.getStatement();
+        var varsDeclaration = this.getLinesWithVariableDeclaration(statement);
+        var variables = this.getVariables(function.getName(), varsDeclaration);
+        function.setVariableTable(this.createVariableTable(variables));
+
+        var functionCalls = this.getFunctionCalls(statement, function.getVariableTable());
+        // conditional statements
+        // loops statments
+
+        var functionalStatement = new O3FunctionStatement(variables, functionCalls,
+                function.getStatement().getLines());
+
+        function.setStatement(functionalStatement);
     }
 
     @Override
     public List<O3FileLine> getLinesWithVariableDeclaration(Statement statement) {
-        return null;
+        var varLines = new ArrayList<O3FileLine>();
+        for (O3FileLine line : statement.getLines()) {
+            if (line.isVariableDeclaration()) {
+                varLines.add(line);
+            }
+        }
+        return varLines;
     }
 
     @Override
     public List<O3Variable> getVariables(String functionName, List<O3FileLine> lines) {
         return null;
+    }
+
+    @Override
+    public List<O3FunctionCall> getFunctionCalls(Statement statement, VariableTable variableTable) {
+        var lexerFunctionCalls = new LexerFunctionCall();
+        return null;
+    }
+
+    /**
+     * Creates a table variable of the function.
+     *
+     * @param variables List of variables.
+     * @return O3FunctionVariableTable
+     */
+    public O3FunctionVariableTable createVariableTable(List<O3Variable> variables) {
+        return new O3FunctionVariableTable(variables);
     }
 }

@@ -27,8 +27,9 @@ public final class LexerFunction implements ILexerFunction {
         for (O3FileLine line : headerLines) {
             functionTable.add(this.getBody(line, file));
         }
-
         // TODO create O3FunctionStatement and update O3FunctionVariableTable
+        var lexerStatement = new LexerStatement();
+        lexerStatement.getFunctionStatements(functionTable.getAllFunctions());
         return functionTable.getAllFunctions();
     }
 
@@ -86,11 +87,6 @@ public final class LexerFunction implements ILexerFunction {
             }
         }
         return headerLines;
-    }
-
-    @Override
-    public VariableTable createVariableTable(String functionName, List<O3FileLine> lines) {
-        return null;
     }
 
     @Override

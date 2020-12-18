@@ -2,7 +2,9 @@ package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.io.impl.O3FileLine;
 import br.com.schumaker.carla.o3.Statement;
+import br.com.schumaker.carla.o3.VariableTable;
 import br.com.schumaker.carla.o3.impl.O3Function;
+import br.com.schumaker.carla.o3.impl.O3FunctionCall;
 import br.com.schumaker.carla.o3.impl.O3Variable;
 
 import java.util.List;
@@ -12,8 +14,9 @@ import java.util.List;
  */
 public interface ILexerStatement {
     void getFunctionStatements(List<O3Function> functions);
-
     List<O3FileLine> getLinesWithVariableDeclaration(Statement statement);
 
     List<O3Variable> getVariables(String functionName, List<O3FileLine> lines);
+
+    List<O3FunctionCall> getFunctionCalls(Statement statement, VariableTable variableTable);
 }

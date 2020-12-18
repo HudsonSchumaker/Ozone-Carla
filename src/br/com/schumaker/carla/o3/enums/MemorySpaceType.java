@@ -13,24 +13,15 @@ import lombok.Getter;
 @Getter
 public enum MemorySpaceType {
     VOID("void", "void", DataModel.VOID.getSize()),
-    BYTE("byte", "0b", DataModel._8.getSize()),
-    CHAR("char", " ", DataModel._8.getSize()),
+    BOOL("bool", "false", DataModel._8.getSize()),
     STRING("string", "", DataModel._32.getSize()),
-    SHORT("short", "0s", DataModel._16.getSize()),
     INT("int", "0", DataModel._32.getSize()),
-    LONG("long", "0l", DataModel._64.getSize()),
     FLOAT("float", "0.0f", DataModel._32.getSize()),
-    DOUBLE("double", "0.0d", DataModel._64.getSize()),
     PARAM("param", "?", DataModel._32.getSize()),
-    R_BYTE("r_byte", "0b", DataModel._8.getSize()),
     R_BOOL("r_bool", "false", DataModel._8.getSize()),
-    R_CHAR("r_char", "''", DataModel._8.getSize()),
     R_STRING("r_str", "", DataModel._32.getSize()),
-    R_SHORT("r_short", "0s", DataModel._16.getSize()),
     R_INTEGER("r_int", "0", DataModel._32.getSize()),
-    R_LONG("r_long", "0l", DataModel._64.getSize()),
-    R_FLOAT("r_float", "0.0f", DataModel._32.getSize()),
-    R_DOUBLE("r_double", "0.0d", DataModel._64.getSize());
+    R_FLOAT("r_float", "0.0f", DataModel._32.getSize());
 
     private final String name;
     private final String defaultValue;
