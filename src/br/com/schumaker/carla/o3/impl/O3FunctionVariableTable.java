@@ -1,7 +1,11 @@
 package br.com.schumaker.carla.o3.impl;
 
+import br.com.schumaker.carla.o3.Variable;
 import br.com.schumaker.carla.o3.VariableTable;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -13,12 +17,16 @@ import java.util.Set;
  */
 public class O3FunctionVariableTable implements VariableTable {
 
+    private String functionName;
     private Set<O3Parameter> funcParams = new HashSet<>();
     private Set<O3Variable> funcVars = new HashSet<>();
+
+    @Getter
+    @Setter
     private O3Return funcReturn;
 
-    public O3FunctionVariableTable(List<O3Parameter> parameters) {
-        this.addParameter(parameters);
+    public O3FunctionVariableTable(String functionName) {
+        this.functionName = functionName;
     }
 
     @Override
@@ -28,13 +36,26 @@ public class O3FunctionVariableTable implements VariableTable {
 
     @Override
     public void addParameter(List<O3Parameter> parameters) {
-        for (O3Parameter param : parameters) {
-            funcParams.add(param);
-        }
+        funcParams.addAll(parameters);
     }
 
     @Override
     public List<O3Parameter> getParameters() {
         return new ArrayList<>(funcParams);
+    }
+
+    @Override
+    public void addVariable(O3Variable variable) {
+        this.funcVars.add(variable);
+    }
+
+    @Override
+    public void addVariables(List<O3Variable> variables) {
+        this.funcVars.addAll(variables);
+    }
+
+    @Override
+    public List<O3Variable> getVariables() {
+        return new ArrayList<>(funcVars);
     }
 }
