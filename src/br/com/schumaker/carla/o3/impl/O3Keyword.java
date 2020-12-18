@@ -47,6 +47,9 @@ public final class O3Keyword {
     public static final String OPEN_STATEMENT = "{";
     public static final String CLOSE_STATEMENT = "}";
 
+    public static final String OPEN_ARRAY = "[";
+    public static final String CLOSE_ARRAY = "]";
+
     public static final String TRUE = "true";
     public static final String FALSE = "false";
 
