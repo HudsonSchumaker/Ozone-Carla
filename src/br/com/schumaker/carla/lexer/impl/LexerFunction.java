@@ -34,18 +34,6 @@ public final class LexerFunction implements ILexerFunction {
     }
 
     /**
-     * Return a list with the parameters of a function.
-     *
-     * @param functionName Declared function name.
-     * @param headLine     Signature of the function.
-     * @return List of parameter of the function.
-     */
-    @Override
-    public List<O3Parameter> getParams(String functionName, O3FileLine headLine) {
-        return new LexerParameter().getParameters(functionName, headLine);
-    }
-
-    /**
      * This method create O3Function object with a basic O3Statement and
      * O3FunctionVariableTable incomplete (only parameter variables), in the next step when
      * is create the O3FunctionStatement and the O3FunctionVariableTable should be update.
@@ -66,12 +54,13 @@ public final class LexerFunction implements ILexerFunction {
         }
 
         var functionName = this.getFunctionName(headerLine);
-        var params = this.getParams(functionName, headerLine);
+        var varTable = new O3FunctionVariableTable(functionName);
+        varTable.addParameter(this.getParams(functionName, headerLine));
         var function = new O3Function(this.isMainFunction(headerLine),
                 hasReturn(body),
                 functionName,
                 this.getFunctionInternalName(headerLine),
-                new O3FunctionVariableTable(params),
+                varTable,
                 new O3Statement(body));
 
         this.functionTable.add(function);
@@ -108,6 +97,18 @@ public final class LexerFunction implements ILexerFunction {
     @Override
     public LexerFunctionTable getFunctionTable() {
         return functionTable;
+    }
+
+    /**
+     * Return a list with the parameters of a function.
+     *
+     * @param functionName Declared function name.
+     * @param headLine     Signature of the function.
+     * @return List of parameter of the function.
+     */
+    @Override
+    public List<O3Parameter> getParams(String functionName, O3FileLine headLine) {
+        return new LexerParameter().getParameters(functionName, headLine);
     }
 
     public boolean hasReturn(List<O3FileLine> body) {
