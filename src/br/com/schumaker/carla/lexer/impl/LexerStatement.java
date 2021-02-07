@@ -7,9 +7,9 @@ import br.com.schumaker.carla.o3.VariableTable;
 import br.com.schumaker.carla.o3.impl.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
+
 
 /**
  * This class create the O³ functions statements representations.
