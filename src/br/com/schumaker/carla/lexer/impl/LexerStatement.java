@@ -35,10 +35,8 @@ public class LexerStatement implements ILexerStatement {
         // conditional statements
         // loops statments
 
-        var functionalStatement = new O3FunctionStatement(variables, functionCalls,
-                function.getStatement().getLines());
 
-        function.setStatement(functionalStatement);
+        function.setStatement(null);
     }
 
     @Override

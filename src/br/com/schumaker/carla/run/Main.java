@@ -5,6 +5,12 @@ package br.com.schumaker.carla.run;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
+
+
+        System.out.println(System.getProperty("user.country"));
+        System.out.println(System.getProperty("user.language"));
+
+
         if (args.length > 0) {
             new Maestro(args).start();
         } else {

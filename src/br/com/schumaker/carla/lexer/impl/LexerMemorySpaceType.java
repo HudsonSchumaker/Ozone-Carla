@@ -26,14 +26,7 @@ public class LexerMemorySpaceType implements ILexerMemorySpaceType {
                 }
             }
 
-            if (data.contains(O3Keyword.OPEN_EXPRESSION) && data.contains(O3Keyword.CLOSE_EXPRESSION)) {
-                return this.resolveReturnVariableType(data);
-            }
 
-            // will treat concatenation of string either.
-            if (data.contains(O3Keyword.PLUS)) {
-                return this.lexerArithmetic.getValuePlusExExpression(data);
-            }
 
 
             return MemorySpaceType.INT;
