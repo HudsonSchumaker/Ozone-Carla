@@ -46,4 +46,27 @@ public interface FileBuilder<F, L> {
      * @param file SourceFile param
      */
     void setVariableDeclarations(O3File file);
+
+    /**
+     * Set flag for function calls.
+     *
+     * @param file SourceFile param
+     */
+    void setFunctionCalls(O3File file);
+
+    /**
+     * Set flag for return.
+     *
+     * @param file SourceFile param
+     */
+    void setReturnStatements(O3File file);
+
+    /**
+     * Set flag for main function.
+     *
+     * @param file SourceFile param
+     */
+    void checkForMainFunction(O3File file);
+
+
 }

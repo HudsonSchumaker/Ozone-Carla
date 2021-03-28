@@ -86,10 +86,7 @@ public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
         }
     }
 
-    /**
-     * Set flag for function calls.
-     * @param file SourceFile param
-     */
+   @Override
     public void setFunctionCalls(O3File file) {
         for (O3FileLine line : file.getLines()) {
             if (!line.isFunctionHeader()) {
@@ -100,10 +97,7 @@ public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
         }
     }
 
-    /**
-     * Set flag for return.
-     * @param file SourceFile param
-     */
+    @Override
     public void setReturnStatements(O3File file) {
         for (O3FileLine line : file.getLines()) {
             if (!line.isFunctionHeader()) {
@@ -114,10 +108,7 @@ public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
         }
     }
 
-    /**
-     * Set flag for main function.
-     * @param file SourceFile param
-     */
+    @Override
     public void checkForMainFunction(O3File file) {
         for (O3FileLine line : file.getLines()) {
             if (LexerHelper.containsFunctionMain(line.getData())) {
