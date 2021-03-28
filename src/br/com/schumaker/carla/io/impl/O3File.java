@@ -1,6 +1,7 @@
 package br.com.schumaker.carla.io.impl;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +13,7 @@ import java.util.List;
  * @author Hudson Schumaker
  */
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 public final class O3File {
     public static final String EXT = "o3";
