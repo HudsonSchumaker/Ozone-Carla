@@ -63,10 +63,7 @@ public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
         }
     }
 
-    /**
-     * Set flag for loops.
-     * @param file SourceFile param
-     */
+    @Override
     public void setLoopStatements(O3File file) {
         for (O3FileLine line : file.getLines()) {
             if (!line.isFunctionHeader()) {
@@ -78,10 +75,7 @@ public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
 
     }
 
-    /**
-     * Set flag for variable declarations.
-     * @param file SourceFile param
-     */
+    @Override
     public void setVariableDeclarations(O3File file) {
         for (O3FileLine line : file.getLines()) {
             if (!line.isFunctionHeader()) {

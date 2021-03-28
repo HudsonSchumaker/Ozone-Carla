@@ -32,4 +32,18 @@ public interface FileBuilder<F, L> {
      * @param file SourceFile param
      */
     void setConditionalStatements(O3File file);
+
+    /**
+     * Set flag for loops.
+     *
+     * @param file SourceFile param
+     */
+    void setLoopStatements(O3File file);
+
+    /**
+     * Set flag for variable declarations.
+     *
+     * @param file SourceFile param
+     */
+    void setVariableDeclarations(O3File file);
 }
