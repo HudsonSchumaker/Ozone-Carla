@@ -14,7 +14,7 @@ import java.util.List;
  * @author Hudson Schumaker
  * @see O3File
  */
-public class SourceFileBuilder implements FileBuilder<O3File> {
+public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
 
     @Override
     public O3File build(String path) throws Exception {
