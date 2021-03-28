@@ -34,11 +34,6 @@ public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
         return file;
     }
 
-    /**
-     * Creates the FileLine from the rawLines read form a .o3 source file.
-     * @param rawLines Lines from the physical file. Ex: foo.o3
-     * @return A list of FileLine
-     */
     @Override
     public List<O3FileLine> createLines(List<String> rawLines) {
         var lines = new ArrayList<O3FileLine>();
@@ -48,10 +43,7 @@ public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
         return lines;
     }
 
-    /**
-     * Sets the FileLines that have a function header.
-     * @param file SourceFile param
-     */
+    @Override
     public void setFunctionHeaders(O3File file) {
         for (O3FileLine line : file.getLines()) {
             if (LexerHelper.isFunctionHeader(line.getData())) {
@@ -60,11 +52,7 @@ public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
         }
     }
 
-    /**
-     * Set flag for conditionals.
-     *
-     * @param file SourceFile param
-     */
+    @Override
     public void setConditionalStatements(O3File file) {
         for (O3FileLine line : file.getLines()) {
             if (!line.isFunctionHeader()) {
