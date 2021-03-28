@@ -28,6 +28,7 @@ public class SourceFileReader implements Reader<List<String>> {
      */
     @Override
     public List<String> read(String path) throws Exception {
+
         // Validations
         this.fileExists(path);
         this.validExtension(path);

@@ -1,8 +1,10 @@
 package br.com.schumaker.carla.run;
 
+import br.com.schumaker.carla.io.FileBuilder;
 import br.com.schumaker.carla.io.impl.O3File;
 import br.com.schumaker.carla.io.impl.RawSourceFileChecker;
 import br.com.schumaker.carla.io.impl.SourceFileBuilder;
+import br.com.schumaker.carla.io.impl.SourceFileReader;
 import br.com.schumaker.carla.lexer.impl.Lexer;
 
 import java.util.Arrays;
@@ -31,6 +33,7 @@ public final class Maestro {
     }
 
     public void machineCode() {
+
 
     }
 
