@@ -32,6 +32,10 @@ public class SystemUtils {
         return System.getProperty("user.dir");
     }
 
+    public static String getOsLanguage() {
+        return System.getProperty("user.language");
+    }
+
     public static String getOsName() {
         return System.getProperty("os.name");
     }

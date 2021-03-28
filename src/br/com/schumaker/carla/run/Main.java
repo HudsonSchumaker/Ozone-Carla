@@ -8,7 +8,6 @@ public class Main {
 
 
         System.out.println(System.getProperty("user.country"));
-        System.out.println(System.getProperty("user.language"));
 
 
         if (args.length > 0) {
