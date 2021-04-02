@@ -5,10 +5,12 @@ import java.net.UnknownHostException;
 import java.text.DecimalFormat;
 
 /**
- *
  * @author Hudson Schumaker
  */
 public class SystemUtils {
+
+    private SystemUtils() {
+    }
 
     public static String getHostName() {
         try {
