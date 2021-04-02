@@ -51,6 +51,7 @@ public final class Compiler {
             sourceFiles.add(o);
         }
 
+        rawSourceFileChecker.checkForFunctionMain(sourceFiles);
         return sourceFiles;
     }
 }
