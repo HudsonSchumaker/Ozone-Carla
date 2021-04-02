@@ -6,7 +6,7 @@ import br.com.schumaker.carla.utils.StringUtils;
 import java.util.ArrayList;
 
 /**
- * This class has methods do check and clean the source file.
+ * This class has methods to check and clean the source file.
  *
  * @author Hudson Schumaker
  */
