@@ -22,8 +22,6 @@ public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
         var lines = o3FileReader.read(path);
         var file = new O3File(FileUtils.getName(path), FileUtils.getClearPath(path), this.createLines(lines));
 
-        // check if the source file has a function main
-        this.checkForMainFunction(file);
         // set the source file lines attributes
         this.setFunctionHeaders(file);
         this.setConditionalStatements(file);
@@ -31,6 +29,10 @@ public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
         this.setVariableDeclarations(file);
         this.setFunctionCalls(file);
         this.setReturnStatements(file);
+
+        // check if the source file has a function main
+        this.checkForMainFunction(file);
+
         return file;
     }
 
