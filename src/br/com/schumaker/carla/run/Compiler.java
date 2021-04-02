@@ -15,15 +15,15 @@ import java.util.List;
  *
  * @author Hudson Schumaker
  */
-public final class Maestro {
+public final class Compiler {
 
     private final List<String> args;
 
-    public Maestro(String[] args) {
+    public Compiler(String[] args) {
         this.args = Arrays.asList(args);
     }
 
-    public void start()  throws Exception {
+    public void start() throws Exception {
         System.out.println("Reading source file: " + args.get(0));
 
         var sourceFile = this.initializeSourceFile(args.get(0));
