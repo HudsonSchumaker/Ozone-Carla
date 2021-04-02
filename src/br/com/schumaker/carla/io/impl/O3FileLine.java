@@ -11,7 +11,7 @@ import lombok.Data;
 public final class O3FileLine {
 
     private String data;
-    private String classHeader;
+    private boolean classHeader;
     private boolean functionHeader;
     private boolean conditionalStatement;
     private boolean loopStatement;
