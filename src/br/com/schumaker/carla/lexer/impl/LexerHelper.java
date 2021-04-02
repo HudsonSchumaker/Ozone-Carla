@@ -37,6 +37,6 @@ public final class LexerHelper {
     }
 
     public static boolean containsFunctionMain(String data) {
-        return data.contains("f: main()");
+        return data.contains("f: main(");
     }
 }
