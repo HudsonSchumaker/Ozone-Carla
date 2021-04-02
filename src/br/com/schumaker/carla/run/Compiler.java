@@ -24,7 +24,7 @@ public final class Compiler {
     }
 
     public void start() throws Exception {
-        System.out.println("Reading source file: " + args.get(0));
+        System.out.println("Reading source folder: " + args.get(0));
 
         var sourceFile = this.initializeSourceFile(args.get(0));
         var lexer = new Lexer();
