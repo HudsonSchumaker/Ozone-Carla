@@ -26,19 +26,19 @@ public final class Compiler {
     public void start() throws Exception {
         System.out.println("Reading source folder: " + args.get(0));
 
-        var sourceFile = this.initializeSourceFile(args.get(0));
+        var sourceFile = this.initializeSourceFolder(args.get(0));
         var lexer = new Lexer();
         var tabula = lexer.createProgram(sourceFile);
         this.machineCode();
     }
 
     public void machineCode() {
-
+        // TODO
 
     }
 
-    public O3File initializeSourceFile(String path) throws Exception {
-        var file =  new SourceFileBuilder().build(path);
+    public O3File initializeSourceFolder(String path) throws Exception {
+        var file = new SourceFileBuilder().build(path);
         new RawSourceFileChecker().doCheck(file);
         return file;
     }
