@@ -12,6 +12,7 @@ import java.io.FileWriter;
  * @author Hudson Schumaker
  */
 public final class TestHelper {
+
     public static O3File createO3File() throws Exception {
         File tmpFile = createTempFileO3(mockO3File());
         var file = new SourceFileBuilder().build(tmpFile.getAbsolutePath());

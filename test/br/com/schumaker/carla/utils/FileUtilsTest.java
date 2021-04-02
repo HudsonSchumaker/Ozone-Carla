@@ -17,6 +17,11 @@ import static org.junit.Assert.assertTrue;
 public class FileUtilsTest {
 
     @Test
+    public void testGetFilePathsFromRoot() {
+
+    }
+
+    @Test
     public void testFileExists() throws Exception {
         // Preparation
         var file = TestHelper.createTempFile();
