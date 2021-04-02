@@ -1,9 +1,12 @@
 package br.com.schumaker.carla.io.impl;
 
+import br.com.schumaker.carla.exception.MoreThanOneFunctionMainException;
+import br.com.schumaker.carla.lexer.impl.LexerHelper;
 import br.com.schumaker.carla.o3.impl.O3Keyword;
 import br.com.schumaker.carla.utils.StringUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class has methods to check and clean the source file.
@@ -57,5 +60,18 @@ public class RawSourceFileChecker {
             }
         }
         file.setLines(newLines);
+    }
+
+    public void checkForFunctionMain(List<O3File> files) {
+        int number = 0;
+        for (O3File file : files) {
+            for (O3FileLine line : file.getLines()) {
+                if (LexerHelper.containsFunctionMain(line.getData())) {
+                    if (++number > 1) {
+                        throw new MoreThanOneFunctionMainException();
+                    }
+                }
+            }
+        }
     }
 }
