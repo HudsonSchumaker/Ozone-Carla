@@ -1,5 +1,7 @@
 package br.com.schumaker.carla.utils;
 
+import br.com.schumaker.carla.exception.FunctionMainNotFoundException;
+import br.com.schumaker.carla.exception.O3SourceFileNotFoundException;
 import br.com.schumaker.carla.test.TestHelper;
 import br.com.schumaker.carla.utils.FileUtils;
 import org.junit.Test;
@@ -19,6 +21,17 @@ public class FileUtilsTest {
     public void testGetFilePathsFromRoot() throws Exception {
         // Preparation
         var file = TestHelper.createTempFile();
+
+        // Test
+        var result = FileUtils.getFilePathsFromRoot(SystemUtils.getTempDir());
+
+        // Assertions
+        assertFalse(result.isEmpty());
+    }
+
+    @Test(expected = O3SourceFileNotFoundException.class)
+    public void testGetFilePathsFromRootFail() throws Exception {
+        // Preparation
 
         // Test
         var result = FileUtils.getFilePathsFromRoot(SystemUtils.getTempDir());
