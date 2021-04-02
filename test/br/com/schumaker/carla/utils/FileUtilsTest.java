@@ -6,8 +6,7 @@ import org.junit.Test;
 
 import java.io.File;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Test class for @FileUtils
@@ -17,8 +16,15 @@ import static org.junit.Assert.assertTrue;
 public class FileUtilsTest {
 
     @Test
-    public void testGetFilePathsFromRoot() {
+    public void testGetFilePathsFromRoot() throws Exception {
+        // Preparation
+        var file = TestHelper.createTempFile();
 
+        // Test
+        var result = FileUtils.getFilePathsFromRoot(SystemUtils.getTempDir());
+
+        // Assertions
+        assertFalse(result.isEmpty());
     }
 
     @Test
