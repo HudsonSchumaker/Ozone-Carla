@@ -1,6 +1,7 @@
 package br.com.schumaker.carla.utils;
 
 import br.com.schumaker.carla.exception.O3SourceFileNotFound;
+import br.com.schumaker.carla.io.impl.O3File;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -24,9 +25,14 @@ public class FileUtils {
 
             List<String> files = new ArrayList<>();
             for (File f : list) {
-                files.add(f.getAbsolutePath());
+                if (getFileExtension(f).equals(O3File.EXT)) {
+                    files.add(f.getAbsolutePath());
+                }
             }
-            return new ArrayList<String>(files);
+
+            if (!files.isEmpty()) {
+                return new ArrayList<String>(files);
+            }
         }
 
         throw new O3SourceFileNotFound();
