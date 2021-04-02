@@ -5,7 +5,7 @@ package br.com.schumaker.carla.exception;
  */
 public class O3SourceFileNotFoundException extends RuntimeException {
 
-    private static final String MESSAGE = "Map operation fail.";
+    private static final String MESSAGE = "There is no o3 file in the source folder.";
 
     public O3SourceFileNotFoundException() {
         super(MESSAGE);
