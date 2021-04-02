@@ -27,6 +27,8 @@ public final class Compiler {
         System.out.println("Reading source folder: " + args.get(0));
 
         var sourceFile = this.initializeSourceFolder(args.get(0));
+
+
         var lexer = new Lexer();
         var tabula = lexer.createProgram(sourceFile);
         this.machineCode();

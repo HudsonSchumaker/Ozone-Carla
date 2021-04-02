@@ -1,6 +1,6 @@
 package br.com.schumaker.carla.utils;
 
-import br.com.schumaker.carla.exception.O3SourceFileNotFound;
+import br.com.schumaker.carla.exception.O3SourceFileNotFoundException;
 import br.com.schumaker.carla.io.impl.O3File;
 
 import java.io.File;
@@ -35,7 +35,7 @@ public class FileUtils {
             }
         }
 
-        throw new O3SourceFileNotFound();
+        throw new O3SourceFileNotFoundException();
     }
 
     public static boolean fileExists(String path) {
