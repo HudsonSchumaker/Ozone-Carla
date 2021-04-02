@@ -28,6 +28,10 @@ public class SystemUtils {
         return "0.0.0.0";
     }
 
+    public static String getTempDir() {
+        return System.getProperty("java.io.tmpdir");
+    }
+
     public static String getInstallDir() {
         return System.getProperty("user.dir");
     }
