@@ -5,6 +5,8 @@ import br.com.schumaker.carla.io.impl.O3File;
 import java.util.List;
 
 /**
+ * @param <F> File
+ * @param <L> Line
  * @author Hudson Schumaker
  */
 public interface FileBuilder<F, L> {
