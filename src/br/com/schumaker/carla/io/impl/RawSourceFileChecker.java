@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Hudson Schumaker
  */
-public class RawSourceFileChecker {
+public final class RawSourceFileChecker {
 
     public void doCheck(O3File file) {
         this.removeComments(file);
@@ -62,6 +62,11 @@ public class RawSourceFileChecker {
         file.setLines(newLines);
     }
 
+    /**
+     * Check for more than one function main.
+     *
+     * @param files O3File source files list.
+     */
     public void checkForFunctionMain(List<O3File> files) {
         int number = 0;
         for (O3File file : files) {
