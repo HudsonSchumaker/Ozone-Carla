@@ -21,6 +21,8 @@ public interface FileBuilder<F, L> {
      */
     List<L> createLines(List<String> rawLines);
 
+    void setClassHeaders(O3File file);
+
     /**
      * Sets the FileLines that have a function header.
      *
