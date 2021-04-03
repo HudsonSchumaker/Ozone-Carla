@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @ToString
 @AllArgsConstructor
-public final class Tabula {
+public final class App {
 
     private String name;
     private List<O3Function> functions;
