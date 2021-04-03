@@ -23,6 +23,7 @@ public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
         var file = new O3File(FileUtils.getName(path), FileUtils.getClearPath(path), this.createLines(lines));
 
         // set the source file lines attributes
+        this.setClassHeaders(file);
         this.setFunctionHeaders(file);
         this.setConditionalStatements(file);
         this.setLoopStatements(file);
@@ -43,6 +44,15 @@ public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
             lines.add(new O3FileLine(rawLines.get(l).trim(), n));
         }
         return lines;
+    }
+
+    @Override
+    public void setClassHeaders(O3File file) {
+        for (O3FileLine line : file.getLines()) {
+            if (LexerHelper.isClassHeader(line.getData())) {
+                line.setClassHeader(true);
+            }
+        }
     }
 
     @Override
@@ -74,7 +84,6 @@ public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
                 }
             }
         }
-
     }
 
     @Override
