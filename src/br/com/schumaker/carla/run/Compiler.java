@@ -38,7 +38,6 @@ public final class Compiler {
 
     public void machineCode() {
         // TODO
-
     }
 
     public List<O3File> initializeSourceFolder(String path) throws Exception {
