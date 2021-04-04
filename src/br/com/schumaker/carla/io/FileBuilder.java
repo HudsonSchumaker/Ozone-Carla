@@ -21,6 +21,11 @@ public interface FileBuilder<F, L> {
      */
     List<L> createLines(List<String> rawLines);
 
+    /**
+     * Sets the Class Headers.
+     *
+     * @param file SourceFile param
+     */
     void setClassHeaders(O3File file);
 
     /**
@@ -50,6 +55,13 @@ public interface FileBuilder<F, L> {
      * @param file SourceFile param
      */
     void setVariableDeclarations(O3File file);
+
+    /**
+     * Set flag for constant declarations.
+     *
+     * @param file SourceFile param
+     */
+    void setConstantDeclarations(O3File file);
 
     /**
      * Set flag for function calls.
