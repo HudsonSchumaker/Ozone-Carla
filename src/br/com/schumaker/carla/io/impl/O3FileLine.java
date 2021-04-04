@@ -16,6 +16,7 @@ public final class O3FileLine {
     private boolean conditionalStatement;
     private boolean loopStatement;
     private boolean variableDeclaration;
+    private boolean constantDeclaration;
     private boolean returnStatement;
     private boolean functionCall;
     private Integer originalNumber;
