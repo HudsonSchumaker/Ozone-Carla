@@ -11,4 +11,5 @@ public class StringUtils {
     public static boolean isBlankString(String value) {
         return value == null || value.trim().isEmpty();
     }
+
 }
