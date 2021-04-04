@@ -15,5 +15,6 @@ import java.util.List;
 public final class App {
 
     private String name;
-    private List<O3Function> functions;
+    private List<O3Class> classes;
+    private O3EntryPoint entryPoint;
 }
