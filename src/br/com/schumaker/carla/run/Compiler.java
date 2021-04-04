@@ -32,7 +32,7 @@ public final class Compiler {
         var sourceFile = this.initializeSourceFolder(args.get(0));
 
         var lexer = new Lexer();
-        // var tabula = lexer.createProgram(sourceFile);
+        var tabula = lexer.createProgram(sourceFile);
         this.machineCode();
     }
 
