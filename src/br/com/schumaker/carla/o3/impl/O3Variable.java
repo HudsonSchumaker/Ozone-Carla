@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.o3.impl;
 
 import br.com.schumaker.carla.o3.Variable;
-import br.com.schumaker.carla.o3.enums.MemorySpaceType;
+import br.com.schumaker.carla.o3.enums.MemoryType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
@@ -18,7 +18,7 @@ public final class O3Variable implements Variable {
     private String internalName;
     private boolean global;
     private boolean constant;
-    private MemorySpaceTypeValue<MemorySpaceType, ?> typeValue;
+    private VariableType<MemoryType, ?> typeValue;
 
     @Override
     public Object getValue() {
