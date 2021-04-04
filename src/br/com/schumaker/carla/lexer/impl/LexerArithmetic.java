@@ -1,7 +1,7 @@
 package br.com.schumaker.carla.lexer.impl;
 
 import br.com.schumaker.carla.lexer.ILexerArithmetic;
-import br.com.schumaker.carla.o3.enums.MemorySpaceType;
+import br.com.schumaker.carla.o3.enums.MemoryType;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -10,7 +10,7 @@ import javax.script.ScriptException;
 /**
  * @author Hudson Schumaker
  */
-public class LexerArithmetic implements ILexerArithmetic {
+public final class LexerArithmetic implements ILexerArithmetic {
 
     private static final String TYPE_STRING = "java.lang.String";
     private static final String TYPE_FLOAT = "java.lang.Float";
@@ -24,21 +24,21 @@ public class LexerArithmetic implements ILexerArithmetic {
     }
 
     @Override
-    public MemorySpaceType getReturnTypeExpression(String data) {
+    public MemoryType getReturnTypeExpression(String data) {
         var clean = data.replaceAll(" ", "");
         try {
             var val = v8engine.eval(clean);
             var name = val.getClass().getName();
 
             if (name.contains(TYPE_STRING)) {
-                return MemorySpaceType.STRING;
+                return MemoryType.STRING;
             }
 
             if (name.contains(TYPE_FLOAT)) {
-                return MemorySpaceType.FLOAT;
+                return MemoryType.FLOAT;
             }
 
-            return MemorySpaceType.INT;
+            return MemoryType.INT;
         } catch (ScriptException ex) {
             throw new RuntimeException(ex.getMessage());
         }

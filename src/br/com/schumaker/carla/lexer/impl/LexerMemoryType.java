@@ -1,35 +1,39 @@
 package br.com.schumaker.carla.lexer.impl;
 
-import br.com.schumaker.carla.lexer.ILexerMemorySpaceType;
-import br.com.schumaker.carla.o3.enums.MemorySpaceType;
+import br.com.schumaker.carla.lexer.ILexerMemoryType;
+import br.com.schumaker.carla.o3.enums.MemoryType;
 import br.com.schumaker.carla.o3.impl.O3Keyword;
 
 /**
  * @author Hudson Schumaker
  */
-public class LexerMemorySpaceType implements ILexerMemorySpaceType {
+public class LexerMemoryType implements ILexerMemoryType {
 
     @Override
-    public MemorySpaceType getType(String data) {
+    public MemoryType getType(String data) {
         var value = data.substring(data.indexOf(O3Keyword.ASSIGN) + 1, data.length()).trim();
 
         if (data.contains("\"") && !value.contains(O3Keyword.PLUS)) {
-            return MemorySpaceType.STRING;
+            return MemoryType.STRING;
         } else {
             if (value.contains(O3Keyword.TRUE) || value.contains(O3Keyword.FALSE)) {
-                return MemorySpaceType.BOOL;
+                return MemoryType.BOOL;
             }
 
             if (value.contains(O3Keyword.FLOATING_POINT_SIGN)) {
                 if (data.contains(O3Keyword.FLOAT_SIGN)) {
-                    return MemorySpaceType.FLOAT;
+                    return MemoryType.FLOAT;
+                }
+            }
+
+            if (value.contains(O3Keyword.FLOATING_POINT_SIGN)) {
+                if (data.contains(O3Keyword.DOUBLE_SIGN)) {
+                    return MemoryType.DOUBLE;
                 }
             }
 
 
-
-
-            return MemorySpaceType.INT;
+            return MemoryType.INT;
         }
     }
 

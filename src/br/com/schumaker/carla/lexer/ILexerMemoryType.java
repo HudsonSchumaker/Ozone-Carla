@@ -1,12 +1,13 @@
 package br.com.schumaker.carla.lexer;
 
-import br.com.schumaker.carla.o3.enums.MemorySpaceType;
+import br.com.schumaker.carla.o3.enums.MemoryType;
 
 /**
  * @author Hudson Schumaker
  */
-public interface ILexerMemorySpaceType {
-    MemorySpaceType getType(String data);
+public interface ILexerMemoryType {
+
+    MemoryType getType(String data);
 
     boolean isInitialized(String data);
 

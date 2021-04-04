@@ -17,6 +17,15 @@ public interface ILexerFunction {
 
     List<O3Parameter> getParams(String functionName, O3FileLine headLine);
 
+    /**
+     * This method create O3Function object with a basic O3Statement and
+     * O3FunctionVariableTable incomplete (only parameter variables), in the next step when
+     * is create the O3FunctionStatement and the O3FunctionVariableTable should be update.
+     *
+     * @param headerLine Signature of the function.
+     * @param file       O3File, source file .o3
+     * @return O3Function, representation of a function.
+     */
     O3Function getBody(O3FileLine headerLine, O3File file);
 
     List<O3FileLine> getHeaderLines(O3File file);

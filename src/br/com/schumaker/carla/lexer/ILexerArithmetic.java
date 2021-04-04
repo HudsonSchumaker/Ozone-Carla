@@ -1,12 +1,12 @@
 package br.com.schumaker.carla.lexer;
 
-import br.com.schumaker.carla.o3.enums.MemorySpaceType;
+import br.com.schumaker.carla.o3.enums.MemoryType;
 
 /**
  * @author Hudson Schumaker
  */
 public interface ILexerArithmetic {
-    MemorySpaceType getReturnTypeExpression(String data);
+    MemoryType getReturnTypeExpression(String data);
 
     Integer getIntegerValueFromExpression(String data);
 

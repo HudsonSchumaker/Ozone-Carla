@@ -32,9 +32,12 @@ public final class LexerHelper {
         return data.contains(O3Keyword.VARIABLE);
     }
 
+    public static boolean isConstantDeclaration(String data) {
+        return data.contains(O3Keyword.CONSTANT);
+    }
+
     public static boolean isAnExpression(String data) {
-        return data.trim().contains(O3Keyword.OPEN_EXPRESSION)
-                && data.trim().contains(O3Keyword.CLOSE_EXPRESSION);
+        return data.trim().contains(O3Keyword.OPEN_EXPRESSION) && data.trim().contains(O3Keyword.CLOSE_EXPRESSION);
     }
 
     public static boolean isReturnStatement(String data) {

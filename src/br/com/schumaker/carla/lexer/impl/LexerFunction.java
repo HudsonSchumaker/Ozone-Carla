@@ -3,8 +3,6 @@ package br.com.schumaker.carla.lexer.impl;
 import br.com.schumaker.carla.io.impl.O3File;
 import br.com.schumaker.carla.io.impl.O3FileLine;
 import br.com.schumaker.carla.lexer.ILexerFunction;
-import br.com.schumaker.carla.lexer.ILexerFunctionTable;
-import br.com.schumaker.carla.o3.VariableTable;
 import br.com.schumaker.carla.o3.impl.*;
 import lombok.Getter;
 
@@ -33,15 +31,6 @@ public final class LexerFunction implements ILexerFunction {
         return functionTable.getAllFunctions();
     }
 
-    /**
-     * This method create O3Function object with a basic O3Statement and
-     * O3FunctionVariableTable incomplete (only parameter variables), in the next step when
-     * is create the O3FunctionStatement and the O3FunctionVariableTable should be update.
-     *
-     * @param headerLine Signature of the function.
-     * @param file       O3File, source file .o3
-     * @return O3Function, representation of a function.
-     */
     @Override
     public O3Function getBody(O3FileLine headerLine, O3File file) {
         var endBlock = "";
