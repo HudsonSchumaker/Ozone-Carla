@@ -28,6 +28,7 @@ public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
         this.setConditionalStatements(file);
         this.setLoopStatements(file);
         this.setVariableDeclarations(file);
+        this.setConstantDeclarations(file);
         this.setFunctionCalls(file);
         this.setReturnStatements(file);
 
@@ -97,7 +98,18 @@ public class SourceFileBuilder implements FileBuilder<O3File, O3FileLine> {
         }
     }
 
-   @Override
+    @Override
+    public void setConstantDeclarations(O3File file) {
+        for (O3FileLine line : file.getLines()) {
+            if (!line.isFunctionHeader()) {
+                if (LexerHelper.isConstantDeclaration(line.getData())) {
+                    line.setConstantDeclaration(true);
+                }
+            }
+        }
+    }
+
+    @Override
     public void setFunctionCalls(O3File file) {
         for (O3FileLine line : file.getLines()) {
             if (!line.isFunctionHeader()) {
