@@ -7,7 +7,7 @@ import br.com.schumaker.carla.o3.impl.O3Keyword;
 /**
  * @author Hudson Schumaker
  */
-public class LexerMemoryType implements ILexerMemoryType {
+public class LexerVariableType implements ILexerMemoryType {
 
     @Override
     public MemoryType getType(String data) {
