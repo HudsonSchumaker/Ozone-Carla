@@ -88,13 +88,6 @@ public final class LexerFunction implements ILexerFunction {
         return functionTable;
     }
 
-    /**
-     * Return a list with the parameters of a function.
-     *
-     * @param functionName Declared function name.
-     * @param headLine     Signature of the function.
-     * @return List of parameter of the function.
-     */
     @Override
     public List<O3Parameter> getParams(String functionName, O3FileLine headLine) {
         return new LexerParameter().getParameters(functionName, headLine);
