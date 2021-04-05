@@ -20,4 +20,5 @@ public interface ILexer {
      * Create the O3 classes.
      */
     O3Class createClass(O3File file);
+
 }
