@@ -7,7 +7,6 @@ import br.com.schumaker.carla.lexer.ILexerVariable;
 import br.com.schumaker.carla.o3.impl.App;
 import br.com.schumaker.carla.o3.impl.O3Class;
 import br.com.schumaker.carla.o3.impl.O3Function;
-import br.com.schumaker.carla.o3.impl.O3Variable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +29,10 @@ public final class Lexer implements ILexer {
             classes.add(createClass(file));
         }
 
+        for (O3Class clazz : classes) {
+            createClassVariables(clazz);
+        }
+
 
         return new App("", null, null);
     }
@@ -39,9 +42,10 @@ public final class Lexer implements ILexer {
         return lexerClass.create(file);
     }
 
-    public List<O3Variable> createClassVariables() {
 
-        return null;
+    public void createClassVariables(O3Class o3Class) {
+        lexerVariable.getClassVariables(o3Class);
+
     }
 
     public List<O3Function> createClassFunctions() {
