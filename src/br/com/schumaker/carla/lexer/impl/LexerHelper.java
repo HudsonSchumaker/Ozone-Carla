@@ -3,7 +3,7 @@ package br.com.schumaker.carla.lexer.impl;
 import br.com.schumaker.carla.o3.impl.O3Keyword;
 
 /**
- * Helper class
+ * Helper class for Lexer action.
  *
  * @author Hudson Schumaker
  */
