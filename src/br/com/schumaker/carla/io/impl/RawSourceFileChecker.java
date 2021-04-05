@@ -1,6 +1,7 @@
 package br.com.schumaker.carla.io.impl;
 
 import br.com.schumaker.carla.exception.MoreThanOneFunctionMainException;
+import br.com.schumaker.carla.io.RawChecker;
 import br.com.schumaker.carla.lexer.impl.LexerHelper;
 import br.com.schumaker.carla.o3.impl.O3Keyword;
 import br.com.schumaker.carla.utils.StringUtils;
@@ -13,7 +14,7 @@ import java.util.List;
  *
  * @author Hudson Schumaker
  */
-public final class RawSourceFileChecker {
+public final class RawSourceFileChecker implements RawChecker {
 
     public void doCheck(O3File file) {
         this.removeComments(file);
@@ -21,22 +22,14 @@ public final class RawSourceFileChecker {
         this.setInternalLineNumbers(file);
     }
 
-    /**
-     * Set the line numbers.
-     *
-     * @param file O3File source
-     */
+    @Override
     public void setInternalLineNumbers(O3File file) {
         for (int l = 0; l < file.getLines().size(); l++) {
             file.getLines().get(l).setInternalNumber(l);
         }
     }
 
-    /**
-     * Remove comment lines.
-     *
-     * @param file O3File source
-     */
+    @Override
     public void removeComments(O3File file) {
         var newLines = new ArrayList<O3FileLine>();
         for (O3FileLine line : file.getLines()) {
@@ -47,11 +40,7 @@ public final class RawSourceFileChecker {
         file.setLines(newLines);
     }
 
-    /**
-     * Remove blank and empty lines.
-     *
-     * @param file O3File source
-     */
+    @Override
     public void removeBlankLines(O3File file) {
         var newLines = new ArrayList<O3FileLine>();
         for (O3FileLine line : file.getLines()) {
@@ -62,11 +51,7 @@ public final class RawSourceFileChecker {
         file.setLines(newLines);
     }
 
-    /**
-     * Check for more than one function main.
-     *
-     * @param files O3File source files list.
-     */
+    @Override
     public void checkForFunctionMain(List<O3File> files) {
         int number = 0;
         for (O3File file : files) {
