@@ -15,6 +15,13 @@ public interface ILexerFunction {
 
     List<O3Function> getFunctions(O3File file);
 
+    /**
+     * Return a list with the parameters of a function.
+     *
+     * @param functionName Declared function name.
+     * @param headLine     Signature of the function.
+     * @return List of parameter of the function.
+     */
     List<O3Parameter> getParams(String functionName, O3FileLine headLine);
 
     /**
