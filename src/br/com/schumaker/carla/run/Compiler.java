@@ -3,7 +3,6 @@ package br.com.schumaker.carla.run;
 import br.com.schumaker.carla.io.impl.O3File;
 import br.com.schumaker.carla.io.impl.RawSourceFileChecker;
 import br.com.schumaker.carla.io.impl.SourceFileBuilder;
-import br.com.schumaker.carla.lexer.impl.Lexer;
 import br.com.schumaker.carla.utils.FileUtils;
 
 import java.util.ArrayList;
