@@ -2,7 +2,6 @@ package br.com.schumaker.carla.io.impl;
 
 import br.com.schumaker.carla.exception.MoreThanOneFunctionMainException;
 import br.com.schumaker.carla.io.RawChecker;
-import br.com.schumaker.carla.lexer.impl.LexerHelper;
 import br.com.schumaker.carla.o3.impl.O3Keyword;
 import br.com.schumaker.carla.utils.StringUtils;
 
