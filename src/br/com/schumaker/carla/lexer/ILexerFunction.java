@@ -2,7 +2,6 @@ package br.com.schumaker.carla.lexer;
 
 import br.com.schumaker.carla.io.impl.O3File;
 import br.com.schumaker.carla.io.impl.O3FileLine;
-import br.com.schumaker.carla.lexer.impl.LexerFunctionTable;
 import br.com.schumaker.carla.o3.impl.O3Function;
 import br.com.schumaker.carla.o3.impl.O3Parameter;
 
