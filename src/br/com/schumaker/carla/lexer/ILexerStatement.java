@@ -4,7 +4,6 @@ import br.com.schumaker.carla.io.impl.O3FileLine;
 import br.com.schumaker.carla.o3.Statement;
 import br.com.schumaker.carla.o3.VariableTable;
 import br.com.schumaker.carla.o3.impl.O3Function;
-import br.com.schumaker.carla.o3.impl.O3FunctionCall;
 import br.com.schumaker.carla.o3.impl.O3Variable;
 
 import java.util.List;
