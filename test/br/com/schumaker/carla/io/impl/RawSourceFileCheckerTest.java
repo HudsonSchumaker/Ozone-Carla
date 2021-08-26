@@ -3,7 +3,7 @@ package br.com.schumaker.carla.io.impl;
 import br.com.schumaker.carla.test.TestHelper;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals; 
 
 /**
  * @author Hudson Schumaker
