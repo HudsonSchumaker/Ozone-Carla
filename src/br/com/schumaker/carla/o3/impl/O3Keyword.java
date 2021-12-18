@@ -11,7 +11,7 @@ public final class O3Keyword {
     }
 
     public static final String CLASS = "class";
-    public static final String NEW = "new";
+    public static final String NEW = "n:";
 
     public static final String COMMENT = ";";
     public static final String FUNCTION = "f:";
