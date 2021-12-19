@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * This class holds the O3 file source.
- *
  * @author Hudson Schumaker
  */
 
