@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * This class holds the O3 file source.
+ * This class holds the O3 file source. 
  *
  * @author Hudson Schumaker
  */
